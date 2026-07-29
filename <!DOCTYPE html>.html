@@ -1,0 +1,3294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="SecQuiz" />
+<meta name="theme-color" id="theme-color-meta" content="#0B0F14" />
+<meta name="format-detection" content="telephone=no" />
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAALMUlEQVR4nO2d6VJUWRKA89YCxb4IxVYLtj22drgGDOEuotA2tnv0o/QjzDzBPMA8wChq2y6AYou2hLbhGupo27JUsQvKUlAUVTU/iOggpvuUeZCT95xLfr/zR1bcL+6tzHsyr5VXVAYM81e47E6A0ReWgxHCcjBCWA5GCMvBCGE5GCEsByOE5WCEsByMEJaDEcJyMEJYDkYIy8EIYTkYISwHI4TlYISwHIwQloMRwnIwQlgORgjLwQhhORghLAcjhOVghLAcjBCWgxHCcjBCWA5GCMvBCGE5GCEsByOE5WCEsByMEJaDEcJyMEJYDkYIy8EIYTkYIR67EyCi7p8/1H5/DBP55B//+u3f/1Gdjyc351hPmyfH98nI1ELi8u7TiakZ1Sn9mTVx53Dn+AKthzCR6WRy4McbqvMBgJpvDmDMAIDBzju2mAFrRI7qw3s8ebmYyJHuB/H3k6rzAYDQqW+Qkf0X2pVmkoE1IUf4zLfIyN5zV5VmskRudYV/905MZHx8cvj2fdX5iHC+HD5/mX9vHSZy4ePU0M1fVOcDAKFTLWBZmMj+i+3pZFJ1PiKcL0foZLPlQv3MyE9dqYWE6nwAIHwa+0zps++ZAmtBDokr0XZdaSZLlO74Or82gIn8+Ortx1dvVeeTAYfLUbL1q8K/1WIip98NTDx+oTgdAIDw2aPISJo/QBlwuBzh09gr0Xf+mtJMlnBnZwWPHcZEkhXVGXCyHC6PJ/BdEyo0nR641Kk4HQCAqqY93oI8TCRZUZ0BJ8tReWhXdkkRJnL03qPY4IjqfAAgfMaYZwo4Ww6ZZwrFlfCVl1bsb8BEkhXVmXGsHFnFhZWHdmEiF2Nz0fZu1fnAUlHt1quozoxj5QgeP+zyoF4rRq/9nJybV50PAIROtiAjaYrqT+JYOfAtc5o6pXjzl0WbNmAiyYrqT+JMOQo3ri/ZshETGYsOj91/ojofkGlv0MiKwZlyhE42IyP7LrRDOq00GQCw3O7g8SOoUKqiGoMD5bDcrvAp7NOd5oV45YGG7NJiTCRZUY3BgXL499b7/KgvKb9/+HymN6I6HwAIn8X/AbK/vfEHDpRD4k0byZXIKi6satqNiVycmx8kKaqROE0Ob35e9ZF9mMhkfCFy9ZbidAAAAq2HXF4vJjJ69dYiSVGNxGlyBFob3b5sTORQ553E9KzqfECmZa5PnbKE0+SQOBFIciUKvgiVbt+MiYxFR8YfPFWdjxSOkiMvULWubgsmcn7s/ejdX1XnAzJ/gPovtqdTKaXJyOIoOcJnsFdi4FJnOqn8Slgul0THRY+W+XIcJIdlSbwQJ3mmlO/amVPlx0SSFdVSOEeOsvptuTWVmMjJ56+nXr9TnQ9ItcwvaHfbACfJET6N7oqS3MA9uTk1zfsxkamFRORKl+p8VoBD5JAbeLxMMvB49KAbOfDY0W3XwGNmHCJHTct+5MDjUFdPfOKD4nQAZFrmNH+AVoBD5Aih37T1tVFcidyayvKG7ZjI+Pjk6N2HqvNZGU6QI6eizL8HO/A4fKtHdT4gc2bA3oHHzDhBjtCpFuTA48CPNyjOZupXVK8MJ8gh8xqW4kqU1W3JD9dgIj+8eENTVK8M4+Uo2fpVwYYwJnL6bd/ks/+qzgcAQviRCP26ossxXg6Jd54kV8KdnRX4thETmU4m9TkR+JeYLYcryxs8jhs9TaVoTgRWN+9DDjySFdUrxmw5Kht3ZRUVYiJH7z6cGxlXnQ/InBnov2jn7g0MZsuBH3ikuW34ykt12yL0ORgsR3ZpcRVy4HE2Fu2gGnjUqqj+PAyWI/jdYcvtxkRGrnTRDDxKPFPadH+mgNFyhDRrb0hsEfq9f+LpS8XprAKmyoEfeJyNDI0/fK46H5B6v6NxV3Q5pspRi25v9LddJxh4dHk8yIFHsqL68zFSDsvtCp7AjZ4C9J2n6H3htwiN9TymKao/HyPl8O+t95Wvw0SOP3gyGxlSnQ8AhNHrqrUaeMyMkXJIPFNIbuASW4RmYzRbhFYF8+Tw5udVIQce5+ORK7cUpwOwtEUIN/AYuXqLpqheFcyTI9Da6M7OwkRG228nZmgGHtHtDUP+ii5hnhy6NZoKNoR12yK0WhgmR35tADvwODo+eo/ibCZ+zK7v/DWConoVMUwOqX1OFAOPUluE9D698WeMksOyZE4EUrQ3/HvqdNsitIqYJEd5w3b8wOP02z7V+YBcy9yY9sYfmCSHzJs2iivhzc+raTmAiUzGF2iK6tXFGDncOb7A0YOYyFQiQfMxCrktQiRF9epijBz4gcfhrp6FD1Oq8wGZO5nOwykZMEYOiXXVJOsM8gJVZfXbMJFkW4RWHTPkyKkoK9+1AxMZn/w43EUx8Ihvb/RfpNgipAIz5JAZeOxMLS6qzkdq4JFmdFsFZsiBvxI0i1nK6rbqtkVIBQbIUbptc8EXIUzk1JveyeevVecDUi1zY28bYIQcIfQ+J5r2htQWocjlm6rzUYfucsgNPF7sUJ0PANQ0a7dFSBG6y1HVtAc/8Dg/NqE6H5C6k5n8TAH95cC/86R5pshtESIpqtWhtRzZpcWVjaizmYnp2cGOO6rzAdktQgndBx4zo7UcwRNHJAYe4wuq8wH9tggpRWs5JNobJC1zDbcIKUVfOQo3ri/e/CUmcqYvSjPwqNsWIdXoKwd+OIXmbKaGW4RUo6kcltuN/X5zOk3T3qhq3I0tqn8h2iKkGk3lqNhXn11Wgokce/A0Fh1WnQ/InN5wxm0DtJVDoig4R9HekNsiZM7AY2Z0lMNbmF+N+xhFcm4+eu1n1fmAlluECNBRjmBrkysL963Nju7F2JzqfEDubLMT6pQldJRD4rz/OYpGE36LUCw6PP7wmep8yNBODvzA49zQ6FjPI9X5gH5FNRnaySHxV/QCxbc2LbcreAI9g+mgZwroJoflcmHbG1QVo39vva+8FBM5/uszmi1CZOglR9nft+XWVGAiJ568nP69X3U+ILeZzvg3bf+HXnLo9tl3b2G+bluEKNFIDk+Orwb3MYpUguhbm4GjB5FbhAY7uk0ceMyMRnJUt+z34L61OXTzHs3Ao8yYnUNa5svRSA6JK0HSMpfbImTmwGNmdJEjt7rCv3snJjL+fnL49n3V+YBsUW3mwGNmdJEjdLIZLAsTOXD5BsW3Ni1L4vOfTnymgEZySLyGpahTpLYITb3pVZyOPWghR+mOrwvWBzGRH1+9/fDyN9X5gFxRbd4+JyRayCFxJUhu4G58Ub24SLNFyBbsl8OV5Q20NmIi08nUwCWSgUd0UU22RcgW7JcDP/A40n2fZuBRoqh2XMt8OfbLUXsWeyV6SdobEkU11RYhu7BZjux1JRX7GzCRienZ4a57qvMBgOCJI8iiOnL5JsUWIfuwWY7g8cOWGzd6+tMNooHHNbDPCYnNcuCfKTTtDXxRPfWm1wEDj5mxU46iTRuKNm3ARM68G5h4/EJ1PqDfmQF7sVMOid0bJO0NiaI6lTLuEwgrwDY55AYeSeSQ2yI06oSBx8zYJkflgQbkwOPovUexwRHV+YDUHyDntsyXY5sc+OEUmt0b+KJ6cTY22HlXdT46YI8c3sL8atzZzMW5+ej126rzAZmiOnKlKzkfV52PDlh5RagPDTFrEPvb54y2sByMEJaDEcJyMEJYDkYIy8EIYTkYISwHI4TlYISwHIwQloMRwnIwQlgORgjLwQhhORghLAcjhOVghLAcjBCWgxHCcjBCWA5GCMvBCGE5GCEsByOE5WCEsByMEJaDEcJyMEJYDkYIy8EIYTkYISwHI4TlYISwHIwQloMRwnIwQlgORgjLwQj5HwPT6PIYXQzHAAAAAElFTkSuQmCC" />
+<title>SecQuiz — Security+ Acronym Trainer</title>
+<style>
+:root {
+  --ink: #0B0F14;
+  --paper: #F6F4EE;
+  --panel: #12181F;
+  --panel-2: #1A222B;
+  --line: #2A3440;
+  --signal: #5EEAD4;
+  --signal-dim: #1F4A44;
+  --alert: #FF6B5B;
+  --gold: #FFC24B;
+  --violet: #A78BFA;
+  --muted: #7B8896;
+  --text: #E7ECF0;
+  --mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+}
+
+html[data-theme="light"] {
+  --ink: #F6F4EE;
+  --paper: #0B0F14;
+  --panel: #FFFFFF;
+  --panel-2: #ECEAE3;
+  --line: #D8D4C8;
+  --signal: #0F9C89;
+  --signal-dim: #CFEDE7;
+  --alert: #D8402E;
+  --gold: #B8790A;
+  --violet: #6D4FC7;
+  --muted: #6B7480;
+  --text: #14181D;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--display);
+  overflow-x: hidden;
+}
+
+body {
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(94,234,212,0.06), transparent 40%),
+    radial-gradient(circle at 85% 90%, rgba(167,139,250,0.05), transparent 40%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scanline / grid texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: 0;
+}
+
+html[data-theme="light"] body::before {
+  background-image:
+    linear-gradient(rgba(11,15,20,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(11,15,20,0.03) 1px, transparent 1px);
+}
+
+#app {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.screen {
+  flex: 1;
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+}
+.screen.active { display: flex; }
+
+/* ---------- Top bar ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 28px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(11,15,20,0.7);
+  backdrop-filter: blur(6px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-family: var(--mono);
+  letter-spacing: 0.5px;
+}
+.brand .mark {
+  color: var(--signal);
+  font-weight: 700;
+  font-size: 18px;
+}
+.brand .tag {
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.topbar-right { display: flex; align-items: center; gap: 18px; font-family: var(--mono); font-size: 13px; color: var(--muted); }
+
+/* ---------- Home screen ---------- */
+.home-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  text-align: center;
+}
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--signal);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before, .eyebrow::after {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--signal-dim);
+}
+h1.hero {
+  font-size: clamp(38px, 7vw, 68px);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -1.5px;
+  max-width: 900px;
+}
+h1.hero .accent { color: var(--signal); }
+.hero-sub {
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 17px;
+  max-width: 560px;
+  line-height: 1.6;
+}
+.stat-row {
+  display: flex;
+  gap: 40px;
+  margin-top: 44px;
+  font-family: var(--mono);
+}
+.stat-item { text-align: center; }
+.stat-item .n { font-size: 30px; font-weight: 700; color: var(--text); }
+.stat-item .l { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-top: 4px; }
+
+.cta-row { margin-top: 48px; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+
+.btn {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 15px;
+  padding: 15px 32px;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  letter-spacing: 0.2px;
+}
+.btn-primary {
+  background: var(--signal);
+  color: #06231E;
+  box-shadow: 0 0 0 1px rgba(94,234,212,0.3), 0 8px 24px -8px rgba(94,234,212,0.5);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px rgba(94,234,212,0.5), 0 12px 28px -8px rgba(94,234,212,0.65); }
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+.btn-ghost:hover { border-color: var(--signal); color: var(--signal); }
+
+/* ---------- Section select ---------- */
+.section-screen { padding: 28px; }
+.section-header { max-width: 1100px; margin: 0 auto 28px; width: 100%; }
+.back-link {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+.back-link:hover { color: var(--signal); }
+.section-header h2 { font-size: 30px; font-weight: 700; letter-spacing: -0.5px; }
+.section-header p { color: var(--muted); margin-top: 8px; font-size: 15px; }
+
+.grid-sections {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.sec-card {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 22px 20px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+  overflow: hidden;
+}
+.sec-card:hover { border-color: var(--signal); transform: translateY(-3px); }
+.sec-card .idx {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.sec-card .range {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--signal);
+  margin-top: 6px;
+}
+.sec-card .count {
+  margin-top: 14px;
+  font-size: 26px;
+  font-weight: 700;
+}
+.sec-card .count small { font-size: 13px; color: var(--muted); font-weight: 500; margin-left: 4px;}
+.sec-card .best {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+}
+.sec-card .best .val { color: var(--gold); }
+.sec-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--signal), var(--violet));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+}
+.sec-card:hover::after { transform: scaleX(1); }
+
+/* ---------- Mode select modal ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(6,9,12,0.82);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+}
+.overlay.active { display: flex; }
+.modal {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 32px;
+  max-width: 420px;
+  width: 100%;
+}
+.modal h3 { font-size: 22px; margin-bottom: 6px; }
+.modal .sub { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+.mode-opt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.mode-opt:hover { border-color: var(--signal); background: rgba(94,234,212,0.04); }
+.mode-opt .m-title { font-weight: 600; font-size: 15px; }
+.mode-opt .m-desc { color: var(--muted); font-size: 12px; margin-top: 2px; }
+.mode-opt .m-icon { font-family: var(--mono); color: var(--signal); font-size: 20px; }
+.modal-close {
+  margin-top: 18px;
+  text-align: center;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 12px;
+  cursor: pointer;
+}
+.modal-close:hover { color: var(--text); }
+
+/* ---------- Icon button (settings gear) ---------- */
+.icon-btn {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+.icon-btn:hover { border-color: var(--signal); color: var(--signal); transform: rotate(25deg); }
+.icon-btn.exit-btn:hover { border-color: var(--alert); color: var(--alert); transform: none; }
+
+/* Persistent dev-mode shortcut — invisible until state.devMode is true,
+   at which point refreshDevButtonVisibility() adds .show. Lets you jump
+   straight into the developer modal without retyping the code every time. */
+.icon-btn.dev-icon-btn { display: none; border-color: var(--violet); color: var(--violet); }
+.icon-btn.dev-icon-btn.show { display: inline-flex; }
+.icon-btn.dev-icon-btn:hover { border-color: var(--violet); color: var(--violet); background: rgba(167,139,250,0.1); transform: none; }
+
+/* ---------- Settings modal ---------- */
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.settings-row:last-of-type { border-bottom: none; }
+.settings-row .s-title { font-weight: 600; font-size: 14.5px; }
+.settings-row .s-desc { color: var(--muted); font-size: 12px; margin-top: 2px; }
+
+.theme-toggle {
+  display: flex;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+  font-family: var(--mono);
+}
+.theme-toggle button {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 12px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.theme-toggle button.active { background: var(--signal); color: #06231E; font-weight: 700; }
+html[data-theme="light"] .theme-toggle button.active { color: #FFFFFF; }
+
+.btn-danger-outline {
+  background: transparent;
+  border: 1px solid var(--alert);
+  color: var(--alert);
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 9px 16px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.btn-danger-outline:hover { background: rgba(255,107,91,0.1); }
+
+/* ---------- Danger confirm modal ---------- */
+.modal.danger { border-color: var(--alert); }
+.modal.danger h3 { color: var(--alert); }
+.danger-warning {
+  background: rgba(255,107,91,0.08);
+  border: 1px solid var(--alert);
+  border-radius: 4px;
+  padding: 12px 14px;
+  font-size: 13px;
+  color: var(--text);
+  margin-bottom: 22px;
+  line-height: 1.5;
+}
+.danger-actions { display: flex; gap: 10px; }
+.btn-danger-solid {
+  flex: 1;
+  background: var(--alert);
+  color: #2A0904;
+  border: none;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 16px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: filter 0.15s ease;
+}
+.btn-danger-solid:hover { filter: brightness(1.1); }
+.btn-cancel-outline {
+  flex: 1;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 16px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.btn-cancel-outline:hover { border-color: var(--text); }
+
+/* ---------- Game screen ---------- */
+.game-screen { padding: 0; }
+.game-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--line);
+}
+.q-progress {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+}
+.q-progress .cur { color: var(--signal); font-weight: 700; }
+
+.progress-track {
+  height: 4px;
+  background: var(--panel-2);
+  position: relative;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--signal), var(--violet));
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.score-pod {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-family: var(--mono);
+  font-size: 13px;
+}
+.streak-pod {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--gold);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.streak-pod.show { opacity: 1; }
+
+.timer-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.timer-ring {
+  width: 38px; height: 38px;
+  position: relative;
+}
+.timer-ring svg { transform: rotate(-90deg); width: 100%; height: 100%; }
+.timer-ring circle { fill: none; stroke-width: 4; }
+.timer-ring .bg { stroke: var(--panel-2); }
+.timer-ring .fg { stroke: var(--signal); stroke-linecap: round; transition: stroke-dashoffset 1s linear, stroke 0.3s ease; }
+.timer-num {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 12px; font-weight: 700;
+}
+
+.q-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+.q-kicker {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--violet);
+  margin-bottom: 18px;
+}
+.q-term {
+  font-family: var(--mono);
+  font-size: clamp(44px, 9vw, 84px);
+  font-weight: 700;
+  color: var(--signal);
+  letter-spacing: 1px;
+  line-height: 1;
+  word-break: break-word;
+}
+.q-hint {
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 14px;
+  font-family: var(--mono);
+}
+
+.opts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  max-width: 900px;
+  margin: 32px auto 0;
+  padding: 0 24px 40px;
+  width: 100%;
+}
+@media (max-width: 640px) {
+  .opts-grid { grid-template-columns: 1fr; }
+}
+
+.opt-btn {
+  text-align: left;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 18px 20px;
+  color: var(--text);
+  font-family: var(--display);
+  font-size: 14.5px;
+  line-height: 1.4;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  transition: border-color 0.12s ease, background 0.12s ease, transform 0.08s ease;
+  position: relative;
+}
+.opt-btn:hover:not(:disabled) { border-color: var(--signal); background: rgba(94,234,212,0.045); }
+.opt-btn:active:not(:disabled) { transform: scale(0.985); }
+.opt-btn:disabled { cursor: default; }
+.opt-key {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  width: 22px; height: 22px;
+  min-width: 22px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+.opt-btn.correct {
+  border-color: var(--signal);
+  background: rgba(94,234,212,0.1);
+}
+.opt-btn.correct .opt-key { background: var(--signal); color: #06231E; border-color: var(--signal); }
+.opt-btn.wrong {
+  border-color: var(--alert);
+  background: rgba(255,107,91,0.08);
+}
+.opt-btn.wrong .opt-key { background: var(--alert); color: #2A0904; border-color: var(--alert); }
+.opt-btn.dim { opacity: 0.4; }
+
+.feedback-bar {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+  min-height: 22px;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 13px;
+}
+.feedback-bar.correct-fb { color: var(--signal); }
+.feedback-bar.wrong-fb { color: var(--alert); }
+
+/* ---------- Flashcards screen ---------- */
+.fc-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--line);
+}
+.fc-progress {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+}
+.fc-progress .cur { color: var(--signal); font-weight: 700; }
+
+.fc-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  width: 100%;
+}
+.fc-scene {
+  width: 100%;
+  max-width: 640px;
+  perspective: 1600px;
+}
+.fc-card {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  min-height: 340px;
+  cursor: pointer;
+}
+.fc-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d;
+}
+.fc-card.flipped .fc-card-inner { transform: rotateY(180deg); }
+.fc-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 32px;
+  text-align: center;
+  overflow-y: auto;
+}
+.fc-face-back { transform: rotateY(180deg); }
+.fc-kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--violet);
+  margin-bottom: 16px;
+}
+.fc-term-big {
+  font-family: var(--mono);
+  font-size: clamp(36px, 7vw, 64px);
+  font-weight: 700;
+  color: var(--signal);
+  letter-spacing: 1px;
+  line-height: 1.1;
+  word-break: break-word;
+}
+.fc-full {
+  font-family: var(--display);
+  font-size: clamp(17px, 2.6vw, 21px);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 14px;
+  line-height: 1.35;
+}
+.fc-def {
+  font-family: var(--display);
+  font-size: 14.5px;
+  color: var(--muted);
+  line-height: 1.55;
+  max-width: 460px;
+}
+.fc-flip-hint {
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  right: 0;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.fc-nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 28px;
+}
+.fc-nav-btn {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-family: var(--display);
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.fc-nav-btn:hover { border-color: var(--signal); color: var(--signal); }
+.fc-nav-count {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--muted);
+  min-width: 60px;
+  text-align: center;
+}
+
+/* ---------- Results screen ---------- */
+.results-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  text-align: center;
+}
+.r-label {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.r-score {
+  font-family: var(--mono);
+  font-size: clamp(64px, 14vw, 120px);
+  font-weight: 700;
+  line-height: 1;
+  margin: 14px 0;
+}
+.r-score .of { color: var(--muted); font-size: 0.4em; }
+.r-tier {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.r-detail { color: var(--muted); font-size: 14px; margin-bottom: 36px; }
+
+.r-stats {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.r-stat { font-family: var(--mono); text-align: center; }
+.r-stat .v { font-size: 24px; font-weight: 700; }
+.r-stat .l { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+.missed-panel {
+  max-width: 640px;
+  width: 100%;
+  text-align: left;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 20px 22px;
+  margin-bottom: 32px;
+  max-height: 260px;
+  overflow-y: auto;
+}
+.missed-panel h4 {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--alert);
+  margin-bottom: 14px;
+}
+.missed-item {
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 13.5px;
+}
+.missed-item:last-child { border-bottom: none; }
+.missed-item .mi-term {
+  font-family: var(--mono);
+  color: var(--signal);
+  font-weight: 700;
+  min-width: 90px;
+}
+.missed-item .mi-def { color: var(--muted); line-height: 1.4; }
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+/* Focus visibility */
+button:focus-visible, .sec-card:focus-visible, .mode-opt:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+}
+
+.footer-note {
+  text-align: center;
+  padding: 20px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+
+/* ---------- Deck card menu (3-dot) ---------- */
+.sec-card { padding-top: 40px; }
+.card-menu-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+.card-menu-btn:hover { border-color: var(--line); color: var(--text); }
+.card-menu-dropdown {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  min-width: 150px;
+  z-index: 5;
+  display: none;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -8px rgba(0,0,0,0.5);
+}
+.card-menu-dropdown.open { display: block; }
+.card-menu-item {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-family: var(--display);
+  font-size: 13px;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+.card-menu-item:hover { background: rgba(94,234,212,0.08); color: var(--signal); }
+.card-menu-item-danger { border-top: 1px solid var(--line); }
+.card-menu-item-danger:hover { background: rgba(255,107,91,0.08); color: var(--alert); }
+
+/* ---------- Grade history modal ---------- */
+.history-modal { max-width: 480px; }
+.history-list {
+  max-height: 340px;
+  overflow-y: auto;
+  margin-top: 4px;
+}
+.history-empty {
+  color: var(--muted);
+  font-size: 13.5px;
+  padding: 18px 4px;
+  text-align: center;
+}
+.history-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 4px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 12.5px;
+}
+.history-row:last-child { border-bottom: none; }
+.hr-left { display: flex; flex-direction: column; gap: 3px; }
+.hr-mode { color: var(--muted); text-transform: uppercase; font-size: 10.5px; letter-spacing: 1px; }
+.hr-date { color: var(--muted); }
+.hr-score { font-size: 15px; font-weight: 700; color: var(--text); }
+.hr-score.is-best { color: var(--gold); }
+.hr-pct { color: var(--muted); font-size: 11px; margin-left: 6px; }
+
+/* ---------- Click-to-continue popup ---------- */
+.continue-hint {
+  position: fixed;
+  left: 50%;
+  bottom: 34px;
+  transform: translateX(-50%) translateY(8px);
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 10px 20px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 50;
+  max-width: min(360px, calc(100vw - 32px));
+  text-align: center;
+}
+.continue-hint.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.continue-hint .ch-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--signal);
+  animation: chPulse 1.1s ease-in-out infinite;
+}
+@keyframes chPulse { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+.continue-hint .ch-count { color: var(--signal); font-weight: 700; }
+
+/* ---------- Confetti canvas ---------- */
+#confetti-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 200;
+}
+
+/* ---------- Mastery badge (sits inline beside "Acronym Drill" in the
+   header, once per screen that has a topbar — see the .brand markup) ---------- */
+.mastery-badge {
+  position: relative;
+  align-self: center;
+  display: none;
+  align-items: center;
+  gap: 6px;
+  background: var(--panel-2);
+  border: 1px solid var(--gold);
+  border-radius: 20px;
+  padding: 6px 12px 6px 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px -4px rgba(255,194,75,0.4);
+  transition: transform 0.1s ease;
+}
+.mastery-badge:active { transform: scale(0.94); }
+.mastery-badge.show { display: flex; }
+.mastery-badge .mb-icon { font-size: 15px; }
+.mastery-badge .mb-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.5px;
+}
+.mastery-tooltip {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 20;
+  background: var(--panel-2);
+  border: 1px solid var(--gold);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-family: var(--display);
+  font-size: 12.5px;
+  color: var(--text);
+  width: 230px;
+  line-height: 1.45;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+.mastery-badge:hover .mastery-tooltip,
+.mastery-badge.tooltip-open .mastery-tooltip { opacity: 1; transform: translateY(0); }
+
+/* ---------- Mastery celebration modal ---------- */
+.mastery-modal h3 { color: var(--gold); }
+.mastery-modal .mm-icon { font-size: 40px; margin-bottom: 10px; }
+
+/* ---------- Settings: timer stepper ---------- */
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+}
+.stepper button {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--text);
+  font-size: 15px;
+  cursor: pointer;
+  line-height: 1;
+}
+.stepper button:hover { border-color: var(--signal); color: var(--signal); }
+.stepper button:disabled { opacity: 0.35; cursor: default; }
+.stepper button:disabled:hover { border-color: var(--line); color: var(--text); }
+.stepper .stepper-val { min-width: 42px; text-align: center; font-size: 14px; font-weight: 700; }
+
+/* ---------- Settings: code / dev unlock field ---------- */
+.code-row-input {
+  display: flex;
+  gap: 8px;
+}
+.code-row-input input {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 13px;
+  padding: 8px 10px;
+  width: 150px;
+}
+.code-row-input input:focus { outline: none; border-color: var(--signal); }
+.code-row-input button {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-family: var(--display);
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.code-row-input button:hover { border-color: var(--signal); color: var(--signal); }
+
+/* ---------- Developer panel ---------- */
+.dev-modal { max-width: 560px; }
+.dev-modal h3 { color: var(--violet); }
+.dev-section { margin-bottom: 20px; }
+.dev-section-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--violet);
+  margin-bottom: 10px;
+}
+.dev-btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.dev-btn {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 12px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.dev-btn:hover { border-color: var(--violet); color: var(--violet); }
+.dev-console {
+  background: #05070A;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: #8FE9C9;
+  height: 150px;
+  overflow-y: auto;
+  margin-bottom: 8px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.dev-console .dc-line { margin-bottom: 3px; }
+.dev-console .dc-err { color: var(--alert); }
+.dev-console .dc-cmd { color: var(--muted); }
+.dev-console-input-row { display: flex; gap: 8px; }
+.dev-console-input-row input {
+  flex: 1;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 12.5px;
+  padding: 8px 10px;
+}
+.dev-console-input-row input:focus { outline: none; border-color: var(--violet); }
+.dev-score-form { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.dev-score-form select, .dev-score-form input[type="number"] {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 12.5px;
+  padding: 7px 9px;
+}
+.dev-score-form input[type="number"] { width: 90px; }
+.dev-badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--violet);
+  border: 1px solid var(--violet);
+  border-radius: 3px;
+  padding: 2px 6px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* =====================================================================
+   Mobile / iPhone support
+   ---------------------------------------------------------------------
+   Touch-friendly tap targets, safe-area padding for the notch/Dynamic
+   Island/home-indicator, fixes for iOS Safari's zoom-on-focus and tap-
+   delay quirks, and a phone-width layout pass. The breakpoint below
+   matches the .opts-grid rule earlier in this file (max-width: 640px),
+   which comfortably spans the current iPhone lineup (SE/mini at 375px
+   through Pro Max at ~430px).
+   ===================================================================== */
+
+/* iOS Safari's 100vh includes the area behind the address bar; 100dvh
+   tracks what's actually visible. Browsers that don't support dvh just
+   ignore that line, leaving the 100vh above it in effect. */
+html, body { min-height: 100vh; min-height: 100dvh; }
+.screen { min-height: 100vh; min-height: 100dvh; }
+
+/* Every interactive element here already has its own :active state, so
+   the default gray tap-flash just fights the app's own feedback. */
+html { -webkit-tap-highlight-color: transparent; }
+
+/* Removes the double-tap-to-zoom delay on anything meant to be tapped
+   quickly — matters most mid-quiz, where every tap is racing a timer.
+   Pinch-zoom elsewhere on the page is left alone, for accessibility. */
+button, .opt-btn, .sec-card, .mode-opt, .card-menu-btn, .card-menu-item,
+.fc-card, .fc-nav-btn, .mastery-badge, .back-link, .icon-btn,
+.theme-toggle button, .stepper button {
+  touch-action: manipulation;
+}
+
+body { overscroll-behavior-y: contain; }
+
+/* Safe-area-aware padding — env() resolves to 0 on devices without an
+   inset, so this matches the original 20px there and only grows around
+   a notch / Dynamic Island / home-indicator. */
+.overlay {
+  overflow-y: auto;
+  padding-top: max(20px, env(safe-area-inset-top));
+  padding-bottom: max(20px, env(safe-area-inset-bottom));
+  padding-left: max(20px, env(safe-area-inset-left));
+  padding-right: max(20px, env(safe-area-inset-right));
+}
+.topbar { padding-top: max(18px, env(safe-area-inset-top)); }
+.game-topbar, .fc-topbar { padding-top: calc(16px + env(safe-area-inset-top)); }
+.continue-hint { bottom: calc(34px + env(safe-area-inset-bottom)); }
+
+@media (max-width: 640px) {
+  /* ---- Top bars: drop the secondary label, tighten spacing, wrap as
+     a last resort instead of overflowing ---- */
+  .topbar {
+    padding-left: 16px; padding-right: 16px; padding-bottom: 14px;
+    flex-wrap: wrap; row-gap: 8px;
+  }
+  .brand .tag { display: none; }
+  .topbar-right { gap: 10px; font-size: 12px; }
+  .icon-btn { width: 40px; height: 40px; font-size: 15px; }
+
+  .game-topbar, .fc-topbar {
+    padding-left: 16px; padding-right: 16px; padding-bottom: 14px;
+    flex-wrap: wrap; row-gap: 6px;
+  }
+  .score-pod { gap: 10px; }
+  .timer-ring { width: 34px; height: 34px; }
+
+  /* ---- Screens: less side padding so content uses more of a narrow
+     screen; less top/bottom padding so more fits above the fold ---- */
+  .home-wrap { padding: 40px 18px; }
+  .section-screen { padding: 18px 16px; }
+  .results-wrap { padding: 40px 18px; }
+  .q-body, .fc-body { padding: 28px 18px; }
+  .stat-row { gap: 24px; margin-top: 32px; }
+
+  .grid-sections { grid-template-columns: 1fr; }
+
+  /* Full-width, stacked buttons are easier to hit with a thumb than a
+     row of wrapped pairs. */
+  .cta-row { flex-direction: column; align-items: stretch; width: 100%; }
+  .cta-row .btn { width: 100%; }
+
+  /* Settings rows: stack label above control instead of squeezing both
+     onto one line. */
+  .settings-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .code-row-input { width: 100%; }
+  .code-row-input input { flex: 1; min-width: 0; }
+
+  /* Bigger touch targets, roughly Apple's ~44px guidance. */
+  .card-menu-btn { width: 34px; height: 34px; }
+  .stepper button { width: 38px; height: 38px; }
+  .theme-toggle button { padding: 10px 16px; }
+
+  /* Any real text/number input needs a 16px+ font size or iOS zooms the
+     whole page in the moment it's tapped. */
+  .code-row-input input, .dev-console-input-row input,
+  .dev-score-form input, .dev-score-form select { font-size: 16px; }
+
+  /* Flashcards: a shorter card fits above the fold on a phone screen. */
+  .fc-card { height: 300px; min-height: 300px; }
+  .fc-face { padding: 26px 22px; }
+
+  /* Tall modals (Settings, Developer panel) cap below the viewport
+     height and scroll internally instead of clipping at the edges. */
+  .modal {
+    max-height: calc(100vh - 64px);
+    max-height: calc(100dvh - 64px);
+    overflow-y: auto;
+  }
+}
+</style>
+</head>
+<body>
+
+<div id="app">
+
+  <!-- Click-anywhere-to-continue popup — shown during the post-answer
+       auto-advance wait on the game screen. -->
+  <div class="continue-hint" id="continue-hint">
+    <span class="ch-dot"></span>
+    <span>Click anywhere or press Space to continue <span class="ch-count" id="continue-hint-count">30</span>s</span>
+  </div>
+
+  <!-- ============ HOME SCREEN ============ -->
+  <div class="screen active" id="screen-home">
+    <div class="topbar">
+      <div class="brand"><span class="mark">SEC//QUIZ</span><span class="tag">Acronym Drill</span><div class="mastery-badge">
+        <span class="mb-icon">🏆</span><span class="mb-label">MASTERED</span>
+        <div class="mastery-tooltip">You passed every deck with a perfect score.</div>
+      </div></div>
+      <div class="topbar-right"><span id="global-best">Best run: —</span><button class="icon-btn dev-icon-btn" id="btn-dev-1" aria-label="Developer mode" title="Developer mode">{}</button><button class="icon-btn" id="btn-settings-1" aria-label="Settings" title="Settings">⚙</button></div>
+    </div>
+    <div class="home-wrap">
+      <div class="eyebrow">CompTIA Security+ 701</div>
+      <h1 class="hero">Learn the alphabet soup<br/><span class="accent">before the exam does.</span></h1>
+      <p class="hero-sub">314 acronyms from the Security+ 701 guide, split into 25-word decks. Pick a deck, beat the clock, and see what sticks.</p>
+      <div class="stat-row">
+        <div class="stat-item"><div class="n">314</div><div class="l">Terms</div></div>
+        <div class="stat-item"><div class="n">13</div><div class="l">Decks</div></div>
+        <div class="stat-item"><div class="n">3</div><div class="l">Modes</div></div>
+      </div>
+      <div class="cta-row">
+        <button class="btn btn-primary" id="btn-start">Choose a deck →</button>
+      </div>
+    </div>
+    <div class="footer-note">Made by Jones for the Security+ SY0-701 exam.</div>
+  </div>
+
+  <!-- ============ SECTION SELECT SCREEN ============ -->
+  <div class="screen" id="screen-sections">
+    <div class="topbar">
+      <div class="brand"><span class="mark">SEC//QUIZ</span><span class="tag">Acronym Drill</span><div class="mastery-badge">
+        <span class="mb-icon">🏆</span><span class="mb-label">MASTERED</span>
+        <div class="mastery-tooltip">You passed every deck with a perfect score.</div>
+      </div></div>
+      <div class="topbar-right"><span id="global-best-2">Best run: —</span><button class="icon-btn dev-icon-btn" id="btn-dev-2" aria-label="Developer mode" title="Developer mode">{}</button><button class="icon-btn" id="btn-settings-2" aria-label="Settings" title="Settings">⚙</button></div>
+    </div>
+    <div class="section-screen">
+      <div class="section-header">
+        <div class="back-link" id="back-to-home">← Home</div>
+        <h2>Choose your deck</h2>
+        <p>Each deck holds up to 25 terms. Clear one, then move to the next.</p>
+      </div>
+      <div class="grid-sections" id="grid-sections"></div>
+    </div>
+  </div>
+
+  <!-- ============ MODE MODAL ============ -->
+  <div class="overlay" id="mode-overlay">
+    <div class="modal">
+      <h3 id="modal-deck-title">Deck 1</h3>
+      <div class="sub" id="modal-deck-sub">25 terms · AAA – BYOD</div>
+      <div class="mode-opt" id="mode-classic">
+        <div>
+          <div class="m-title">Classic Quiz</div>
+          <div class="m-desc" id="mode-classic-desc">See the acronym, pick the right definition. 15s per question.</div>
+        </div>
+        <div class="m-icon">▸</div>
+      </div>
+      <div class="mode-opt" id="mode-reverse">
+        <div>
+          <div class="m-title">Reverse Mode</div>
+          <div class="m-desc">See the definition, pick the right acronym. Harder recall.</div>
+        </div>
+        <div class="m-icon">▸</div>
+      </div>
+      <div class="mode-opt" id="mode-flashcards">
+        <div>
+          <div class="m-title">Flashcards</div>
+          <div class="m-desc">Flip through every term at your own pace. No timer.</div>
+        </div>
+        <div class="m-icon">▸</div>
+      </div>
+      <div class="modal-close" id="modal-close">Cancel</div>
+    </div>
+  </div>
+
+  <!-- ============ SETTINGS MODAL ============ -->
+  <div class="overlay" id="settings-overlay">
+    <div class="modal">
+      <h3>Settings</h3>
+      <div class="sub">Display and data options</div>
+
+      <div class="settings-row">
+        <div>
+          <div class="s-title">Appearance</div>
+          <div class="s-desc">Switch between dark and light mode</div>
+        </div>
+        <div class="theme-toggle">
+          <button id="theme-dark-btn">Dark</button>
+          <button id="theme-light-btn">Light</button>
+        </div>
+      </div>
+
+      <div class="settings-row">
+        <div>
+          <div class="s-title">Shuffle questions</div>
+          <div class="s-desc">Randomize question order each time you play</div>
+        </div>
+        <div class="theme-toggle">
+          <button id="shuffle-on-btn">On</button>
+          <button id="shuffle-off-btn">Off</button>
+        </div>
+      </div>
+
+      <div class="settings-row">
+        <div>
+          <div class="s-title">Answer time limit</div>
+          <div class="s-desc">Seconds per question (classic mode; reverse gets +3s)</div>
+        </div>
+        <div class="stepper">
+          <button type="button" id="timer-dec" aria-label="Decrease time limit">−</button>
+          <span class="stepper-val" id="timer-val">15s</span>
+          <button type="button" id="timer-inc" aria-label="Increase time limit">+</button>
+        </div>
+      </div>
+
+      <div class="settings-row">
+        <div>
+          <div class="s-title">Reset progress</div>
+          <div class="s-desc">Clears all scores and best runs</div>
+        </div>
+        <button class="btn-danger-outline" id="btn-open-reset">Reset</button>
+      </div>
+
+      <div class="settings-row">
+        <div>
+          <div class="s-title">Code</div>
+          <div class="s-desc">Enter a code</div>
+        </div>
+        <div class="code-row-input">
+          <input type="text" id="code-input" placeholder="Enter code" autocomplete="off" spellcheck="false" />
+          <button type="button" id="code-submit">Enter</button>
+        </div>
+      </div>
+
+      <div class="modal-close" id="settings-close">Close</div>
+    </div>
+  </div>
+
+  <!-- ============ DEVELOPER MODAL (hidden feature, unlocked via Settings > Code) ============ -->
+  <div class="overlay" id="dev-overlay">
+    <div class="modal dev-modal">
+      <h3>Developer mode<span class="dev-badge">UNLOCKED</span></h3>
+      <div class="sub">Local testing tools. Nothing here is sent anywhere — it only edits data in this browser's storage.</div>
+
+      <div class="dev-section">
+        <div class="dev-section-title">Quick actions</div>
+        <div class="dev-btn-row">
+          <button class="dev-btn" type="button" id="dev-complete-all">Set all decks to 100% (both modes)</button>
+          <button class="dev-btn" type="button" id="dev-fire-confetti">Fire confetti test</button>
+          <button class="dev-btn" type="button" id="dev-clear-progress">Wipe all progress</button>
+          <button class="dev-btn" type="button" id="dev-lock">Lock developer mode</button>
+        </div>
+      </div>
+
+      <div class="dev-section">
+        <div class="dev-section-title">Set a specific score</div>
+        <div class="dev-score-form">
+          <select id="dev-score-deck"></select>
+          <select id="dev-score-mode">
+            <option value="classic">Classic</option>
+            <option value="reverse">Reverse</option>
+          </select>
+          <input type="number" id="dev-score-correct" min="0" placeholder="Correct" />
+          <span style="color:var(--muted); font-family:var(--mono); font-size:12px;">of</span>
+          <input type="number" id="dev-score-total" min="1" placeholder="Total" />
+          <button class="dev-btn" type="button" id="dev-score-apply">Apply</button>
+        </div>
+      </div>
+
+      <div class="dev-section">
+        <div class="dev-section-title">Command console</div>
+        <div class="dev-console" id="dev-console-log"></div>
+        <div class="dev-console-input-row">
+          <input type="text" id="dev-console-input" placeholder="type a command, e.g. help" autocomplete="off" spellcheck="false" />
+          <button class="dev-btn" type="button" id="dev-console-run">Run</button>
+        </div>
+      </div>
+
+      <div class="modal-close" id="dev-close">Close</div>
+    </div>
+  </div>
+
+  <!-- ============ RESET CONFIRM MODAL ============ -->
+  <div class="overlay" id="reset-overlay">
+    <div class="modal danger">
+      <h3>Reset all progress?</h3>
+      <div class="sub">This cannot be undone</div>
+      <div class="danger-warning">
+        This will permanently erase every deck's best score, accuracy, and streak history. You'll be starting over from zero on all 13 decks.
+      </div>
+      <div class="danger-actions">
+        <button class="btn-cancel-outline" id="btn-reset-cancel">Cancel</button>
+        <button class="btn-danger-solid" id="btn-reset-confirm">Yes, reset everything</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ EXIT QUIZ CONFIRM MODAL ============ -->
+  <div class="overlay" id="exit-overlay">
+    <div class="modal danger">
+      <h3>Leave this quiz?</h3>
+      <div class="sub">Your progress on this run won't be saved</div>
+      <div class="danger-warning">
+        You're partway through this deck. Leaving now discards your current score and streak for this attempt — it won't count toward your best run.
+      </div>
+      <div class="danger-actions">
+        <button class="btn-cancel-outline" id="btn-exit-cancel">Keep going</button>
+        <button class="btn-danger-solid" id="btn-exit-confirm">Leave quiz</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ GRADE HISTORY MODAL ============ -->
+  <div class="overlay" id="history-overlay">
+    <div class="modal history-modal">
+      <h3 id="history-title">Grade history</h3>
+      <div class="sub" id="history-sub">Every attempt on this deck</div>
+      <div class="history-list" id="history-list"></div>
+      <div class="modal-close" id="history-close">Close</div>
+    </div>
+  </div>
+
+  <!-- ============ RESET SINGLE DECK CONFIRM MODAL ============ -->
+  <div class="overlay" id="reset-deck-overlay">
+    <div class="modal danger">
+      <h3>Reset this deck?</h3>
+      <div class="sub">This cannot be undone</div>
+      <div class="danger-warning" id="reset-deck-warning">
+        This will permanently erase this deck's best score, accuracy, and run history in both Classic and Reverse mode.
+      </div>
+      <div class="danger-actions">
+        <button class="btn-cancel-outline" id="btn-reset-deck-cancel">Cancel</button>
+        <button class="btn-danger-solid" id="btn-reset-deck-confirm">Yes, reset this deck</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ MASTERY CELEBRATION MODAL ============ -->
+  <div class="overlay" id="mastery-overlay">
+    <div class="modal mastery-modal">
+      <div class="mm-icon">🏆</div>
+      <h3>All decks cleared — 100%!</h3>
+      <div class="sub" id="mastery-sub">You passed every deck with a perfect score.</div>
+      <div class="modal-close" id="mastery-close">Nice</div>
+    </div>
+  </div>
+
+  <!-- ============ GAME SCREEN ============ -->
+  <div class="screen game-screen" id="screen-game">
+    <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="game-topbar">
+      <div class="q-progress">Q <span class="cur" id="q-cur">1</span> / <span id="q-total">25</span></div>
+      <div class="score-pod">
+        <div class="streak-pod" id="streak-pod">🔥 <span id="streak-num">0</span></div>
+        <span id="score-live">Score: 0</span>
+        <div class="timer-wrap">
+          <div class="timer-ring">
+            <svg viewBox="0 0 40 40">
+              <circle class="bg" cx="20" cy="20" r="16"></circle>
+              <circle class="fg" id="timer-circle" cx="20" cy="20" r="16" stroke-dasharray="100.5" stroke-dashoffset="0"></circle>
+            </svg>
+            <div class="timer-num" id="timer-num">15</div>
+          </div>
+        </div>
+        <button class="icon-btn exit-btn" id="btn-exit-quiz" aria-label="Exit quiz" title="Exit quiz">✕</button>
+      </div>
+    </div>
+    <div class="q-body">
+      <div class="q-kicker" id="q-kicker">WHAT DOES THIS ACRONYM MEAN?</div>
+      <div class="q-term" id="q-term">AAA</div>
+      <div class="q-hint" id="q-hint"></div>
+    </div>
+    <div class="opts-grid" id="opts-grid"></div>
+    <div class="feedback-bar" id="feedback-bar"></div>
+  </div>
+
+  <!-- ============ FLASHCARDS SCREEN ============ -->
+  <!-- Self-paced, untimed review mode: no scoring, no auto-advance, no
+       exit confirmation (nothing gets lost by leaving). Card order
+       respects the same global shuffle setting as the quiz modes. -->
+  <div class="screen game-screen" id="screen-flashcards">
+    <div class="progress-track"><div class="progress-fill" id="fc-progress-fill"></div></div>
+    <div class="fc-topbar">
+      <div class="fc-progress">Card <span class="cur" id="fc-cur">1</span> / <span id="fc-total">25</span></div>
+      <button class="icon-btn exit-btn" id="btn-exit-flashcards" aria-label="Exit flashcards" title="Exit flashcards">✕</button>
+    </div>
+    <div class="fc-body">
+      <div class="fc-scene">
+        <div class="fc-card" id="fc-card">
+          <div class="fc-card-inner">
+            <div class="fc-face fc-face-front">
+              <div class="fc-kicker">Term</div>
+              <div class="fc-term-big" id="fc-term"></div>
+              <div class="fc-flip-hint">Click to flip ↻</div>
+            </div>
+            <div class="fc-face fc-face-back">
+              <div class="fc-kicker">Definition</div>
+              <div class="fc-full" id="fc-full"></div>
+              <div class="fc-def" id="fc-def"></div>
+              <div class="fc-flip-hint">Click to flip back ↻</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fc-nav-row">
+        <button class="fc-nav-btn" id="fc-prev" type="button">← Previous</button>
+        <div class="fc-nav-count" id="fc-nav-count">1 / 25</div>
+        <button class="fc-nav-btn" id="fc-next" type="button">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ RESULTS SCREEN ============ -->
+  <div class="screen" id="screen-results">
+    <div class="topbar">
+      <div class="brand"><span class="mark">SEC//QUIZ</span><span class="tag">Acronym Drill</span><div class="mastery-badge">
+        <span class="mb-icon">🏆</span><span class="mb-label">MASTERED</span>
+        <div class="mastery-tooltip">You passed every deck with a perfect score.</div>
+      </div></div>
+      <div class="topbar-right"><button class="icon-btn dev-icon-btn" id="btn-dev-3" aria-label="Developer mode" title="Developer mode">{}</button><button class="icon-btn" id="btn-settings-3" aria-label="Settings" title="Settings">⚙</button></div>
+    </div>
+    <div class="results-wrap">
+      <div class="r-label" id="r-deck-label">Deck 1 — Complete</div>
+      <div class="r-score"><span id="r-score-num">0</span><span class="of" id="r-score-of">/25</span></div>
+      <div class="r-tier" id="r-tier">Solid run</div>
+      <div class="r-detail" id="r-detail">Accuracy 0% · Best streak 0</div>
+
+      <div class="r-stats">
+        <div class="r-stat"><div class="v" id="stat-correct">0</div><div class="l">Correct</div></div>
+        <div class="r-stat"><div class="v" id="stat-wrong">0</div><div class="l">Missed</div></div>
+        <div class="r-stat"><div class="v" id="stat-streak">0</div><div class="l">Best Streak</div></div>
+        <div class="r-stat"><div class="v" id="stat-avg">0s</div><div class="l">Avg Time</div></div>
+      </div>
+
+      <div class="missed-panel" id="missed-panel" style="display:none;">
+        <h4>Review these</h4>
+        <div id="missed-list"></div>
+      </div>
+
+      <div class="cta-row">
+        <button class="btn btn-primary" id="btn-retry">Retry this deck</button>
+        <button class="btn btn-ghost" id="btn-next-deck">Next deck →</button>
+        <button class="btn btn-ghost" id="btn-all-decks">All decks</button>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="confetti-canvas"></canvas>
+
+</div>
+
+<script>
+// Security+ 701 Acronym Quiz Data
+// Extracted and cleaned from the CompTIA Security+ 701 Last Minute Guide (Andrew Ramdayal)
+// Each entry: { term, full, def }
+
+const RAW_TERMS = [
+  { term: "AAA", full: "Authentication, Authorization, and Accounting", def: "A framework for intelligently controlling access to computer resources, enforcing policies, auditing usage, and billing for services." },
+  { term: "ACL", full: "Access Control List", def: "A table that tells a computer operating system which access rights each user has to a particular system object, such as a file or directory." },
+  { term: "AES", full: "Advanced Encryption Standard", def: "A symmetric encryption algorithm widely used across the globe to secure data." },
+  { term: "AES-256", full: "Advanced Encryption Standard 256-bit", def: "A version of AES using a 256-bit key size for encryption, providing a higher level of security." },
+  { term: "AH", full: "Authentication Header", def: "A part of the IPsec protocol suite that provides authentication and integrity to the data." },
+  { term: "AI", full: "Artificial Intelligence", def: "The simulation of human intelligence processes by machines, especially computer systems." },
+  { term: "AIS", full: "Automated Indicator Sharing", def: "A system that allows the exchange of cyber threat indicators between the public and private sectors." },
+  { term: "ALE", full: "Annualized Loss Expectancy", def: "A risk management concept to estimate the monetary loss expected for an asset due to a risk over a year." },
+  { term: "AP", full: "Access Point", def: "A networking hardware device that allows other Wi-Fi devices to connect to a wired network." },
+  { term: "API", full: "Application Programming Interface", def: "A set of functions and procedures allowing the creation of applications that access the features or data of an OS, application, or service." },
+  { term: "APT", full: "Advanced Persistent Threat", def: "A prolonged and targeted cyberattack in which an intruder gains access to a network and remains undetected for an extended period." },
+  { term: "ARO", full: "Annualized Rate of Occurrence", def: "The expected frequency with which a specific event is likely to occur annually." },
+  { term: "ARP", full: "Address Resolution Protocol", def: "A communication protocol used for discovering the link layer address, such as a MAC address, associated with a given IP address." },
+  { term: "ASLR", full: "Address Space Layout Randomization", def: "A computer security technique involved in preventing exploitation of memory corruption vulnerabilities." },
+  { term: "ATT&CK", full: "Adversarial Tactics, Techniques, and Common Knowledge", def: "A knowledge base maintained by MITRE for listing and explaining cyber adversary behavior." },
+  { term: "AUP", full: "Acceptable Use Policy", def: "A policy that sets out the rules and guidelines for the proper use of an organization's information technology." },
+  { term: "AV", full: "Antivirus", def: "Software designed to detect and destroy computer viruses." },
+  { term: "BASH", full: "Bourne Again Shell", def: "A Unix shell and command language." },
+  { term: "BCP", full: "Business Continuity Planning", def: "The process involved in creating a system of prevention and recovery from potential threats to a company." },
+  { term: "BGP", full: "Border Gateway Protocol", def: "The protocol used to route information across the internet." },
+  { term: "BIA", full: "Business Impact Analysis", def: "A process that identifies and evaluates the potential effects of natural and man-made events on business operations." },
+  { term: "BIOS", full: "Basic Input/Output System", def: "Firmware used to perform hardware initialization during the booting process and provide runtime services for the OS and programs." },
+  { term: "BPA", full: "Business Partners Agreement", def: "A contract between parties who have agreed to share resources to undertake a specific, mutually beneficial project." },
+  { term: "BPDU", full: "Bridge Protocol Data Unit", def: "A type of network message that is transmitted by a local area network (LAN) bridge." },
+  { term: "BYOD", full: "Bring Your Own Device", def: "A policy that allows employees to bring personally owned devices to their workplace and use them to access company information." },
+
+  { term: "CA", full: "Certificate Authority", def: "An entity that issues digital certificates for use by other parties." },
+  { term: "CAPTCHA", full: "Completely Automated Public Turing Test to Tell Computers and Humans Apart", def: "A type of challenge-response test used in computing to determine whether the user is human." },
+  { term: "CAR", full: "Corrective Action Report", def: "A report that outlines the corrective actions necessary to rectify a detected non-conformance." },
+  { term: "CASB", full: "Cloud Access Security Broker", def: "On-premises or cloud-based security policy enforcement points placed between cloud service consumers and cloud service providers." },
+  { term: "CBC", full: "Cipher Block Chaining", def: "A mode of operation for a block cipher that provides confidentiality but not message integrity." },
+  { term: "CCMP", full: "Counter Mode/CBC-MAC Protocol", def: "An encryption protocol used in Wi-Fi networks." },
+  { term: "CCTV", full: "Closed-circuit Television", def: "A TV system in which signals are not publicly distributed but are monitored, primarily for surveillance and security purposes." },
+  { term: "CERT", full: "Computer Emergency Response Team", def: "An expert group that handles computer security incidents." },
+  { term: "CFB", full: "Cipher Feedback", def: "A mode of operation for a block cipher." },
+  { term: "CHAP", full: "Challenge Handshake Authentication Protocol", def: "A type of authentication protocol used primarily for point-to-point connections." },
+  { term: "CIA", full: "Confidentiality, Integrity, Availability", def: "A model designed to guide policies for information security within an organization." },
+  { term: "CIO", full: "Chief Information Officer", def: "A job title commonly given to the most senior executive responsible for the IT and computer systems that support enterprise goals." },
+  { term: "CIRT", full: "Computer Incident Response Team", def: "A service organization that is contacted when a security breach or other computer-related emergency occurs." },
+  { term: "CMS", full: "Content Management System", def: "Software that helps users create, manage, and modify content on a website without specialized technical knowledge." },
+  { term: "COOP", full: "Continuity of Operation Planning", def: "A process by government agencies to ensure critical functions continue during a wide range of emergencies." },
+  { term: "COPE", full: "Corporate Owned, Personally Enabled", def: "A business strategy for managing mobile devices that allows employees to use corporate-owned IT devices for personal use." },
+  { term: "CP", full: "Contingency Planning", def: "A course of action designed to help an organization respond effectively to a significant future event or situation." },
+  { term: "CRC", full: "Cyclical Redundancy Check", def: "An error-detecting code commonly used in digital networks and storage devices to detect accidental changes to raw data." },
+  { term: "CRL", full: "Certificate Revocation List", def: "A list of digital certificates that have been revoked by the issuing CA before their scheduled expiration and should no longer be trusted." },
+  { term: "CSO", full: "Chief Security Officer", def: "A company executive responsible for the security of personnel, physical assets, and information in both physical and digital form." },
+  { term: "CSP", full: "Cloud Service Provider", def: "A company that offers a component of cloud computing — typically IaaS, SaaS, or PaaS — to businesses or individuals." },
+  { term: "CSR", full: "Certificate Signing Request", def: "A message sent from an applicant to a certificate authority in order to apply for a digital identity certificate." },
+  { term: "CSRF", full: "Cross-site Request Forgery", def: "A type of malicious exploit of a website where unauthorized commands are transmitted from a user that the web application trusts." },
+  { term: "CSU", full: "Channel Service Unit", def: "A device used in digital data transmission for interfacing a digital data terminal with a digital transmission medium." },
+  { term: "CTM", full: "Counter Mode", def: "A mode of operation in cryptography for block ciphers." },
+
+  { term: "CTO", full: "Chief Technology Officer", def: "An executive-level position in a company whose occupant is focused on scientific and technological issues within an organization." },
+  { term: "CVE", full: "Common Vulnerability Enumeration", def: "A list of publicly disclosed cybersecurity vulnerabilities." },
+  { term: "CVSS", full: "Common Vulnerability Scoring System", def: "A free and open industry standard for assessing the severity of computer system security vulnerabilities." },
+  { term: "CYOD", full: "Choose Your Own Device", def: "A corporate policy that permits employees to choose which devices they use for work purposes." },
+  { term: "DAC", full: "Discretionary Access Control", def: "A type of access control defined by the ACL where access rights are assigned to users by the system administrators." },
+  { term: "DBA", full: "Database Administrator", def: "A person who uses specialized software to store and organize data." },
+  { term: "DDoS", full: "Distributed Denial of Service", def: "A type of cyberattack where multiple compromised computer systems attack a target and cause a denial of service for legitimate users." },
+  { term: "DEP", full: "Data Execution Prevention", def: "A security feature that can help prevent damage to your computer from viruses and other security threats." },
+  { term: "DES", full: "Digital Encryption Standard", def: "A previously dominant algorithm for the encryption of electronic data." },
+  { term: "DHCP", full: "Dynamic Host Configuration Protocol", def: "A network management protocol used on IP networks whereby a server dynamically assigns an IP address and other config parameters to each device." },
+  { term: "DHE", full: "Diffie-Hellman Ephemeral", def: "A method of securely exchanging cryptographic keys over a public channel." },
+  { term: "DKIM", full: "DomainKeys Identified Mail", def: "An email authentication method designed to detect forged sender addresses in emails." },
+  { term: "DLL", full: "Dynamic Link Library", def: "A feature of Windows and other operating systems that allows multiple software programs to share the same functionality." },
+  { term: "DLP", full: "Data Loss Prevention", def: "A set of tools and processes used to ensure that sensitive data is not lost, misused, or accessed by unauthorized users." },
+  { term: "DMARC", full: "Domain Message Authentication Reporting and Conformance", def: "An email authentication protocol designed to give domain owners the ability to protect their domain from unauthorized use, or email spoofing." },
+  { term: "DNAT", full: "Destination Network Address Translation", def: "A technique for transparently changing the destination IP address of an en-route packet and performing the inverse function for replies." },
+  { term: "DNS", full: "Domain Name System", def: "The phonebook of the Internet — a hierarchical and decentralized naming system for computers, services, or resources connected to a network." },
+  { term: "DPO", full: "Data Privacy Officer", def: "A role within a company responsible for ensuring that the company complies with data protection laws." },
+  { term: "DRP", full: "Disaster Recovery Plan", def: "A structured approach with policies and procedures for responding to an unplanned incident and recovering critical systems." },
+  { term: "DSA", full: "Digital Signature Algorithm", def: "A standard for digital signatures." },
+  { term: "DSL", full: "Digital Subscriber Line", def: "A family of technologies that provide internet access by transmitting digital data over the wires of a local telephone network." },
+  { term: "EAP", full: "Extensible Authentication Protocol", def: "An authentication framework frequently used in wireless networks and Point-to-Point connections." },
+  { term: "ECB", full: "Electronic Code Book", def: "A mode of operation for a block cipher where each possible block of plaintext has a defined corresponding ciphertext value." },
+  { term: "ECC", full: "Elliptic Curve Cryptography", def: "An approach to public-key cryptography based on the algebraic structure of elliptic curves over finite fields." },
+  { term: "ECDHE", full: "Elliptic Curve Diffie-Hellman Ephemeral", def: "A variant of the Diffie-Hellman algorithm that uses elliptic curve cryptography." },
+
+  { term: "ECDSA", full: "Elliptic Curve Digital Signature Algorithm", def: "A cryptographic algorithm used by Bitcoin to ensure that funds can only be spent by their rightful owners." },
+  { term: "EDR", full: "Endpoint Detection and Response", def: "A cybersecurity technology that addresses the need for continuous monitoring and response to advanced threats." },
+  { term: "EFS", full: "Encrypted File System", def: "A feature of some versions of Microsoft Windows that provides filesystem-level encryption." },
+  { term: "ERP", full: "Enterprise Resource Planning", def: "Business process management software that allows an organization to use integrated applications to manage the business and automate back office functions." },
+  { term: "ESN", full: "Electronic Serial Number", def: "A unique identification number embedded by manufacturers on a microchip in wireless phones." },
+  { term: "ESP", full: "Encapsulated Security Payload", def: "A component of IPsec used for providing confidentiality, along with some authentication and integrity, to the data." },
+  { term: "FACL", full: "File System Access Control List", def: "A data structure, most often associated with Microsoft Windows and NTFS, that controls access to files and folders." },
+  { term: "FDE", full: "Full Disk Encryption", def: "Encryption at the hardware level." },
+  { term: "FIM", full: "File Integrity Management", def: "A technology that monitors and reports changes in files." },
+  { term: "FPGA", full: "Field Programmable Gate Array", def: "An integrated circuit designed to be configured by a customer or designer after manufacturing — hence 'field programmable'." },
+  { term: "FRR", full: "False Rejection Rate", def: "In biometric security systems, the measure of the likelihood that the system will incorrectly reject an access attempt by an authorized user." },
+  { term: "FTP", full: "File Transfer Protocol", def: "A standard network protocol used for the transfer of computer files between a client and server on a network." },
+  { term: "FTPS", full: "Secured File Transfer Protocol", def: "An extension of FTP that adds support for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) cryptographic protocols." },
+  { term: "GCM", full: "Galois Counter Mode", def: "A mode of operation for symmetric key cryptographic block ciphers widely adopted for its efficiency and performance." },
+  { term: "GDPR", full: "General Data Protection Regulation", def: "A regulation in EU law on data protection and privacy in the European Union and the European Economic Area." },
+  { term: "GPG", full: "Gnu Privacy Guard", def: "A free software re-implementation of the OpenPGP standard that allows you to encrypt and sign your data and communications." },
+  { term: "GPO", full: "Group Policy Object", def: "A feature of Windows that provides centralized management and configuration of operating systems, applications, and user settings in Active Directory." },
+  { term: "GPS", full: "Global Positioning System", def: "A satellite-based radionavigation system owned by the United States government and operated by the United States Space Force." },
+  { term: "GPU", full: "Graphics Processing Unit", def: "A specialized electronic circuit designed to rapidly manipulate memory to accelerate the creation of images for output to a display device." },
+  { term: "GRE", full: "Generic Routing Encapsulation", def: "A tunneling protocol developed by Cisco that can encapsulate a wide variety of network layer protocols inside virtual point-to-point links." },
+  { term: "HA", full: "High Availability", def: "Refers to systems that are durable and likely to operate continuously without failure for a long time." },
+  { term: "HDD", full: "Hard Disk Drive", def: "A data storage device that uses magnetic storage on rigid rapidly rotating disks to store and retrieve digital information." },
+  { term: "HIDS", full: "Host-based Intrusion Detection System", def: "A system that monitors important operating system files." },
+  { term: "HIPS", full: "Host-based Intrusion Prevention System", def: "An installed software package which monitors a single host for suspicious activity by analyzing events occurring within that host." },
+  { term: "HMAC", full: "Hashed Message Authentication Code", def: "A specific type of message authentication code involving a cryptographic hash function and a secret cryptographic key." },
+
+  { term: "HOTP", full: "HMAC-based One-time Password", def: "A one-time password algorithm based on hash-based message authentication codes." },
+  { term: "HSM", full: "Hardware Security Module", def: "A physical computing device that safeguards and manages digital keys for strong authentication and provides cryptoprocessing." },
+  { term: "HTML", full: "Hypertext Markup Language", def: "The standard markup language for documents designed to be displayed in a web browser." },
+  { term: "HTTP", full: "Hypertext Transfer Protocol", def: "An application protocol for distributed, collaborative, hypermedia information systems." },
+  { term: "HTTPS", full: "Hypertext Transfer Protocol Secure", def: "An extension of HTTP for secure communication over a computer network, widely used on the Internet." },
+  { term: "HVAC", full: "Heating, Ventilation, and Air Conditioning", def: "Technology of indoor and vehicular environmental comfort." },
+  { term: "IaaS", full: "Infrastructure as a Service", def: "A form of cloud computing that provides virtualized computing resources over the internet." },
+  { term: "IaC", full: "Infrastructure as Code", def: "The process of managing and provisioning computer data centers through machine-readable definition files rather than physical hardware configuration." },
+  { term: "IAM", full: "Identity and Access Management", def: "A framework of business processes, policies, and technologies that facilitates the management of electronic or digital identities." },
+  { term: "ICMP", full: "Internet Control Message Protocol", def: "Used by network devices, including routers, to send error messages and operational information about success or failure communicating with an IP address." },
+  { term: "ICS", full: "Industrial Control Systems", def: "A general term encompassing several types of control systems used to operate and/or automate industrial processes." },
+  { term: "IDEA", full: "International Data Encryption Algorithm", def: "A symmetric key block cipher." },
+  { term: "IDF", full: "Intermediate Distribution Frame", def: "A cable rack that interconnects and manages the telecommunications wiring between an MDF and end-user devices." },
+  { term: "IdP", full: "Identity Provider", def: "A system entity that creates, maintains, and manages identity information for principals and provides principal authentication to other service providers." },
+  { term: "IDS", full: "Intrusion Detection System", def: "A device or software application that monitors a network or systems for malicious activity or policy violations." },
+  { term: "IEEE", full: "Institute of Electrical and Electronics Engineers", def: "A professional association dedicated to advancing technology for the benefit of humanity." },
+  { term: "IKE", full: "Internet Key Exchange", def: "A protocol used in IPsec for establishing a Security Association (SA) and cryptographic keys in an IP network." },
+  { term: "IM", full: "Instant Messaging", def: "A type of online chat that offers real-time text transmission over the internet." },
+  { term: "IMAP", full: "Internet Message Access Protocol", def: "An internet standard protocol used by email clients to retrieve messages from a mail server over a TCP/IP connection." },
+  { term: "IoC", full: "Indicators of Compromise", def: "Artifacts observed on a network or in an operating system that with high confidence indicate a computer intrusion." },
+  { term: "IoT", full: "Internet of Things", def: "The extension of Internet connectivity into physical devices and everyday objects." },
+  { term: "IP", full: "Internet Protocol", def: "The principal communications protocol in the Internet protocol suite for relaying datagrams across network boundaries." },
+  { term: "IPS", full: "Intrusion Prevention System", def: "A network security/threat prevention technology that examines network traffic flows to detect and prevent vulnerability exploits." },
+  { term: "IPSec", full: "Internet Protocol Security", def: "A secure network protocol suite that authenticates and encrypts the packets of data sent over an internet protocol network." },
+  { term: "IR", full: "Incident Response", def: "An organized approach to addressing and managing the aftermath of a security breach or cyberattack." },
+
+  { term: "IRC", full: "Internet Relay Chat", def: "An application layer protocol that facilitates communication in the form of text." },
+  { term: "IRP", full: "Incident Response Plan", def: "A set of instructions to help IT staff detect, respond to, and recover from network security incidents." },
+  { term: "ISO", full: "International Standards Organization", def: "An independent, non-governmental international organization with a membership of 164 national standards bodies." },
+  { term: "ISP", full: "Internet Service Provider", def: "A company that provides subscribers with access to the Internet." },
+  { term: "ISSO", full: "Information Systems Security Officer", def: "A person responsible for ensuring the appropriate operational security posture is maintained for an information system." },
+  { term: "IV", full: "Initialization Vector", def: "A fixed-size input to a cryptographic primitive that is typically required to be random or pseudorandom." },
+  { term: "KDC", full: "Key Distribution Center", def: "Part of a cryptosystem intended to reduce the risks inherent in exchanging keys." },
+  { term: "KEK", full: "Key Encryption Key", def: "A key used to encrypt other keys." },
+  { term: "L2TP", full: "Layer 2 Tunneling Protocol", def: "A tunneling protocol used to support virtual private networks (VPNs)." },
+  { term: "LAN", full: "Local Area Network", def: "A network that connects computers within a limited area such as a residence, school, or office building." },
+  { term: "LDAP", full: "Lightweight Directory Access Protocol", def: "An open, vendor-neutral, industry standard application protocol for accessing and maintaining distributed directory information services over an IP network." },
+  { term: "LEAP", full: "Lightweight Extensible Authentication Protocol", def: "A proprietary wireless LAN authentication method developed by Cisco Systems." },
+  { term: "MaaS", full: "Monitoring as a Service", def: "A type of cloud service that involves the use of remote monitoring tools to manage and monitor a company's infrastructure." },
+  { term: "MAC (Access)", full: "Mandatory Access Control", def: "A type of access control in which the operating system constrains the ability of a subject to access or perform an operation on an object." },
+  { term: "MAC (Address)", full: "Media Access Control", def: "A unique identifier assigned to a network interface controller for use as a network address within a network segment." },
+  { term: "MAC (Code)", full: "Message Authentication Code", def: "A short piece of information used to authenticate a message and provide integrity and authenticity assurances." },
+  { term: "MAN", full: "Metropolitan Area Network", def: "A network that interconnects users with computer resources in a geographic area larger than a LAN but smaller than a WAN." },
+  { term: "MBR", full: "Master Boot Record", def: "A special type of boot sector at the very beginning of partitioned computer mass storage devices." },
+  { term: "MD5", full: "Message Digest 5", def: "A widely used cryptographic hash function that produces a 128-bit (16-byte) hash value." },
+  { term: "MDF", full: "Main Distribution Frame", def: "A signal distribution frame for connecting equipment (inside plant) to cables and subscriber carrier equipment (outside plant)." },
+  { term: "MDM", full: "Mobile Device Management", def: "A type of security software used by IT to monitor, manage, and secure employees' mobile devices across multiple providers and platforms." },
+  { term: "MFA", full: "Multifactor Authentication", def: "An electronic authentication method in which a user is granted access only after successfully presenting two or more pieces of evidence." },
+  { term: "MFD", full: "Multifunction Device", def: "An office machine which incorporates the functionality of multiple devices in one, for a smaller footprint." },
+  { term: "MFP", full: "Multifunction Printer", def: "A multi-functional device that performs functions like printing, scanning, and copying." },
+  { term: "ML", full: "Machine Learning", def: "A type of artificial intelligence that allows software applications to become more accurate at predicting outcomes without being explicitly programmed to do so." },
+
+  { term: "MMS", full: "Multimedia Message Service", def: "A standard way to send messages that include multimedia content to and from a mobile phone over a cellular network." },
+  { term: "MOA", full: "Memorandum of Agreement", def: "A document written between parties to cooperatively work together on an agreed-upon project or objective." },
+  { term: "MOU", full: "Memorandum of Understanding", def: "An agreement between two or more parties outlined in a formal document." },
+  { term: "MPLS", full: "Multi-protocol Label Switching", def: "A type of data-carrying technique for high-performance telecommunications networks." },
+  { term: "MSA", full: "Master Service Agreement", def: "A contract reached between parties in which they agree to most of the terms that will govern future transactions or agreements." },
+  { term: "MSCHAP", full: "Microsoft Challenge Handshake Authentication Protocol", def: "A Microsoft proprietary version of CHAP used by Windows NT." },
+  { term: "MSP", full: "Managed Service Provider", def: "A company that remotely manages a customer's IT infrastructure and/or end-user systems, typically under a subscription model." },
+  { term: "MSSP", full: "Managed Security Service Provider", def: "A type of IT service company that provides organizations with cybersecurity monitoring and management." },
+  { term: "MTBF", full: "Mean Time Between Failures", def: "A measure of how reliable a hardware product or component is." },
+  { term: "MTTF", full: "Mean Time to Failure", def: "The length of time a device or other product is expected to last in operation." },
+  { term: "MTTR", full: "Mean Time to Recover", def: "The average time that a device will take to recover from any failure." },
+  { term: "MTU", full: "Maximum Transmission Unit", def: "The size of the largest packet that a network protocol can transmit." },
+  { term: "NAC", full: "Network Access Control", def: "A security solution that enforces policy on devices that access networks to increase network visibility and reduce risk." },
+  { term: "NAT", full: "Network Address Translation", def: "A method of remapping one IP address space into another by modifying network address information in packet headers in transit." },
+  { term: "NDA", full: "Non-disclosure Agreement", def: "A legally binding contract establishing a confidential relationship." },
+  { term: "NFC", full: "Near Field Communication", def: "A set of communication protocols that enable two electronic devices to establish communication by bringing them within a few centimeters of each other." },
+  { term: "NGFW", full: "Next-generation Firewall", def: "Part of the third generation of firewall technology that combines a traditional firewall with other network device filtering functionalities." },
+  { term: "NIDS", full: "Network-based Intrusion Detection System", def: "A system that analyzes incoming network traffic." },
+  { term: "NIPS", full: "Network-based Intrusion Prevention System", def: "A system that monitors a network for malicious activities such as security threats or policy violations." },
+  { term: "NIST", full: "National Institute of Standards & Technology", def: "A physical sciences laboratory and non-regulatory agency of the United States Department of Commerce." },
+  { term: "NTFS", full: "New Technology File System", def: "A proprietary file system developed by Microsoft." },
+  { term: "NTLM", full: "New Technology LAN Manager", def: "A suite of Microsoft security protocols that provides authentication, integrity, and confidentiality to users." },
+  { term: "NTP", full: "Network Time Protocol", def: "A networking protocol for clock synchronization between computer systems over packet-switched, variable-latency data networks." },
+  { term: "OAuth", full: "Open Authorization", def: "An open standard for access delegation, commonly used to let Internet users grant websites access to their information without giving passwords." },
+  { term: "OCSP", full: "Online Certificate Status Protocol", def: "An internet protocol used for obtaining the revocation status of an X.509 digital certificate." },
+
+  { term: "OID", full: "Object Identifier", def: "An identifier used to name an object (a set of data) in a globally unique way." },
+  { term: "OS", full: "Operating System", def: "Software that manages computer hardware and software resources and provides common services for computer programs." },
+  { term: "OSINT", full: "Open-source Intelligence", def: "Intelligence collected from publicly available sources." },
+  { term: "OSPF", full: "Open Shortest Path First", def: "A routing protocol for Internet Protocol (IP) networks." },
+  { term: "OT", full: "Operational Technology", def: "Hardware and software that detects or causes a change through direct monitoring and/or control of physical devices and processes." },
+  { term: "OTA", full: "Over the Air", def: "Wireless transmission of data or software updates to mobile devices." },
+  { term: "OVAL", full: "Open Vulnerability Assessment Language", def: "An information security community standard to promote open and publicly available security content." },
+  { term: "P12", full: "PKCS #12", def: "A portable format for storing or transporting a user's private keys, certificates, and miscellaneous secrets." },
+  { term: "P2P", full: "Peer to Peer", def: "A decentralized communications model in which each party has the same capabilities and either party can initiate a communication session." },
+  { term: "PaaS", full: "Platform as a Service", def: "A category of cloud computing services that provides a platform allowing customers to develop, run, and manage apps without maintaining infrastructure." },
+  { term: "PAC", full: "Proxy Auto Configuration", def: "A method used by web browsers to automatically select an appropriate proxy server." },
+  { term: "PAM (Access)", full: "Privileged Access Management", def: "A comprehensive approach to controlling and monitoring privileged access to critical assets and systems." },
+  { term: "PAM (Modules)", full: "Pluggable Authentication Modules", def: "A mechanism to integrate multiple low-level authentication schemes into a high-level application programming interface." },
+  { term: "PAP", full: "Password Authentication Protocol", def: "A simple, plaintext password authentication protocol." },
+  { term: "PAT", full: "Port Address Translation", def: "A feature of a network device that translates TCP or UDP communications made between hosts on a private network and public network." },
+  { term: "PBKDF2", full: "Password-based Key Derivation Function 2", def: "A key derivation function that is part of RSA Laboratories' Public-Key Cryptography Standards series, PKCS #5 v2.0." },
+  { term: "PBX", full: "Private Branch Exchange", def: "A private telephone network used within a company or organization." },
+  { term: "PCAP", full: "Packet Capture", def: "The act of capturing data packets crossing a specific segment of a network." },
+  { term: "PCI DSS", full: "Payment Card Industry Data Security Standard", def: "A set of security standards designed to ensure that companies that handle credit card information maintain a secure environment." },
+  { term: "PDU", full: "Power Distribution Unit", def: "A device fitted with multiple outputs designed to distribute electric power to racks of equipment in a data center." },
+  { term: "PEAP", full: "Protected Extensible Authentication Protocol", def: "A method to securely transmit authentication information, including passwords, over wireless networks." },
+  { term: "PED", full: "Personal Electronic Device", def: "A small electronic device typically used for personal tasks such as communication, data management, and recreation." },
+  { term: "PEM", full: "Privacy Enhanced Mail", def: "A de facto standard for secure email in the Internet community." },
+  { term: "PFS", full: "Perfect Forward Secrecy", def: "A property of secure communication protocols in which compromise of long-term keys does not compromise past session keys." },
+  { term: "PGP", full: "Pretty Good Privacy", def: "An encryption program that provides cryptographic privacy and authentication for data communication." },
+
+  { term: "PHI", full: "Personal Health Information", def: "Any information about health status, provision of health care, or payment for health care that can be linked to a specific individual." },
+  { term: "PII", full: "Personally Identifiable Information", def: "Information that can be used on its own or with other information to identify, contact, or locate a single person." },
+  { term: "PIV", full: "Personal Identity Verification", def: "A United States federal government standard for reliable identification and access control card." },
+  { term: "PKCS", full: "Public Key Cryptography Standards", def: "A set of standards for public-key cryptography established by RSA Data Security, Inc." },
+  { term: "PKI", full: "Public Key Infrastructure", def: "A set of roles, policies, hardware, software, and procedures needed to create, manage, distribute, use, store, and revoke digital certificates." },
+  { term: "POP", full: "Post Office Protocol", def: "An Internet standard protocol used by local email clients to retrieve email from a remote server over a TCP/IP connection." },
+  { term: "POTS", full: "Plain Old Telephone Service", def: "The voice-grade telephone service that remains the basic form of residential and small business phone connection in most parts of the world." },
+  { term: "PPP", full: "Point-to-Point Protocol", def: "A data link protocol commonly used to establish a direct connection between two networking nodes." },
+  { term: "PPTP", full: "Point-to-Point Tunneling Protocol", def: "A method for implementing virtual private networks." },
+  { term: "PSK", full: "Pre-shared Key", def: "A shared secret which was previously shared between two parties using a secure channel before it needs to be used." },
+  { term: "PTZ", full: "Pan-tilt-zoom", def: "A type of camera that is capable of remote directional and zoom control." },
+  { term: "PUP", full: "Potentially Unwanted Program", def: "A program that a user may perceive as unwanted." },
+  { term: "RA (Recovery)", full: "Recovery Agent", def: "An entity that has the ability to recover a key, certificate, or encrypted data." },
+  { term: "RA (Registration)", full: "Registration Authority", def: "An authority in a network that verifies user requests for a digital certificate and tells the CA to issue it." },
+  { term: "RAD", full: "Rapid Application Development", def: "A type of software development methodology that prioritizes rapid prototype releases and iterations." },
+  { term: "RADIUS", full: "Remote Authentication Dial-in User Service", def: "A networking protocol that provides centralized AAA management for users who connect and use a network service." },
+  { term: "RAID", full: "Redundant Array of Inexpensive Disks", def: "A technology that combines multiple disk drive components into a logical unit for data redundancy and performance improvement." },
+  { term: "RAS", full: "Remote Access Server", def: "A server that provides a remote access service to users or client computers." },
+  { term: "RAT", full: "Remote Access Trojan", def: "A malware program that includes a back door for administrative control over the target computer." },
+  { term: "RBAC", full: "Role-based Access Control", def: "An approach to restricting system access to authorized users based on their role within an organization." },
+  { term: "RC4", full: "Rivest Cipher version 4", def: "A stream cipher that is simple and fast but has vulnerabilities and is considered insecure." },
+  { term: "RDP", full: "Remote Desktop Protocol", def: "A proprietary protocol developed by Microsoft that provides a user with a graphical interface to connect to another computer over a network." },
+  { term: "RFID", full: "Radio Frequency Identifier", def: "A technology that uses electromagnetic fields to automatically identify and track tags attached to objects." },
+  { term: "RIPEMD", full: "RACE Integrity Primitives Evaluation Message Digest", def: "A family of cryptographic hash functions developed in Belgium." },
+  { term: "ROI", full: "Return on Investment", def: "A measure used to evaluate the efficiency of an investment or compare the efficiency of different investments." },
+
+  { term: "RPO", full: "Recovery Point Objective", def: "The maximum acceptable amount of data loss measured in time." },
+  { term: "RSA", full: "Rivest, Shamir, & Adleman", def: "One of the first public-key cryptosystems, widely used for secure data transmission." },
+  { term: "RTBH", full: "Remotely Triggered Black Hole", def: "A technique used to block denial-of-service attacks in IP networks." },
+  { term: "RTO", full: "Recovery Time Objective", def: "The targeted duration of time within which a business process must be restored after a disaster or disruption." },
+  { term: "RTOS", full: "Real-time Operating System", def: "An operating system intended to serve real-time application process data as it comes in, typically without buffering delays." },
+  { term: "RTP", full: "Real-time Transport Protocol", def: "A network protocol for delivering audio and video over IP networks." },
+  { term: "S/MIME", full: "Secure/Multipurpose Internet Mail Extensions", def: "A standard for public key encryption and signing of MIME data." },
+  { term: "SaaS", full: "Software as a Service", def: "A software distribution model in which a third-party provider hosts applications and makes them available to customers over the Internet." },
+  { term: "SAE", full: "Simultaneous Authentication of Equals", def: "A security protocol used in Wi-Fi networks." },
+  { term: "SAML", full: "Security Assertions Markup Language", def: "An open standard for exchanging authentication and authorization data between parties, particularly an identity provider and a service provider." },
+  { term: "SAN (Storage)", full: "Storage Area Network", def: "A network which provides access to consolidated, block-level data storage." },
+  { term: "SAN (Certificate)", full: "Subject Alternative Name", def: "An extension to the X.509 specification that allows users to specify additional host names for a single SSL certificate." },
+  { term: "SASE", full: "Secure Access Service Edge", def: "A network architecture that combines WAN capabilities with comprehensive security functions." },
+  { term: "SCADA", full: "Supervisory Control and Data Acquisition", def: "A control system architecture that uses computers, networked data communications, and GUIs for high-level process supervisory management." },
+  { term: "SCAP", full: "Security Content Automation Protocol", def: "A method for using specific standards to enable automated vulnerability management, measurement, and policy compliance evaluation." },
+  { term: "SCEP", full: "Simple Certificate Enrollment Protocol", def: "A protocol used for the secure issuance of digital certificates." },
+  { term: "SD-WAN", full: "Software-defined Wide Area Network", def: "An approach to designing an enterprise WAN that uses software-defined networking to determine the most effective way to route traffic." },
+  { term: "SDK", full: "Software Development Kit", def: "A collection of software development tools in one installable package." },
+  { term: "SDLC", full: "Software Development Lifecycle", def: "A process for planning, creating, testing, and deploying an information system." },
+  { term: "SDLM", full: "Software Development Lifecycle Methodology", def: "A framework describing the stages involved in software development, from feasibility study through maintenance of the completed application." },
+  { term: "SDN", full: "Software-defined Networking", def: "An approach to networking that uses software-based controllers or APIs to direct traffic and communicate with underlying hardware infrastructure." },
+  { term: "SELinux", full: "Security-enhanced Linux", def: "A set of kernel modifications and user-space tools added to various Linux distributions to enhance security via mandatory access control policies." },
+  { term: "SED", full: "Self-encrypting Drives", def: "Storage drives that automatically and continuously encrypt the data on the drive without any user interaction." },
+  { term: "SEH", full: "Structured Exception Handler", def: "A mechanism in Microsoft Windows for handling both hardware and software exceptions." },
+  { term: "SFTP", full: "Secured File Transfer Protocol", def: "A secure version of FTP that uses Secure Shell (SSH) to encrypt the data transferred over the network." },
+
+  { term: "SHA", full: "Secure Hashing Algorithm", def: "A family of cryptographic hash functions published by NIST as a U.S. Federal Information Processing Standard." },
+  { term: "S-HTTP", full: "Secure Hypertext Transfer Protocol", def: "An obsolete alternative to HTTPS for encrypting web communications carried over HTTP." },
+  { term: "SIEM", full: "Security Information and Event Management", def: "Software solutions that provide real-time analysis of security alerts generated by applications and network hardware." },
+  { term: "SIM", full: "Subscriber Identity Module", def: "A removable smart card for mobile phones that securely stores the service-subscriber key used to identify a subscriber." },
+  { term: "SLA", full: "Service-level Agreement", def: "A commitment between a service provider and a client regarding quality, availability, and responsibilities of the service." },
+  { term: "SLE", full: "Single Loss Expectancy", def: "A term used in risk management referring to the monetary value expected from the occurrence of a risk on an asset." },
+  { term: "SMS", full: "Short Message Service", def: "A text messaging service component of most telephone, internet, and mobile device systems." },
+  { term: "SMTP", full: "Simple Mail Transfer Protocol", def: "An internet standard for email transmission across Internet Protocol (IP) networks." },
+  { term: "SMTPS", full: "Simple Mail Transfer Protocol Secure", def: "A method for securing SMTP with transport layer security, providing authentication, data integrity, and confidentiality." },
+  { term: "SNMP", full: "Simple Network Management Protocol", def: "An Internet Standard protocol for collecting and organizing information about managed devices on IP networks and modifying that information." },
+  { term: "SOAP", full: "Simple Object Access Protocol", def: "A messaging protocol specification for exchanging structured information in the implementation of web services in computer networks." },
+  { term: "SOAR", full: "Security Orchestration, Automation, and Response", def: "Technologies that enable organizations to collect inputs monitored by the security operations center (SOC)." },
+  { term: "SoC", full: "System on Chip", def: "An integrated circuit that integrates all components of a computer or other electronic system." },
+  { term: "SOC", full: "Security Operations Center", def: "A centralized unit that deals with security issues on an organizational and technical level." },
+  { term: "SOW", full: "Statement of Work", def: "A document employed in project management that defines project-specific activities, deliverables, and timelines for a vendor." },
+  { term: "SPF", full: "Sender Policy Framework", def: "An email authentication method designed to detect forged sender addresses during the delivery of email." },
+  { term: "SPIM", full: "Spam over Internet Messaging", def: "Unsolicited messages sent via an instant messaging (IM) system." },
+  { term: "SQL", full: "Structured Query Language", def: "A domain-specific language used in programming and designed for managing data held in a relational database management system." },
+  { term: "SQLi", full: "SQL Injection", def: "A code injection technique used to attack data-driven applications, in which malicious SQL statements are inserted into an entry field." },
+  { term: "SRTP", full: "Secure Real-Time Protocol", def: "A profile of RTP intended to provide encryption, message authentication, integrity, and replay protection to RTP data." },
+  { term: "SSD", full: "Solid State Drive", def: "A storage device containing nonvolatile flash memory, used in place of a hard disk because of its much greater speed." },
+  { term: "SSH", full: "Secure Shell", def: "A cryptographic network protocol for operating network services securely over an unsecured network." },
+  { term: "SSL", full: "Secure Sockets Layer", def: "The standard security technology for establishing an encrypted link between a web server and a browser." },
+  { term: "SSO", full: "Single Sign-on", def: "A property of access control where a user logs in with a single ID and password to gain access to several related systems." },
+  { term: "STIX", full: "Structured Threat Information eXchange", def: "A language and serialization format used to exchange cyber threat intelligence." },
+
+  { term: "SWG", full: "Secure Web Gateway", def: "Solutions that filter unwanted software/malware from user-initiated web traffic and enforce corporate and regulatory policy compliance." },
+  { term: "TACACS+", full: "Terminal Access Controller Access Control System", def: "A security application that provides centralized validation of users attempting to gain access to a router or network access server." },
+  { term: "TAXII", full: "Trusted Automated eXchange of Indicator Information", def: "An application layer protocol for the communication of cyber threat information in a simple and scalable manner." },
+  { term: "TCP/IP", full: "Transmission Control Protocol/Internet Protocol", def: "A set of communication protocols used to interconnect network devices on the internet." },
+  { term: "TGT", full: "Ticket Granting Ticket", def: "A part of the Kerberos protocol used for authenticating requests for service tickets within the network." },
+  { term: "TKIP", full: "Temporal Key Integrity Protocol", def: "A security protocol used in the IEEE 802.11 wireless networking standard." },
+  { term: "TLS", full: "Transport Layer Security", def: "A cryptographic protocol designed to provide communications security over a computer network." },
+  { term: "TOC", full: "Time-of-check", def: "Refers to a problem where the state of a system can change between the time it is checked and the time it is used." },
+  { term: "TOTP", full: "Time-based One-time Password", def: "A common algorithm for generating a one-time password, which is valid only for a short period of time." },
+  { term: "TOU", full: "Time-of-use", def: "Refers to the varying price of electricity or other resources depending on the time when it is used." },
+  { term: "TPM", full: "Trusted Platform Module", def: "A specialized chip on an endpoint device that stores RSA encryption keys specific to the host system for hardware authentication." },
+  { term: "TTP", full: "Tactics, Techniques, and Procedures", def: "Describes the behavior or modus operandi of cyber attackers in terms of the tactics, techniques, and procedures they use." },
+  { term: "TSIG", full: "Transaction Signature", def: "A protocol used for securing updates to DNS, based on shared secret key cryptography." },
+  { term: "UAT", full: "User Acceptance Testing", def: "The last phase of the software testing process, where actual software users test the software in real-world scenarios." },
+  { term: "UAV", full: "Unmanned Aerial Vehicle", def: "An aircraft without a human pilot aboard, also known as a drone." },
+  { term: "UDP", full: "User Datagram Protocol", def: "A communications protocol that facilitates the exchange of messages between computing devices in a network, used for time-sensitive transmissions." },
+  { term: "UEFI", full: "Unified Extensible Firmware Interface", def: "A specification for a software program that connects a computer's firmware to its OS, designed to replace BIOS." },
+  { term: "UEM", full: "Unified Endpoint Management", def: "A class of software tools that provide a single management interface for mobile, PC, and other devices." },
+  { term: "UPS", full: "Uninterruptible Power Supply", def: "A device that allows a computer to keep running for at least a short time when the primary power source is lost." },
+  { term: "URI", full: "Uniform Resource Identifier", def: "A string of characters used to identify a name or a resource on the internet." },
+  { term: "URL", full: "Uniform Resource Locator", def: "A reference to a web resource that specifies its location on a computer network and a mechanism for retrieving it." },
+  { term: "USB", full: "Universal Serial Bus", def: "An industry standard that establishes specifications for cables, connectors, and protocols for connection, communication, and power supply." },
+  { term: "USB OTG", full: "USB On-The-Go", def: "A standard that enables mobile devices to talk to one another." },
+  { term: "UTM", full: "Unified Threat Management", def: "A comprehensive solution that has evolved from traditional firewall solutions into a product that performs multiple security functions in one system." },
+  { term: "UTP", full: "Unshielded Twisted Pair", def: "A popular type of cable that is used for network cabling." },
+
+  { term: "VBA", full: "Visual Basic for Applications", def: "An implementation of Microsoft's event-driven programming language Visual Basic 6 and its associated IDE." },
+  { term: "VDE", full: "Virtual Desktop Environment", def: "A virtual machine that provides a user with a graphical interface similar to that of a physical desktop." },
+  { term: "VDI", full: "Virtual Desktop Infrastructure", def: "A technology that hosts a desktop operating system on a centralized server in a data center." },
+  { term: "VLAN", full: "Virtual Local Area Network", def: "A group of devices on one or more LANs configured to communicate as if attached to the same wire, though on different segments." },
+  { term: "VLSM", full: "Variable Length Subnet Masking", def: "A technique that allows network administrators to divide an IP address space into different lengths." },
+  { term: "VM", full: "Virtual Machine", def: "An emulation of a computer system that provides the functionality of a physical computer." },
+  { term: "VoIP", full: "Voice over Internet Protocol", def: "A methodology and group of technologies for the delivery of voice communications and multimedia sessions over IP networks." },
+  { term: "VPC", full: "Virtual Private Cloud", def: "A secure, isolated private cloud hosted within a public cloud." },
+  { term: "VPN", full: "Virtual Private Network", def: "A technology that creates a safe and encrypted connection over a less secure network, such as the internet." },
+  { term: "VTC", full: "Video Teleconferencing", def: "A technology that allows users in different locations to hold face-to-face meetings without having to move to a single location." },
+  { term: "WAF", full: "Web Application Firewall", def: "A specific form of application firewall that filters, monitors, and blocks HTTP traffic to and from a web service." },
+  { term: "WAP", full: "Wireless Access Point", def: "A networking hardware device that allows a Wi-Fi device to connect to a wired network." },
+  { term: "WEP", full: "Wired Equivalent Privacy", def: "A security protocol, now considered insecure, for wireless local area networks (WLANs)." },
+  { term: "WIDS", full: "Wireless Intrusion Detection System", def: "A system designed to detect the presence of unauthorized or rogue wireless devices." }
+];
+
+// Split into sections of 25
+const SECTION_SIZE = 25;
+const SECTIONS = [];
+for (let i = 0; i < RAW_TERMS.length; i += SECTION_SIZE) {
+  SECTIONS.push(RAW_TERMS.slice(i, i + SECTION_SIZE));
+}
+
+// ===================== SecQuiz Game Engine =====================
+
+const STORAGE_KEY = 'secquiz_progress_v1';
+
+function loadProgress() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch (e) {
+    return {};
+  }
+}
+function saveProgress(data) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) {}
+}
+
+let progress = loadProgress();
+
+// ---------- Theme (stored separately from quiz progress, so a
+// progress reset never touches the user's display preference) ----------
+const THEME_KEY = 'secquiz_theme_v1';
+
+function loadTheme() {
+  try { return localStorage.getItem(THEME_KEY) || 'dark'; } catch (e) { return 'dark'; }
+}
+function saveTheme(theme) {
+  try { localStorage.setItem(THEME_KEY, theme); } catch (e) {}
+}
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme === 'light' ? 'light' : 'dark');
+  const darkBtn = el('theme-dark-btn');
+  const lightBtn = el('theme-light-btn');
+  if (darkBtn && lightBtn) {
+    darkBtn.classList.toggle('active', theme !== 'light');
+    lightBtn.classList.toggle('active', theme === 'light');
+  }
+  // Keep iOS's status bar / app-switcher card color in sync with theme.
+  const themeMeta = document.getElementById('theme-color-meta');
+  if (themeMeta) themeMeta.setAttribute('content', theme === 'light' ? '#F6F4EE' : '#0B0F14');
+}
+
+// ---------- Shuffle-on-replay setting (also stored separately from
+// quiz progress, so a progress reset never touches this preference) ----------
+const SHUFFLE_KEY = 'secquiz_shuffle_v1';
+
+function loadShuffleSetting() {
+  try {
+    const raw = localStorage.getItem(SHUFFLE_KEY);
+    return raw === null ? true : raw === 'on'; // default: shuffle ON
+  } catch (e) { return true; }
+}
+function saveShuffleSetting(enabled) {
+  try { localStorage.setItem(SHUFFLE_KEY, enabled ? 'on' : 'off'); } catch (e) {}
+}
+function applyShuffleSetting(enabled) {
+  state.shuffleEnabled = enabled;
+  const onBtn = el('shuffle-on-btn');
+  const offBtn = el('shuffle-off-btn');
+  if (onBtn && offBtn) {
+    onBtn.classList.toggle('active', enabled);
+    offBtn.classList.toggle('active', !enabled);
+  }
+}
+
+// ---------- Configurable answer time limit (stored separately from quiz
+// progress, same reasoning as theme/shuffle above) ----------
+const TIMER_KEY = 'secquiz_timer_v1';
+const TIMER_MIN = 5;
+const TIMER_MAX = 60;
+const TIMER_DEFAULT = 15;
+
+function loadTimerSetting() {
+  try {
+    const raw = localStorage.getItem(TIMER_KEY);
+    const n = raw === null ? TIMER_DEFAULT : parseInt(raw, 10);
+    if (isNaN(n)) return TIMER_DEFAULT;
+    return Math.min(TIMER_MAX, Math.max(TIMER_MIN, n));
+  } catch (e) { return TIMER_DEFAULT; }
+}
+function saveTimerSetting(seconds) {
+  try { localStorage.setItem(TIMER_KEY, String(seconds)); } catch (e) {}
+}
+function applyTimerSetting(seconds) {
+  state.baseTimeLimit = seconds;
+  el('timer-val').textContent = `${seconds}s`;
+  el('timer-dec').disabled = seconds <= TIMER_MIN;
+  el('timer-inc').disabled = seconds >= TIMER_MAX;
+}
+
+// ---------- Developer mode unlock status (persisted like the settings
+// above, so unlocking it once doesn't reset on every page reload) ----------
+const DEVMODE_KEY = 'secquiz_devmode_v1';
+
+function loadDevModeUnlocked() {
+  try { return localStorage.getItem(DEVMODE_KEY) === 'yes'; } catch (e) { return false; }
+}
+function saveDevModeUnlocked(unlocked) {
+  try {
+    if (unlocked) localStorage.setItem(DEVMODE_KEY, 'yes');
+    else localStorage.removeItem(DEVMODE_KEY);
+  } catch (e) {}
+}
+function refreshDevButtonVisibility() {
+  document.querySelectorAll('.dev-icon-btn').forEach(b => b.classList.toggle('show', state.devMode));
+}
+
+// ---------- State ----------
+const state = {
+  screen: 'home',
+  deckIndex: 0,
+  mode: 'classic', // classic | reverse
+  questions: [],
+  qIndex: 0,
+  score: 0,
+  streak: 0,
+  bestStreak: 0,
+  correctCount: 0,
+  wrongCount: 0,
+  missed: [],
+  timePerQ: [],
+  timerId: null,
+  timeLeft: 15,
+  timeLimit: 15,
+  locked: false,
+  startTs: 0,
+  shuffleEnabled: true,
+  advanceTimeoutId: null,
+  canSkipWait: false,
+  baseTimeLimit: 15,
+  devMode: false,
+  fcDeckIndex: 0,
+  fcCards: [],
+  fcIndex: 0,
+  fcFlipped: false
+};
+
+// How long the post-answer wait lasts before auto-advancing, in ms.
+const ADVANCE_WAIT_MS = 30000;
+
+// ---------- DOM refs ----------
+const el = (id) => document.getElementById(id);
+const screens = {
+  home: el('screen-home'),
+  sections: el('screen-sections'),
+  game: el('screen-game'),
+  flashcards: el('screen-flashcards'),
+  results: el('screen-results')
+};
+
+function showScreen(name) {
+  Object.values(screens).forEach(s => s.classList.remove('active'));
+  screens[name].classList.add('active');
+  state.screen = name;
+  window.scrollTo(0, 0);
+}
+
+// ---------- Utility ----------
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function deckLabel(sectionTerms) {
+  const first = sectionTerms[0].term;
+  const last = sectionTerms[sectionTerms.length - 1].term;
+  return `${first} – ${last}`;
+}
+
+function bestKey(deckIdx, mode) { return `d${deckIdx}_${mode}`; }
+
+function getBest(deckIdx, mode) {
+  const k = bestKey(deckIdx, mode);
+  return progress[k] ? progress[k].best : null;
+}
+
+// Records every attempt (not just improvements) into a per-key history
+// array, and separately tracks the best. `history` is capped at 100
+// entries per deck+mode so localStorage can't grow unbounded over a long
+// study period — oldest entries drop off first.
+function setBest(deckIdx, mode, score, total) {
+  const k = bestKey(deckIdx, mode);
+  const pct = Math.round((score / total) * 100);
+  const existing = progress[k];
+  const isNewBest = !existing || pct > existing.best;
+
+  const history = (existing && existing.history) ? existing.history : [];
+  history.push({ score, total, pct, ts: Date.now() });
+  if (history.length > 100) history.shift();
+
+  progress[k] = {
+    best: isNewBest ? pct : existing.best,
+    score: isNewBest ? score : existing.score,
+    total: isNewBest ? total : existing.total,
+    ts: isNewBest ? Date.now() : existing.ts,
+    history
+  };
+  saveProgress(progress);
+  return isNewBest;
+}
+
+function getHistory(deckIdx, mode) {
+  const k = bestKey(deckIdx, mode);
+  return (progress[k] && progress[k].history) ? progress[k].history : [];
+}
+
+function globalBestPct() {
+  const vals = Object.values(progress).map(p => p.best);
+  if (!vals.length) return null;
+  return Math.max(...vals);
+}
+
+function refreshGlobalBestDisplay() {
+  const gb = globalBestPct();
+  const txt = gb === null ? 'Best run: —' : `Best run: ${gb}%`;
+  el('global-best').textContent = txt;
+  el('global-best-2').textContent = txt;
+}
+
+// ===================== MASTERY (100% on every deck) =====================
+
+const MASTERY_KEY = 'secquiz_mastery_seen_v1';
+
+// "Mastered" means every deck has at least one 100% best, in classic OR
+// reverse mode — the person doesn't need to 100% both modes of the same
+// deck, just clear each deck once at full marks.
+function isFullyMastered() {
+  for (let i = 0; i < SECTIONS.length; i++) {
+    const c = getBest(i, 'classic');
+    const r = getBest(i, 'reverse');
+    if (c !== 100 && r !== 100) return false;
+  }
+  return true;
+}
+
+function hasSeenMasteryCelebration() {
+  try { return localStorage.getItem(MASTERY_KEY) === 'yes'; } catch (e) { return false; }
+}
+function markMasteryCelebrationSeen() {
+  try { localStorage.setItem(MASTERY_KEY, 'yes'); } catch (e) {}
+}
+
+function refreshMasteryBadge() {
+  const mastered = isFullyMastered();
+  document.querySelectorAll('.mastery-badge').forEach(b => b.classList.toggle('show', mastered));
+  if (!mastered) {
+    // Progress got reset (or was never complete) — let the celebration
+    // fire again next time every deck actually reaches 100%.
+    try { localStorage.removeItem(MASTERY_KEY); } catch (e) {}
+  }
+}
+
+// Called after every finished game. Only actually celebrates the first
+// time the full-mastery condition becomes true; refreshMasteryBadge()
+// still runs every time so the top-left badge stays in sync regardless.
+function checkForNewMastery() {
+  refreshMasteryBadge();
+  if (isFullyMastered() && !hasSeenMasteryCelebration()) {
+    markMasteryCelebrationSeen();
+    el('mastery-sub').textContent = `You passed all ${SECTIONS.length} decks with a perfect score.`;
+    el('mastery-overlay').classList.add('active');
+    fireConfetti();
+  }
+}
+
+// ---------- Confetti (plain canvas, no external library) ----------
+const CONFETTI_COLORS = ['#5EEAD4', '#A78BFA', '#FFC24B', '#FF6B5B', '#E7ECF0'];
+let confettiRafId = null;
+
+function fireConfetti() {
+  const canvas = el('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = window.innerWidth * dpr;
+  canvas.height = window.innerHeight * dpr;
+  canvas.style.width = window.innerWidth + 'px';
+  canvas.style.height = window.innerHeight + 'px';
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  const count = 160;
+  const particles = [];
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: window.innerWidth / 2,
+      y: window.innerHeight * 0.35,
+      vx: (Math.random() - 0.5) * 14,
+      vy: Math.random() * -12 - 4,
+      size: Math.random() * 7 + 4,
+      color: CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)],
+      rotation: Math.random() * 360,
+      rotSpeed: (Math.random() - 0.5) * 16,
+      shapeIsCircle: Math.random() > 0.5
+    });
+  }
+
+  const gravity = 0.35;
+  const drag = 0.992;
+  const startTs = performance.now();
+  const durationMs = 3200;
+
+  if (confettiRafId) cancelAnimationFrame(confettiRafId);
+
+  function frame(now) {
+    const elapsed = now - startTs;
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+    particles.forEach(p => {
+      p.vx *= drag;
+      p.vy = p.vy * drag + gravity;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rotation += p.rotSpeed;
+
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate((p.rotation * Math.PI) / 180);
+      ctx.fillStyle = p.color;
+      if (p.shapeIsCircle) {
+        ctx.beginPath();
+        ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        ctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
+      }
+      ctx.restore();
+    });
+
+    if (elapsed < durationMs) {
+      confettiRafId = requestAnimationFrame(frame);
+    } else {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      confettiRafId = null;
+    }
+  }
+  confettiRafId = requestAnimationFrame(frame);
+}
+
+// ===================== SECTION GRID =====================
+
+function renderSectionGrid() {
+  const grid = el('grid-sections');
+  grid.innerHTML = '';
+
+  SECTIONS.forEach((sectionTerms, idx) => {
+    const card = document.createElement('div');
+    card.className = 'sec-card';
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+
+    const bestClassic = getBest(idx, 'classic');
+    const bestReverse = getBest(idx, 'reverse');
+    let bestHtml = '';
+    if (bestClassic !== null || bestReverse !== null) {
+      const parts = [];
+      if (bestClassic !== null) parts.push(`Classic <span class="val">${bestClassic}%</span>`);
+      if (bestReverse !== null) parts.push(`Reverse <span class="val">${bestReverse}%</span>`);
+      bestHtml = `<div class="best">${parts.map(p => `<span>${p}</span>`).join('')}</div>`;
+    }
+
+    card.innerHTML = `
+      <button class="card-menu-btn" type="button" aria-label="Deck options" title="Deck options" data-deck-menu="${idx}">⋮</button>
+      <div class="card-menu-dropdown" data-deck-dropdown="${idx}">
+        <button class="card-menu-item" type="button" data-history-deck="${idx}">Grade history</button>
+        <button class="card-menu-item card-menu-item-danger" type="button" data-reset-deck="${idx}">Reset deck score</button>
+      </div>
+      <div class="idx">Deck ${String(idx + 1).padStart(2, '0')}</div>
+      <div class="range">${deckLabel(sectionTerms)}</div>
+      <div class="count">${sectionTerms.length}<small>terms</small></div>
+      ${bestHtml}
+    `;
+    // Open the mode modal only when the card body itself is clicked, not
+    // the 3-dot menu button or its dropdown — those have their own
+    // handlers wired below and should stop the click before it reaches
+    // this listener.
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('.card-menu-btn') || e.target.closest('.card-menu-dropdown')) return;
+      openModeModal(idx);
+    });
+    card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModeModal(idx); } });
+    grid.appendChild(card);
+  });
+}
+
+// ===================== MODE MODAL =====================
+
+let pendingDeckIndex = null;
+
+function openModeModal(deckIdx) {
+  pendingDeckIndex = deckIdx;
+  const sectionTerms = SECTIONS[deckIdx];
+  el('modal-deck-title').textContent = `Deck ${deckIdx + 1}`;
+  el('modal-deck-sub').textContent = `${sectionTerms.length} terms · ${deckLabel(sectionTerms)}`;
+  el('mode-classic-desc').textContent = `See the acronym, pick the right definition. ${state.baseTimeLimit}s per question.`;
+  el('mode-overlay').classList.add('active');
+}
+function closeModeModal() {
+  el('mode-overlay').classList.remove('active');
+  pendingDeckIndex = null;
+}
+
+// ===================== QUIZ BUILD =====================
+
+function buildQuestions(deckIdx, mode) {
+  const terms = SECTIONS[deckIdx];
+  const allTerms = RAW_TERMS; // full pool for distractors
+
+  // Question order follows the shuffle setting. Answer-option order
+  // (which button holds the correct choice) always randomizes regardless
+  // of this setting — otherwise the correct answer would sit in the same
+  // position every time, which isn't what "no shuffle" is asking for.
+  const orderedTerms = state.shuffleEnabled ? shuffle(terms) : terms.slice();
+
+  return orderedTerms.map(t => {
+    // distractor pool: any term other than this one, prefer same deck first then global
+    let pool = allTerms.filter(x => x.term !== t.term);
+    let localPool = terms.filter(x => x.term !== t.term);
+    let distractorsSource = localPool.length >= 3 ? localPool : pool;
+    const distractors = shuffle(distractorsSource).slice(0, 3);
+
+    let correctText, optionTexts;
+    if (mode === 'classic') {
+      // question: acronym -> pick definition
+      correctText = t.def;
+      optionTexts = shuffle([t.def, ...distractors.map(d => d.def)]);
+    } else {
+      // reverse: definition -> pick acronym
+      correctText = t.term;
+      optionTexts = shuffle([t.term, ...distractors.map(d => d.term)]);
+    }
+
+    return {
+      term: t.term,
+      full: t.full,
+      def: t.def,
+      correctText,
+      options: optionTexts
+    };
+  });
+}
+
+// ===================== GAME FLOW =====================
+
+function startGame(deckIdx, mode) {
+  state.deckIndex = deckIdx;
+  state.mode = mode;
+  state.questions = buildQuestions(deckIdx, mode);
+  state.qIndex = 0;
+  state.score = 0;
+  state.streak = 0;
+  state.bestStreak = 0;
+  state.correctCount = 0;
+  state.wrongCount = 0;
+  state.missed = [];
+  state.timePerQ = [];
+  // Reverse mode always gets +3s over whatever the configured base is,
+  // preserving the original 15/18 relationship at the default setting.
+  state.timeLimit = mode === 'reverse' ? state.baseTimeLimit + 3 : state.baseTimeLimit;
+
+  el('q-total').textContent = state.questions.length;
+  closeModeModal();
+  showScreen('game');
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = state.questions[state.qIndex];
+  state.locked = false;
+  state.canSkipWait = false;
+  state.startTs = Date.now();
+  hideContinueHint();
+
+  el('q-cur').textContent = state.qIndex + 1;
+  el('progress-fill').style.width = `${((state.qIndex) / state.questions.length) * 100}%`;
+  el('score-live').textContent = `Score: ${state.score}`;
+
+  if (state.streak >= 2) {
+    el('streak-pod').classList.add('show');
+    el('streak-num').textContent = state.streak;
+  } else {
+    el('streak-pod').classList.remove('show');
+  }
+
+  if (state.mode === 'classic') {
+    el('q-kicker').textContent = 'WHAT DOES THIS ACRONYM MEAN?';
+    el('q-term').textContent = q.term;
+    el('q-hint').textContent = '';
+  } else {
+    el('q-kicker').textContent = 'WHICH ACRONYM MATCHES THIS DEFINITION?';
+    el('q-term').style.fontSize = '';
+    el('q-term').textContent = q.def;
+    el('q-hint').textContent = '';
+  }
+
+  // adjust term font size for long reverse-mode text
+  const termEl = el('q-term');
+  if (state.mode === 'reverse') {
+    termEl.style.fontSize = 'clamp(22px, 4vw, 34px)';
+    termEl.style.fontFamily = "var(--display)";
+    termEl.style.color = 'var(--text)';
+    termEl.style.fontWeight = '600';
+    termEl.style.lineHeight = '1.4';
+  } else {
+    termEl.style.fontSize = '';
+    termEl.style.fontFamily = '';
+    termEl.style.color = '';
+    termEl.style.fontWeight = '';
+    termEl.style.lineHeight = '';
+  }
+
+  const grid = el('opts-grid');
+  grid.innerHTML = '';
+  const keys = ['A', 'B', 'C', 'D'];
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    btn.innerHTML = `<span class="opt-key">${keys[i]}</span><span>${opt}</span>`;
+    btn.addEventListener('click', () => selectAnswer(opt, btn));
+    grid.appendChild(btn);
+  });
+
+  el('feedback-bar').textContent = '';
+  el('feedback-bar').className = 'feedback-bar';
+
+  startTimer();
+}
+
+function startTimer() {
+  clearInterval(state.timerId);
+  state.timeLeft = state.timeLimit;
+  updateTimerDisplay();
+  state.timerId = setInterval(() => {
+    state.timeLeft -= 1;
+    updateTimerDisplay();
+    if (state.timeLeft <= 0) {
+      clearInterval(state.timerId);
+      if (!state.locked) timeUp();
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const circ = el('timer-circle');
+  const numEl = el('timer-num');
+  const pct = state.timeLeft / state.timeLimit;
+  const circumference = 100.5;
+  circ.style.strokeDashoffset = circumference * (1 - pct);
+  numEl.textContent = Math.max(0, state.timeLeft);
+  if (state.timeLeft <= 5) {
+    circ.style.stroke = 'var(--alert)';
+    numEl.style.color = 'var(--alert)';
+  } else {
+    circ.style.stroke = 'var(--signal)';
+    numEl.style.color = 'var(--text)';
+  }
+}
+
+function timeUp() {
+  state.locked = true;
+  const q = state.questions[state.qIndex];
+  registerResult(false, state.timeLimit);
+  revealAnswer(null, q);
+  el('feedback-bar').textContent = "⏱ Time's up";
+  el('feedback-bar').classList.add('wrong-fb');
+  state.advanceTimeoutId = setTimeout(advanceNow, ADVANCE_WAIT_MS);
+  startContinueHint();
+  // Arm click-to-skip one tick later — see selectAnswer for why this can't
+  // be armed synchronously.
+  setTimeout(() => { state.canSkipWait = true; }, 0);
+}
+
+function selectAnswer(chosenText, btnEl) {
+  if (state.locked) return;
+  state.locked = true;
+  clearInterval(state.timerId);
+
+  const q = state.questions[state.qIndex];
+  const elapsed = (Date.now() - state.startTs) / 1000;
+  const isCorrect = chosenText === q.correctText;
+
+  registerResult(isCorrect, elapsed);
+  revealAnswer(btnEl, q, isCorrect);
+
+  if (isCorrect) {
+    el('feedback-bar').textContent = state.streak >= 3 ? `Correct — ${state.streak} in a row!` : 'Correct';
+    el('feedback-bar').classList.add('correct-fb');
+  } else {
+    el('feedback-bar').textContent = 'Not quite';
+    el('feedback-bar').classList.add('wrong-fb');
+  }
+
+  state.advanceTimeoutId = setTimeout(advanceNow, ADVANCE_WAIT_MS);
+  startContinueHint();
+
+  // The click that just answered this question is, right now, still
+  // bubbling up through the DOM toward the game-screen click-to-skip
+  // listener (enabled buttons bubble their clicks; only disabled ones
+  // don't). If we set state.canSkipWait = true synchronously here, that
+  // same bubbling click would immediately trigger the skip and the player
+  // would never see the reveal. Deferring with setTimeout(..., 0) pushes
+  // "clicks can now skip" to the next tick, after this click has finished
+  // bubbling — so only a genuinely separate, later click can skip.
+  setTimeout(() => { state.canSkipWait = true; }, 0);
+}
+
+function registerResult(isCorrect, elapsedSeconds) {
+  state.timePerQ.push(elapsedSeconds);
+  const q = state.questions[state.qIndex];
+
+  if (isCorrect) {
+    state.streak += 1;
+    state.bestStreak = Math.max(state.bestStreak, state.streak);
+    const base = 100;
+    const speedBonus = Math.max(0, Math.round((1 - elapsedSeconds / state.timeLimit) * 50));
+    const streakBonus = state.streak >= 2 ? Math.min((state.streak - 1) * 10, 50) : 0;
+    state.score += base + speedBonus + streakBonus;
+    state.correctCount += 1;
+  } else {
+    state.streak = 0;
+    state.wrongCount += 1;
+    state.missed.push({ term: q.term, full: q.full, def: q.def });
+  }
+}
+
+function revealAnswer(clickedBtn, q, wasCorrect) {
+  const buttons = Array.from(document.querySelectorAll('.opt-btn'));
+  buttons.forEach(b => {
+    b.disabled = true;
+    const label = b.textContent.trim();
+    const optText = b.querySelector('span:last-child').textContent;
+    if (optText === q.correctText) {
+      b.classList.add('correct');
+    } else if (b === clickedBtn) {
+      b.classList.add('wrong');
+    } else {
+      b.classList.add('dim');
+    }
+  });
+
+  // Show the acronym's full expansion once the answer is revealed —
+  // right or wrong, timed out or clicked, the player sees what it stands
+  // for. Format depends on mode: in classic mode the acronym itself is
+  // already shown in #q-term directly above, so repeating it here would
+  // be redundant ("AAA" then "AAA = ..." stacked) — just the expansion is
+  // enough. In reverse mode #q-term holds the definition instead, so the
+  // acronym isn't visible anywhere else on screen — it needs to be
+  // restated here for the line to make sense on its own.
+  el('q-hint').textContent = state.mode === 'classic'
+    ? q.full
+    : `${q.term} = ${q.full}`;
+}
+
+// Wraps nextQuestion() so the pending-timeout ID always gets cleared first —
+// whether this runs because the wait timer expired naturally, or because
+// the player clicked to skip the wait. Clearing it here means the click
+// handler can check "is there currently a pending auto-advance?" via
+// state.advanceTimeoutId and never double-fire against a timer that
+// already ran.
+function advanceNow() {
+  state.advanceTimeoutId = null;
+  hideContinueHint();
+  nextQuestion();
+}
+
+// ---------- "Click anywhere to continue" popup ----------
+// Shown for the full ADVANCE_WAIT_MS wait after every answer (right,
+// wrong, or timed out). Runs its own 1s-tick countdown display, separate
+// from state.advanceTimeoutId — that ID still owns the actual advance,
+// this only owns the number shown in the popup. hideContinueHint clears
+// both, so it's the single place that fully tears the popup down.
+let continueHintIntervalId = null;
+
+function startContinueHint() {
+  clearInterval(continueHintIntervalId);
+  let secondsLeft = Math.round(ADVANCE_WAIT_MS / 1000);
+  el('continue-hint-count').textContent = secondsLeft;
+  el('continue-hint').classList.add('show');
+  continueHintIntervalId = setInterval(() => {
+    secondsLeft -= 1;
+    if (secondsLeft <= 0) {
+      clearInterval(continueHintIntervalId);
+      continueHintIntervalId = null;
+      return;
+    }
+    el('continue-hint-count').textContent = secondsLeft;
+  }, 1000);
+}
+
+function hideContinueHint() {
+  clearInterval(continueHintIntervalId);
+  continueHintIntervalId = null;
+  el('continue-hint').classList.remove('show');
+}
+
+function nextQuestion() {
+  state.qIndex += 1;
+  if (state.qIndex >= state.questions.length) {
+    finishGame();
+  } else {
+    renderQuestion();
+  }
+}
+
+function finishGame() {
+  clearInterval(state.timerId);
+  const total = state.questions.length;
+  const isNewBest = setBest(state.deckIndex, state.mode, state.correctCount, total);
+
+  el('r-deck-label').textContent = `Deck ${state.deckIndex + 1} — ${state.mode === 'classic' ? 'Classic' : 'Reverse'} — Complete`;
+  el('r-score-num').textContent = state.correctCount;
+  el('r-score-of').textContent = `/${total}`;
+
+  const pct = Math.round((state.correctCount / total) * 100);
+  let tier, tierColor;
+  if (pct === 100) { tier = 'Flawless — full mastery'; tierColor = 'var(--gold)'; }
+  else if (pct >= 85) { tier = 'Excellent recall'; tierColor = 'var(--signal)'; }
+  else if (pct >= 65) { tier = 'Solid run'; tierColor = 'var(--signal)'; }
+  else if (pct >= 40) { tier = 'Getting there'; tierColor = 'var(--violet)'; }
+  else { tier = 'Time to review this deck'; tierColor = 'var(--alert)'; }
+
+  el('r-tier').textContent = tier + (isNewBest ? ' 🏆 New best!' : '');
+  el('r-tier').style.color = tierColor;
+  el('r-detail').textContent = `Accuracy ${pct}% · Best streak ${state.bestStreak}`;
+
+  el('stat-correct').textContent = state.correctCount;
+  el('stat-wrong').textContent = state.wrongCount;
+  el('stat-streak').textContent = state.bestStreak;
+  const avgTime = state.timePerQ.length ? (state.timePerQ.reduce((a, b) => a + b, 0) / state.timePerQ.length) : 0;
+  el('stat-avg').textContent = `${avgTime.toFixed(1)}s`;
+
+  const missedPanel = el('missed-panel');
+  const missedList = el('missed-list');
+  if (state.missed.length) {
+    missedPanel.style.display = 'block';
+    missedList.innerHTML = state.missed.map(m => `
+      <div class="missed-item">
+        <div class="mi-term">${m.term}</div>
+        <div class="mi-def"><strong>${m.full}</strong><br/>${m.def}</div>
+      </div>
+    `).join('');
+  } else {
+    missedPanel.style.display = 'none';
+  }
+
+  refreshGlobalBestDisplay();
+  checkForNewMastery();
+  showScreen('results');
+}
+
+// ===================== FLASHCARDS =====================
+// Untimed, unscored review mode. Reuses the same global shuffle setting
+// as the quiz modes for card order, but has no timer, no scoring, no
+// grade-history entry, and no auto-advance — it's pure self-paced review,
+// so exiting never needs a confirmation (there's no progress to lose).
+
+function buildFlashcards(deckIdx) {
+  const terms = SECTIONS[deckIdx];
+  const ordered = state.shuffleEnabled ? shuffle(terms) : terms.slice();
+  return ordered.map(t => ({ term: t.term, full: t.full, def: t.def }));
+}
+
+function startFlashcards(deckIdx) {
+  state.fcDeckIndex = deckIdx;
+  state.fcCards = buildFlashcards(deckIdx);
+  state.fcIndex = 0;
+  state.fcFlipped = false;
+  el('fc-total').textContent = state.fcCards.length;
+  closeModeModal();
+  showScreen('flashcards');
+  renderFlashcard();
+}
+
+function renderFlashcard() {
+  const c = state.fcCards[state.fcIndex];
+  state.fcFlipped = false;
+  el('fc-card').classList.remove('flipped');
+  el('fc-cur').textContent = state.fcIndex + 1;
+  el('fc-nav-count').textContent = `${state.fcIndex + 1} / ${state.fcCards.length}`;
+  el('fc-progress-fill').style.width = `${(state.fcIndex / state.fcCards.length) * 100}%`;
+  el('fc-term').textContent = c.term;
+  el('fc-full').textContent = c.full;
+  el('fc-def').textContent = c.def;
+}
+
+function flipFlashcard() {
+  state.fcFlipped = !state.fcFlipped;
+  el('fc-card').classList.toggle('flipped', state.fcFlipped);
+}
+
+// Wraps in both directions (last -> first, first -> last) so browsing
+// never hits a dead end — the person exits via the ✕ whenever they're done
+// rather than the deck forcing a stop at either edge.
+function fcGoTo(newIndex) {
+  const n = state.fcCards.length;
+  state.fcIndex = ((newIndex % n) + n) % n;
+  renderFlashcard();
+}
+function fcNext() { fcGoTo(state.fcIndex + 1); }
+function fcPrev() { fcGoTo(state.fcIndex - 1); }
+
+function exitFlashcards() {
+  showScreen('sections');
+}
+
+// ===================== EVENT WIRING =====================
+
+el('btn-start').addEventListener('click', () => {
+  renderSectionGrid();
+  showScreen('sections');
+});
+
+el('back-to-home').addEventListener('click', () => showScreen('home'));
+
+el('mode-classic').addEventListener('click', () => {
+  if (pendingDeckIndex !== null) startGame(pendingDeckIndex, 'classic');
+});
+el('mode-reverse').addEventListener('click', () => {
+  if (pendingDeckIndex !== null) startGame(pendingDeckIndex, 'reverse');
+});
+el('mode-flashcards').addEventListener('click', () => {
+  if (pendingDeckIndex !== null) startFlashcards(pendingDeckIndex);
+});
+el('modal-close').addEventListener('click', closeModeModal);
+el('mode-overlay').addEventListener('click', (e) => { if (e.target.id === 'mode-overlay') closeModeModal(); });
+
+// ---------- Flashcards screen ----------
+el('fc-card').addEventListener('click', flipFlashcard);
+el('fc-next').addEventListener('click', fcNext);
+el('fc-prev').addEventListener('click', fcPrev);
+el('btn-exit-flashcards').addEventListener('click', exitFlashcards);
+
+// Keyboard nav, scoped to only fire while the flashcards screen is active
+// so it never interferes with typing in settings/dev-console inputs on
+// other screens.
+document.addEventListener('keydown', (e) => {
+  if (state.screen !== 'flashcards') return;
+  if (e.key === 'ArrowRight') { fcNext(); }
+  else if (e.key === 'ArrowLeft') { fcPrev(); }
+  else if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); flipFlashcard(); }
+});
+
+el('btn-retry').addEventListener('click', () => startGame(state.deckIndex, state.mode));
+el('btn-next-deck').addEventListener('click', () => {
+  const nextIdx = (state.deckIndex + 1) % SECTIONS.length;
+  openModeModal(nextIdx);
+  showScreen('sections');
+  renderSectionGrid();
+});
+el('btn-all-decks').addEventListener('click', () => {
+  renderSectionGrid();
+  showScreen('sections');
+});
+
+// Keyboard shortcuts during game (A/B/C/D or 1-4)
+document.addEventListener('keydown', (e) => {
+  if (state.screen !== 'game' || state.locked) return;
+  const keyMap = { 'a': 0, 'b': 1, 'c': 2, 'd': 3, '1': 0, '2': 1, '3': 2, '4': 3 };
+  const k = e.key.toLowerCase();
+  if (keyMap.hasOwnProperty(k)) {
+    const buttons = document.querySelectorAll('.opt-btn');
+    const idx = keyMap[k];
+    if (buttons[idx]) buttons[idx].click();
+  }
+});
+
+// Click-to-advance: once an answer is locked in AND the arming delay has
+// passed (see selectAnswer/timeUp for why the delay is needed), clicking
+// anywhere on the game screen skips the rest of the wait and jumps
+// straight to the next question. Before an answer is chosen, canSkipWait
+// is false, so a click here does nothing — it can't be used to skip an
+// unanswered question.
+function skipAdvanceWait() {
+  if (!state.canSkipWait) return;
+  if (state.advanceTimeoutId === null) return; // already advancing, nothing to skip
+  clearTimeout(state.advanceTimeoutId);
+  advanceNow();
+}
+
+el('screen-game').addEventListener('click', (e) => {
+  if (e.target.closest('#btn-exit-quiz')) return; // exit button handles its own click
+  skipAdvanceWait();
+});
+
+// Space bar does the same thing as the click, for anyone who'd rather
+// keep their hands on the keyboard. Scoped to the game screen so it can't
+// fire while typing in a settings/dev-console input on another screen,
+// and also skipped while the exit-confirmation dialog is open over the
+// game screen — otherwise Space while deciding "do I really want to
+// exit?" would silently advance the question underneath that dialog.
+// preventDefault stops the browser's default "Space scrolls the page".
+document.addEventListener('keydown', (e) => {
+  if (state.screen !== 'game') return;
+  if (el('exit-overlay').classList.contains('active')) return;
+  if (e.key === ' ') {
+    e.preventDefault();
+    skipAdvanceWait();
+  }
+});
+
+// ---------- Settings modal ----------
+function openSettingsModal() { el('settings-overlay').classList.add('active'); }
+function closeSettingsModal() { el('settings-overlay').classList.remove('active'); }
+
+['btn-settings-1', 'btn-settings-2', 'btn-settings-3'].forEach(id => {
+  const btn = el(id);
+  if (btn) btn.addEventListener('click', openSettingsModal);
+});
+el('settings-close').addEventListener('click', closeSettingsModal);
+el('settings-overlay').addEventListener('click', (e) => { if (e.target.id === 'settings-overlay') closeSettingsModal(); });
+
+// ---------- Deck card 3-dot menu ----------
+// Delegated on the grid container since cards are re-rendered from
+// scratch every time renderSectionGrid() runs — binding directly to
+// each button would leak listeners on every redraw.
+el('grid-sections').addEventListener('click', (e) => {
+  const menuBtn = e.target.closest('.card-menu-btn');
+  if (menuBtn) {
+    e.stopPropagation();
+    const deckIdx = menuBtn.getAttribute('data-deck-menu');
+    const dropdown = document.querySelector(`[data-deck-dropdown="${deckIdx}"]`);
+    const wasOpen = dropdown.classList.contains('open');
+    // Close any other open dropdown first — only one at a time.
+    document.querySelectorAll('.card-menu-dropdown.open').forEach(d => d.classList.remove('open'));
+    if (!wasOpen) dropdown.classList.add('open');
+    return;
+  }
+  const historyBtn = e.target.closest('[data-history-deck]');
+  if (historyBtn) {
+    e.stopPropagation();
+    document.querySelectorAll('.card-menu-dropdown.open').forEach(d => d.classList.remove('open'));
+    openHistoryModal(parseInt(historyBtn.getAttribute('data-history-deck'), 10));
+    return;
+  }
+  const resetDeckBtn = e.target.closest('[data-reset-deck]');
+  if (resetDeckBtn) {
+    e.stopPropagation();
+    document.querySelectorAll('.card-menu-dropdown.open').forEach(d => d.classList.remove('open'));
+    openResetDeckModal(parseInt(resetDeckBtn.getAttribute('data-reset-deck'), 10));
+  }
+});
+// Click anywhere outside an open dropdown closes it.
+document.addEventListener('click', (e) => {
+  if (e.target.closest('.card-menu-dropdown') || e.target.closest('.card-menu-btn')) return;
+  document.querySelectorAll('.card-menu-dropdown.open').forEach(d => d.classList.remove('open'));
+});
+// Same idea for the mastery badge's tap-triggered tooltip.
+document.addEventListener('click', (e) => {
+  if (e.target.closest('.mastery-badge')) return;
+  document.querySelectorAll('.mastery-badge.tooltip-open').forEach(b => b.classList.remove('tooltip-open'));
+});
+
+// ---------- Grade history modal ----------
+function openHistoryModal(deckIdx) {
+  const sectionTerms = SECTIONS[deckIdx];
+  el('history-title').textContent = `Deck ${deckIdx + 1} — Grade history`;
+  el('history-sub').textContent = deckLabel(sectionTerms);
+
+  const classicRuns = getHistory(deckIdx, 'classic').map(r => ({ ...r, mode: 'classic' }));
+  const reverseRuns = getHistory(deckIdx, 'reverse').map(r => ({ ...r, mode: 'reverse' }));
+  const allRuns = classicRuns.concat(reverseRuns).sort((a, b) => b.ts - a.ts);
+
+  const listEl = el('history-list');
+  if (!allRuns.length) {
+    listEl.innerHTML = '<div class="history-empty">No attempts yet on this deck.</div>';
+  } else {
+    const bestClassicPct = getBest(deckIdx, 'classic');
+    const bestReversePct = getBest(deckIdx, 'reverse');
+    listEl.innerHTML = allRuns.map(r => {
+      const isBest = (r.mode === 'classic' && r.pct === bestClassicPct) ||
+                     (r.mode === 'reverse' && r.pct === bestReversePct);
+      const dateStr = new Date(r.ts).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+      const timeStr = new Date(r.ts).toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
+      return `
+        <div class="history-row">
+          <div class="hr-left">
+            <span class="hr-mode">${r.mode}</span>
+            <span class="hr-date">${dateStr} · ${timeStr}</span>
+          </div>
+          <div>
+            <span class="hr-score${isBest ? ' is-best' : ''}">${r.score}/${r.total}</span>
+            <span class="hr-pct">${r.pct}%${isBest ? ' 🏆' : ''}</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  el('history-overlay').classList.add('active');
+}
+function closeHistoryModal() { el('history-overlay').classList.remove('active'); }
+el('history-close').addEventListener('click', closeHistoryModal);
+el('history-overlay').addEventListener('click', (e) => { if (e.target.id === 'history-overlay') closeHistoryModal(); });
+
+// ---------- Reset single deck (with confirmation) ----------
+let pendingResetDeckIndex = null;
+
+function openResetDeckModal(deckIdx) {
+  pendingResetDeckIndex = deckIdx;
+  const sectionTerms = SECTIONS[deckIdx];
+  el('reset-deck-warning').textContent =
+    `This will permanently erase Deck ${deckIdx + 1}'s (${deckLabel(sectionTerms)}) best score, accuracy, and run history in both Classic and Reverse mode.`;
+  el('reset-deck-overlay').classList.add('active');
+}
+function closeResetDeckModal() {
+  el('reset-deck-overlay').classList.remove('active');
+  pendingResetDeckIndex = null;
+}
+el('btn-reset-deck-cancel').addEventListener('click', closeResetDeckModal);
+el('reset-deck-overlay').addEventListener('click', (e) => { if (e.target.id === 'reset-deck-overlay') closeResetDeckModal(); });
+
+el('btn-reset-deck-confirm').addEventListener('click', () => {
+  if (pendingResetDeckIndex === null) return;
+  const deckIdx = pendingResetDeckIndex;
+  delete progress[bestKey(deckIdx, 'classic')];
+  delete progress[bestKey(deckIdx, 'reverse')];
+  saveProgress(progress);
+  refreshGlobalBestDisplay();
+  refreshMasteryBadge();
+  if (state.screen === 'sections') renderSectionGrid(); // redraw so this card's best-score badge clears immediately
+  closeResetDeckModal();
+});
+
+// ---------- Mastery celebration modal ----------
+el('mastery-close').addEventListener('click', () => el('mastery-overlay').classList.remove('active'));
+el('mastery-overlay').addEventListener('click', (e) => { if (e.target.id === 'mastery-overlay') el('mastery-overlay').classList.remove('active'); });
+
+// Clicking the trophy itself is a separate, repeatable treat — every
+// click re-fires the confetti burst as long as mastery is actually
+// earned right now (the .show class is the single source of truth for
+// that, kept in sync by refreshMasteryBadge()). This is deliberately NOT
+// gated by the one-time MASTERY_KEY flag that guards the automatic
+// post-quiz celebration modal — that flag only controls whether finishing
+// a quiz re-opens the modal unprompted, not whether a direct click on the
+// badge is allowed to celebrate again.
+document.querySelectorAll('.mastery-badge').forEach(badge => {
+  badge.addEventListener('click', () => {
+    if (!badge.classList.contains('show')) return;
+    fireConfetti();
+    // Touch screens have no hover, so the same tap that fires confetti
+    // also opens the tooltip explaining the badge (closed again by the
+    // outside-tap handler further up this file).
+    badge.classList.toggle('tooltip-open');
+  });
+});
+
+// ---------- Answer time limit stepper ----------
+el('timer-dec').addEventListener('click', () => {
+  const next = Math.max(TIMER_MIN, state.baseTimeLimit - 5);
+  applyTimerSetting(next);
+  saveTimerSetting(next);
+});
+el('timer-inc').addEventListener('click', () => {
+  const next = Math.min(TIMER_MAX, state.baseTimeLimit + 5);
+  applyTimerSetting(next);
+  saveTimerSetting(next);
+});
+el('theme-dark-btn').addEventListener('click', () => { applyTheme('dark'); saveTheme('dark'); });
+el('theme-light-btn').addEventListener('click', () => { applyTheme('light'); saveTheme('light'); });
+
+// ---------- Shuffle toggle ----------
+el('shuffle-on-btn').addEventListener('click', () => { applyShuffleSetting(true); saveShuffleSetting(true); });
+el('shuffle-off-btn').addEventListener('click', () => { applyShuffleSetting(false); saveShuffleSetting(false); });
+
+// ---------- Reset progress (with confirmation) ----------
+function openResetModal() {
+  closeSettingsModal();
+  el('reset-overlay').classList.add('active');
+}
+function closeResetModal() { el('reset-overlay').classList.remove('active'); }
+
+el('btn-open-reset').addEventListener('click', openResetModal);
+el('btn-reset-cancel').addEventListener('click', closeResetModal);
+el('reset-overlay').addEventListener('click', (e) => { if (e.target.id === 'reset-overlay') closeResetModal(); });
+
+el('btn-reset-confirm').addEventListener('click', () => {
+  progress = {};
+  saveProgress(progress);
+  refreshGlobalBestDisplay();
+  refreshMasteryBadge();
+  if (state.screen === 'sections') renderSectionGrid(); // redraw so best-score badges clear immediately
+  closeResetModal();
+});
+
+// ---------- Exit quiz (with confirmation) ----------
+function openExitModal() { el('exit-overlay').classList.add('active'); }
+function closeExitModal() { el('exit-overlay').classList.remove('active'); }
+
+el('btn-exit-quiz').addEventListener('click', openExitModal);
+el('btn-exit-cancel').addEventListener('click', closeExitModal);
+el('exit-overlay').addEventListener('click', (e) => { if (e.target.id === 'exit-overlay') closeExitModal(); });
+
+el('btn-exit-confirm').addEventListener('click', () => {
+  // Stop both timers so nothing fires after we've already left the game
+  // screen — otherwise a delayed timeUp() or advanceNow() could try to
+  // render a question onto a screen the player isn't looking at anymore.
+  clearInterval(state.timerId);
+  if (state.advanceTimeoutId !== null) {
+    clearTimeout(state.advanceTimeoutId);
+    state.advanceTimeoutId = null;
+  }
+  hideContinueHint();
+  closeExitModal();
+  renderSectionGrid();
+  showScreen('sections');
+});
+
+// ---------- Developer mode (local-only testing tools) ----------
+// Gated behind an exact-match string typed into Settings > Code. This is
+// NOT real security — anyone with browser devtools already has equivalent
+// access to this app's localStorage — it's just a deliberate, out-of-the-way
+// gate so it doesn't show up by accident during normal use.
+const DEV_UNLOCK_CODE = '42069!';
+
+function openDevModal() {
+  populateDevDeckSelect();
+  el('dev-overlay').classList.add('active');
+}
+function closeDevModal() { el('dev-overlay').classList.remove('active'); }
+
+function populateDevDeckSelect() {
+  const sel = el('dev-score-deck');
+  sel.innerHTML = SECTIONS.map((s, i) => `<option value="${i}">Deck ${i + 1} (${deckLabel(s)})</option>`).join('');
+}
+
+el('code-submit').addEventListener('click', () => {
+  const val = el('code-input').value;
+  if (val === DEV_UNLOCK_CODE) {
+    state.devMode = true;
+    saveDevModeUnlocked(true);
+    refreshDevButtonVisibility();
+    el('code-input').value = '';
+    closeSettingsModal();
+    devLog('Developer mode unlocked.');
+    openDevModal();
+  } else {
+    el('code-input').value = '';
+    el('code-input').placeholder = 'Not recognized';
+  }
+});
+el('code-input').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') el('code-submit').click();
+});
+el('dev-close').addEventListener('click', closeDevModal);
+el('dev-overlay').addEventListener('click', (e) => { if (e.target.id === 'dev-overlay') closeDevModal(); });
+
+// Persistent shortcut buttons in the topbar (only visible once devMode is
+// true — see refreshDevButtonVisibility) skip the code prompt entirely.
+['btn-dev-1', 'btn-dev-2', 'btn-dev-3'].forEach(id => {
+  const btn = el(id);
+  if (btn) btn.addEventListener('click', openDevModal);
+});
+
+el('dev-lock').addEventListener('click', () => {
+  state.devMode = false;
+  saveDevModeUnlocked(false);
+  refreshDevButtonVisibility();
+  closeDevModal();
+  devLog('Developer mode locked. Re-enter the code in Settings to unlock again.');
+});
+
+// ---- Quick actions ----
+el('dev-complete-all').addEventListener('click', () => {
+  SECTIONS.forEach((sectionTerms, idx) => {
+    setBest(idx, 'classic', sectionTerms.length, sectionTerms.length);
+    setBest(idx, 'reverse', sectionTerms.length, sectionTerms.length);
+  });
+  refreshGlobalBestDisplay();
+  if (state.screen === 'sections') renderSectionGrid();
+  checkForNewMastery();
+  devLog(`Set all ${SECTIONS.length} decks to 100% in both modes.`);
+});
+
+el('dev-fire-confetti').addEventListener('click', () => {
+  fireConfetti();
+  devLog('Confetti fired.');
+});
+
+el('dev-clear-progress').addEventListener('click', () => {
+  progress = {};
+  saveProgress(progress);
+  refreshGlobalBestDisplay();
+  refreshMasteryBadge();
+  try { localStorage.removeItem(MASTERY_KEY); } catch (e) {}
+  if (state.screen === 'sections') renderSectionGrid();
+  devLog('All progress wiped.');
+});
+
+// ---- Custom score injector ----
+el('dev-score-apply').addEventListener('click', () => {
+  const deckIdx = parseInt(el('dev-score-deck').value, 10);
+  const mode = el('dev-score-mode').value;
+  const correct = parseInt(el('dev-score-correct').value, 10);
+  const total = parseInt(el('dev-score-total').value, 10);
+  if (isNaN(deckIdx) || isNaN(correct) || isNaN(total) || total <= 0 || correct < 0) {
+    devLog('Enter a valid correct/total (total > 0, correct >= 0).', true);
+    return;
+  }
+  setBest(deckIdx, mode, correct, total);
+  refreshGlobalBestDisplay();
+  if (state.screen === 'sections') renderSectionGrid();
+  checkForNewMastery();
+  devLog(`Set Deck ${deckIdx + 1} (${mode}) to ${correct}/${total}.`);
+});
+
+// ---- Command console ----
+function devLog(text, isError) {
+  const log = el('dev-console-log');
+  const line = document.createElement('div');
+  line.className = 'dc-line' + (isError ? ' dc-err' : '');
+  line.textContent = text;
+  log.appendChild(line);
+  log.scrollTop = log.scrollHeight;
+}
+function devLogCmd(text) {
+  const log = el('dev-console-log');
+  const line = document.createElement('div');
+  line.className = 'dc-line dc-cmd';
+  line.textContent = '> ' + text;
+  log.appendChild(line);
+  log.scrollTop = log.scrollHeight;
+}
+
+const DEV_COMMANDS = {
+  help() {
+    devLog('Commands: help, complete-all, wipe, confetti, best <deck#> <classic|reverse>, set <deck#> <classic|reverse> <correct> <total>, theme <dark|light>, timer <seconds>, shuffle <on|off>, whoami, lock, clear');
+  },
+  'complete-all'() { el('dev-complete-all').click(); },
+  wipe() { el('dev-clear-progress').click(); },
+  confetti() { el('dev-fire-confetti').click(); },
+  lock() { el('dev-lock').click(); },
+  best(args) {
+    const deckIdx = parseInt(args[0], 10) - 1;
+    const mode = args[1];
+    if (isNaN(deckIdx) || !SECTIONS[deckIdx] || (mode !== 'classic' && mode !== 'reverse')) {
+      devLog('Usage: best <deck#> <classic|reverse>', true);
+      return;
+    }
+    const pct = getBest(deckIdx, mode);
+    devLog(pct === null ? `Deck ${deckIdx + 1} (${mode}): no attempts yet.` : `Deck ${deckIdx + 1} (${mode}) best: ${pct}%`);
+  },
+  set(args) {
+    const deckIdx = parseInt(args[0], 10) - 1;
+    const mode = args[1];
+    const correct = parseInt(args[2], 10);
+    const total = parseInt(args[3], 10);
+    if (isNaN(deckIdx) || !SECTIONS[deckIdx] || (mode !== 'classic' && mode !== 'reverse') || isNaN(correct) || isNaN(total) || total <= 0) {
+      devLog('Usage: set <deck#> <classic|reverse> <correct> <total>', true);
+      return;
+    }
+    setBest(deckIdx, mode, correct, total);
+    refreshGlobalBestDisplay();
+    if (state.screen === 'sections') renderSectionGrid();
+    checkForNewMastery();
+    devLog(`Set Deck ${deckIdx + 1} (${mode}) to ${correct}/${total}.`);
+  },
+  theme(args) {
+    const t = args[0];
+    if (t !== 'dark' && t !== 'light') { devLog('Usage: theme <dark|light>', true); return; }
+    applyTheme(t);
+    saveTheme(t);
+    devLog(`Theme set to ${t}.`);
+  },
+  timer(args) {
+    const n = parseInt(args[0], 10);
+    if (isNaN(n) || n < TIMER_MIN || n > TIMER_MAX) { devLog(`Usage: timer <${TIMER_MIN}-${TIMER_MAX}>`, true); return; }
+    applyTimerSetting(n);
+    saveTimerSetting(n);
+    devLog(`Answer time limit set to ${n}s.`);
+  },
+  shuffle(args) {
+    const v = args[0];
+    if (v !== 'on' && v !== 'off') { devLog('Usage: shuffle <on|off>', true); return; }
+    applyShuffleSetting(v === 'on');
+    saveShuffleSetting(v === 'on');
+    devLog(`Shuffle ${v}.`);
+  },
+  whoami() {
+    devLog('Local browser session. Developer mode only edits values already stored in this browser (localStorage) — no accounts, no server, nothing leaves this device.');
+  },
+  clear() { el('dev-console-log').innerHTML = ''; }
+};
+
+function runDevCommand(raw) {
+  const trimmed = raw.trim();
+  if (!trimmed) return;
+  devLogCmd(trimmed);
+  const parts = trimmed.split(/\s+/);
+  const cmdName = parts[0].toLowerCase();
+  const args = parts.slice(1);
+  const fn = DEV_COMMANDS[cmdName];
+  if (!fn) {
+    devLog(`Unknown command: ${cmdName}. Type "help" for a list.`, true);
+    return;
+  }
+  fn(args);
+}
+
+el('dev-console-run').addEventListener('click', () => {
+  const input = el('dev-console-input');
+  runDevCommand(input.value);
+  input.value = '';
+});
+el('dev-console-input').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') el('dev-console-run').click();
+});
+
+// ---------- Init ----------
+applyTheme(loadTheme());
+applyShuffleSetting(loadShuffleSetting());
+applyTimerSetting(loadTimerSetting());
+state.devMode = loadDevModeUnlocked();
+refreshDevButtonVisibility();
+refreshGlobalBestDisplay();
+refreshMasteryBadge();
+
+</script>
+</body>
+</html>
