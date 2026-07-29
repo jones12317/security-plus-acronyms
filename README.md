@@ -1,2 +1,16 @@
-# security-plus-acronyms
-An interactive HTML-based flashcard and quiz application designed to help students master CompTIA Security+ (SY0-701) acronyms. It includes multiple study modes, progress tracking, timed quizzes, and a responsive interface optimized for desktop and mobile devices.
+# Security+ Acronym Drill
+
+A flashcard study app for learning CompTIA Security+ acronyms.
+
+## 🚀 Live Demo
+Try the app here:
+https://gorgeous-figolla-9ac108.netlify.app/
+
+## Features
+- Flashcard flipping
+- Section-based studying
+- Security+ acronym practice
+
+## Installation
+Instructions for running locally...
+download file. open file and run it in google chrome or any major search engine. 
