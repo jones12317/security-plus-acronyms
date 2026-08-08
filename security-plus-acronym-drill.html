@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -1275,13 +1275,56 @@ body { overscroll-behavior-y: contain; }
 
   .grid-sections { grid-template-columns: 1fr; }
 
+  /* Quiz screen: lock to exactly one viewport height so the question
+     and its 4 answers always fit with no page scroll, no matter how
+     long a given definition runs. game-topbar/progress/feedback keep
+     their natural size; q-body takes only what its text needs (capped);
+     opts-grid absorbs whatever's left and splits it into two truly
+     equal rows. fitQuestionTerm()/fitAnswerTiles() in the JS shrink
+     text to stay inside that budget as a safety net. */
+  #screen-game {
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+  }
+  #screen-game .progress-track,
+  #screen-game .game-topbar,
+  #screen-game .feedback-bar {
+    flex-shrink: 0;
+  }
+  .q-body {
+    flex: 0 1 auto;
+    min-height: 0;
+    max-height: 44%;
+    overflow: hidden;
+    padding: 12px 18px;
+  }
+  .q-term { line-height: 1.15; }
+
   /* Answer tiles: two per row instead of one wide row, so the 4 choices
      read as a 2x2 square block. Classic mode's answers are full
      sentences and reverse mode's are short acronyms, so this trims
      padding/font/gap enough for sentences to wrap cleanly while still
-     looking natural for short answers. */
-  .opts-grid { gap: 10px; padding: 0 14px 28px; margin-top: 24px; }
-  .opt-btn { padding: 12px 10px; font-size: 12.5px; line-height: 1.32; gap: 8px; border-radius: 8px; }
+     looking natural for short answers. grid-template-rows forces both
+     rows to the same height — a true even 2x2 — instead of each row
+     sizing to its own tallest tile. */
+  .opts-grid {
+    flex: 1 1 0%;
+    min-height: 0;
+    grid-template-rows: 1fr 1fr;
+    gap: 8px;
+    padding: 0 14px 14px;
+    margin: 8px auto 0;
+    overflow: hidden;
+  }
+  .opt-btn {
+    padding: 10px 10px;
+    font-size: 12.5px;
+    line-height: 1.28;
+    gap: 8px;
+    border-radius: 8px;
+    overflow-y: auto;
+  }
   .opt-key { width: 18px; height: 18px; min-width: 18px; font-size: 9.5px; border-radius: 3px; }
 
   /* Full-width, stacked buttons are easier to hit with a thumb than a
@@ -1641,7 +1684,7 @@ body { overscroll-behavior-y: contain; }
         <button class="icon-btn exit-btn" id="btn-exit-quiz" aria-label="Exit quiz" title="Exit quiz">✕</button>
       </div>
     </div>
-    <div class="q-body">
+    <div class="q-body" id="q-body">
       <div class="q-kicker" id="q-kicker">WHAT DOES THIS ACRONYM MEAN?</div>
       <div class="q-term" id="q-term">AAA</div>
       <div class="q-hint" id="q-hint"></div>
@@ -2534,6 +2577,39 @@ function startGame(deckIdx, mode) {
   renderQuestion();
 }
 
+// Both of these assume the caller already set the "ideal" font-size
+// (the mode-specific clamp() for q-term, the CSS default for opt-btn)
+// — they only step *down* from there, and only if content actually
+// overflows the fixed box the mobile layout now gives them. On desktop,
+// where nothing is height-constrained, the overflow check simply never
+// trips and these are no-ops.
+function fitQuestionTerm() {
+  const body = el('q-body');
+  const term = el('q-term');
+  if (body.scrollHeight <= body.clientHeight + 1) return;
+  let size = parseFloat(getComputedStyle(term).fontSize);
+  const min = 15;
+  let guard = 0;
+  while (body.scrollHeight > body.clientHeight + 1 && size > min && guard++ < 60) {
+    size -= 1;
+    term.style.fontSize = size + 'px';
+  }
+}
+
+function fitAnswerTiles() {
+  const btns = Array.from(document.querySelectorAll('#opts-grid .opt-btn'));
+  if (!btns.length) return;
+  const fits = () => btns.every(b => b.scrollHeight <= b.clientHeight + 1);
+  if (fits()) return;
+  let size = parseFloat(getComputedStyle(btns[0]).fontSize);
+  const min = 9;
+  let guard = 0;
+  while (!fits() && size > min && guard++ < 40) {
+    size -= 0.5;
+    btns.forEach(b => b.style.fontSize = size + 'px');
+  }
+}
+
 function renderQuestion() {
   const q = state.questions[state.qIndex];
   state.locked = false;
@@ -2592,6 +2668,9 @@ function renderQuestion() {
 
   el('feedback-bar').textContent = '';
   el('feedback-bar').className = 'feedback-bar';
+
+  fitQuestionTerm();
+  fitAnswerTiles();
 
   startTimer();
 }
@@ -3167,6 +3246,12 @@ function openExitModal() { el('exit-overlay').classList.add('active'); }
 function closeExitModal() { el('exit-overlay').classList.remove('active'); }
 
 el('btn-exit-quiz').addEventListener('click', openExitModal);
+// Rotating the phone (or any viewport resize) changes how much room
+// q-body/opts-grid have, so re-run the fit pass rather than leaving
+// text sized for the old orientation.
+window.addEventListener('resize', () => {
+  if (state.screen === 'game') { fitQuestionTerm(); fitAnswerTiles(); }
+});
 el('btn-exit-cancel').addEventListener('click', closeExitModal);
 el('exit-overlay').addEventListener('click', (e) => { if (e.target.id === 'exit-overlay') closeExitModal(); });
 
