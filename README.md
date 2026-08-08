@@ -4,8 +4,7 @@ A flashcard study app for learning CompTIA Security+ acronyms.
 
 ## 🚀 Live Demo
 Try the app here:
-[https://gorgeous-figolla-9ac108.netlify.app/](https://seucrity-acryonym-drill.netlify.app/)
-
+https://seucrity-acryonym-drill.netlify.app/ 
 ## Features
 - Flashcard flipping
 - Section-based studying
