@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -621,9 +621,18 @@ html[data-theme="light"] .theme-toggle button.active { color: #FFFFFF; }
   transition: border-color 0.12s ease, background 0.12s ease, transform 0.08s ease;
   position: relative;
 }
-.opt-btn:hover:not(:disabled) { border-color: var(--signal); background: rgba(94,234,212,0.045); }
-.opt-btn:active:not(:disabled) { transform: scale(0.985); }
-.opt-btn:disabled { cursor: default; }
+.opt-btn:hover:not(.locked) { border-color: var(--signal); background: rgba(94,234,212,0.045); }
+.opt-btn:active:not(.locked) { transform: scale(0.985); }
+.opt-btn.locked {
+  cursor: default;
+  /* Lets a tap "pass through" to the game screen underneath instead of
+     being swallowed here, so click-anywhere-to-continue still works
+     even when the tap lands on where an answer tile is — which, on
+     the mobile 2x2 grid, is most of the screen. Keyboard users are
+     unaffected: this only changes pointer/touch hit-testing, and
+     selectAnswer() still no-ops via state.locked either way. */
+  pointer-events: none;
+}
 .opt-key {
   font-family: var(--mono);
   font-size: 11px;
@@ -793,6 +802,79 @@ html[data-theme="light"] .theme-toggle button.active { color: #FFFFFF; }
   min-width: 60px;
   text-align: center;
 }
+
+/* ---------- Flashcards: listen mode player bar ---------- */
+.fc-listen-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 22px;
+}
+.fc-listen-btn {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  border-radius: 50%;
+  background: var(--signal);
+  border: none;
+  color: var(--ink);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.1s ease, background 0.15s ease;
+}
+.fc-listen-btn:hover { transform: scale(1.05); }
+.fc-listen-btn:disabled { background: var(--panel-2); color: var(--muted); cursor: not-allowed; }
+.fc-listen-info { text-align: left; }
+.fc-listen-status {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.fc-listen-status.speaking { color: var(--signal); }
+.fc-listen-status.speaking::before {
+  content: '●';
+  margin-right: 6px;
+  animation: fc-listen-pulse 1s ease-in-out infinite;
+}
+@keyframes fc-listen-pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+.fc-listen-sub {
+  font-family: var(--display);
+  font-size: 11.5px;
+  color: var(--muted);
+  opacity: 0.8;
+}
+.fc-volume-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 250px;
+  margin: 8px auto 0;
+  gap: 12px;
+}
+.fc-vol-label {
+  font-family: var(--display);
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 600;
+}
+.fc-vol-note {
+  text-align: center;
+  font-family: var(--display);
+  font-size: 10.5px;
+  color: var(--muted);
+  opacity: 0.7;
+  margin-top: 8px;
+  min-height: 13px;
+}
+.fc-volume-row .stepper-val { min-width: 46px; }
 
 /* ---------- Results screen ---------- */
 .results-wrap {
@@ -1188,6 +1270,24 @@ button:focus-visible, .sec-card:focus-visible, .mode-opt:focus-visible {
   padding: 7px 9px;
 }
 .dev-score-form input[type="number"] { width: 90px; }
+.voice-picker { display: flex; gap: 8px; width: 100%; }
+#voice-select {
+  flex: 1;
+  min-width: 0;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--text);
+  font-family: var(--display);
+  font-size: 13px;
+  padding: 9px 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#voice-select:focus { outline: none; border-color: var(--signal); }
+#voice-select:disabled { color: var(--muted); }
+#voice-preview-btn { flex-shrink: 0; }
 .dev-badge {
   display: inline-block;
   font-family: var(--mono);
@@ -1348,8 +1448,31 @@ body { overscroll-behavior-y: contain; }
   .code-row-input input, .dev-console-input-row input,
   .dev-score-form input, .dev-score-form select { font-size: 16px; }
 
-  /* Flashcards: a shorter card fits above the fold on a phone screen. */
-  .fc-card { height: 300px; min-height: 300px; }
+  /* Flashcards: locked to one screen (see #screen-flashcards below) so
+     the listen/volume controls this now includes are always reachable
+     without scrolling. The card flexes to fill whatever's left after
+     the topbar and the (fixed-size) controls below it take their share,
+     rather than claiming a fixed height that stopped leaving enough
+     room once those controls were added. */
+  #screen-flashcards {
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+  }
+  .fc-topbar { flex-shrink: 0; }
+  .fc-body {
+    flex: 1 1 0%;
+    min-height: 0;
+    overflow: hidden;
+    justify-content: flex-start;
+    padding: 14px 18px 10px;
+  }
+  .fc-scene { flex: 1 1 auto; min-height: 90px; display: flex; }
+  .fc-card { height: auto; min-height: 90px; }
+  .fc-listen-row { margin-top: 14px; flex-shrink: 0; }
+  .fc-volume-row { margin-top: 8px; flex-shrink: 0; }
+  .fc-vol-note { flex-shrink: 0; }
+  .fc-nav-row { margin-top: 14px; flex-shrink: 0; }
   .fc-face { padding: 26px 22px; }
 
   /* Tall modals (Settings, Developer panel) cap below the viewport
@@ -1511,6 +1634,17 @@ body { overscroll-behavior-y: contain; }
 
       <div class="settings-row">
         <div>
+          <div class="s-title">Volume &amp; speed controls</div>
+          <div class="s-desc">Show the volume/speed steppers in flashcards Listen mode</div>
+        </div>
+        <div class="theme-toggle">
+          <button id="vol-controls-on-btn">On</button>
+          <button id="vol-controls-off-btn">Off</button>
+        </div>
+      </div>
+
+      <div class="settings-row">
+        <div>
           <div class="s-title">Answer time limit</div>
           <div class="s-desc">Seconds per question (classic mode; reverse gets +3s)</div>
         </div>
@@ -1518,6 +1652,17 @@ body { overscroll-behavior-y: contain; }
           <button type="button" id="timer-dec" aria-label="Decrease time limit">−</button>
           <span class="stepper-val" id="timer-val">15s</span>
           <button type="button" id="timer-inc" aria-label="Increase time limit">+</button>
+        </div>
+      </div>
+
+      <div class="settings-row">
+        <div>
+          <div class="s-title">Read-aloud voice</div>
+          <div class="s-desc" id="voice-select-desc">Used by Listen mode in flashcards</div>
+        </div>
+        <div class="voice-picker">
+          <select id="voice-select"></select>
+          <button type="button" class="icon-btn" id="voice-preview-btn" aria-label="Preview voice" title="Preview this voice">▶</button>
         </div>
       </div>
 
@@ -1721,6 +1866,32 @@ body { overscroll-behavior-y: contain; }
           </div>
         </div>
       </div>
+      <div class="fc-listen-row">
+        <button class="fc-listen-btn" id="fc-listen-toggle" type="button" aria-label="Play read-aloud">
+          <span id="fc-listen-icon">▶</span>
+        </button>
+        <div class="fc-listen-info">
+          <div class="fc-listen-status" id="fc-listen-status">Listen to this deck</div>
+          <div class="fc-listen-sub" id="fc-listen-sub">Reads the term, then the definition</div>
+        </div>
+      </div>
+      <div class="fc-volume-row">
+        <span class="fc-vol-label">🔊 Volume</span>
+        <div class="stepper">
+          <button type="button" id="vol-dec" aria-label="Decrease volume">−</button>
+          <span class="stepper-val" id="vol-val">80%</span>
+          <button type="button" id="vol-inc" aria-label="Increase volume">+</button>
+        </div>
+      </div>
+      <div class="fc-volume-row">
+        <span class="fc-vol-label">🐇 Speed</span>
+        <div class="stepper">
+          <button type="button" id="rate-dec" aria-label="Decrease speed">−</button>
+          <span class="stepper-val" id="rate-val">0.9x</span>
+          <button type="button" id="rate-inc" aria-label="Increase speed">+</button>
+        </div>
+      </div>
+      <div class="fc-vol-note" id="fc-vol-note">Applies starting with the next sentence</div>
       <div class="fc-nav-row">
         <button class="fc-nav-btn" id="fc-prev" type="button">← Previous</button>
         <div class="fc-nav-count" id="fc-nav-count">1 / 25</div>
@@ -2173,6 +2344,34 @@ function applyShuffleSetting(enabled) {
   }
 }
 
+// Whether the volume/speed steppers show up on the flashcards Listen
+// screen at all — some people just want the play button and nothing
+// else cluttering the card.
+const VOL_CONTROLS_KEY = 'secquiz_volcontrols_v1';
+function loadVolControlsSetting() {
+  try {
+    const raw = localStorage.getItem(VOL_CONTROLS_KEY);
+    return raw === null ? true : raw === 'on'; // default: shown
+  } catch (e) { return true; }
+}
+function saveVolControlsSetting(enabled) {
+  try { localStorage.setItem(VOL_CONTROLS_KEY, enabled ? 'on' : 'off'); } catch (e) {}
+}
+function applyVolControlsSetting(enabled) {
+  state.volControlsVisible = enabled;
+  const onBtn = el('vol-controls-on-btn');
+  const offBtn = el('vol-controls-off-btn');
+  if (onBtn && offBtn) {
+    onBtn.classList.toggle('active', enabled);
+    offBtn.classList.toggle('active', !enabled);
+  }
+  document.querySelectorAll('.fc-volume-row').forEach(row => {
+    row.style.display = enabled ? '' : 'none';
+  });
+  const note = el('fc-vol-note');
+  if (note) note.style.display = enabled ? '' : 'none';
+}
+
 // ---------- Configurable answer time limit (stored separately from quiz
 // progress, same reasoning as theme/shuffle above) ----------
 const TIMER_KEY = 'secquiz_timer_v1';
@@ -2242,7 +2441,12 @@ const state = {
   fcDeckIndex: 0,
   fcCards: [],
   fcIndex: 0,
-  fcFlipped: false
+  fcFlipped: false,
+  listening: false,
+  selectedVoiceName: null,
+  speechVolume: 0.8,
+  speechRate: 0.9,
+  volControlsVisible: true
 };
 
 // How long the post-answer wait lasts before auto-advancing, in ms.
@@ -2263,6 +2467,7 @@ function showScreen(name) {
   screens[name].classList.add('active');
   state.screen = name;
   setTimeWarning(false);
+  if (name !== 'flashcards') stopListening();
   window.scrollTo(0, 0);
 }
 
@@ -2782,7 +2987,7 @@ function registerResult(isCorrect, elapsedSeconds) {
 function revealAnswer(clickedBtn, q, wasCorrect) {
   const buttons = Array.from(document.querySelectorAll('.opt-btn'));
   buttons.forEach(b => {
-    b.disabled = true;
+    b.classList.add('locked');
     const label = b.textContent.trim();
     const optText = b.querySelector('span:last-child').textContent;
     if (optText === q.correctText) {
@@ -2952,11 +3157,279 @@ function fcGoTo(newIndex) {
   state.fcIndex = ((newIndex % n) + n) % n;
   renderFlashcard();
 }
-function fcNext() { fcGoTo(state.fcIndex + 1); }
-function fcPrev() { fcGoTo(state.fcIndex - 1); }
+function fcNext() { fcGoTo(state.fcIndex + 1); if (state.listening) speakCurrentCard(); }
+function fcPrev() { fcGoTo(state.fcIndex - 1); if (state.listening) speakCurrentCard(); }
 
 function exitFlashcards() {
+  stopListening();
   showScreen('sections');
+}
+
+// ===================== LISTEN MODE (read-aloud) =====================
+// Uses the browser's built-in speech synthesis — there's no way for a
+// web page to hook into the OS-level lock-screen media widget or keep
+// audio going once the phone is actually locked, so this is a
+// foreground player: play/pause/prev/next while the app is open and
+// the screen is on, plus a wake lock so the screen doesn't sleep and
+// interrupt it mid-deck.
+const speechSupported = 'speechSynthesis' in window && typeof SpeechSynthesisUtterance !== 'undefined';
+
+// Volume/speed steppers (matches the +/- pattern the answer-time-limit
+// setting already uses, rather than sliders — much easier to land on
+// an exact value with a tap than a drag, especially on a phone).
+const VOL_MIN = 0, VOL_MAX = 100, VOL_STEP = 10;
+const RATE_MIN = 0.5, RATE_MAX = 1.8, RATE_STEP = 0.1;
+function applyVolumeSetting(pct) {
+  state.speechVolume = pct / 100;
+  el('vol-val').textContent = pct + '%';
+  el('vol-dec').disabled = pct <= VOL_MIN;
+  el('vol-inc').disabled = pct >= VOL_MAX;
+}
+function applyRateSetting(rate) {
+  rate = Math.round(rate * 10) / 10; // avoid float drift like 0.7000000000000001
+  state.speechRate = rate;
+  el('rate-val').textContent = rate.toFixed(1) + 'x';
+  el('rate-dec').disabled = rate <= RATE_MIN;
+  el('rate-inc').disabled = rate >= RATE_MAX;
+}
+
+// Acronyms that are conventionally *said* as a word rather than spelled
+// out letter by letter. Best-effort/editable list — anything not in
+// here defaults to being spelled out, which is always safe even if a
+// little more robotic for a few of these.
+const SPOKEN_AS_WORD = new Set([
+  'RAID', 'SCADA', 'RADIUS', 'NAT', 'LEAP', 'PEAP', 'WEP', 'SIEM', 'SOAR',
+  'IDEA', 'PHI', 'OSINT', 'SASE', 'IaaS', 'PaaS', 'SaaS', 'MaaS', 'IaC',
+  'SoC', 'BASH', 'CAPTCHA', 'OAuth', 'PUP', 'RAT', 'SPIM', 'STIX', 'TAXII',
+]);
+
+// Spells a term out letter-by-letter (with forced pauses via periods) so
+// short ones like "AAA" or "CIA" get every letter read instead of the
+// engine trying to blend them into one sound. Handles the punctuation
+// that shows up in this deck's acronyms (hyphens, slashes, "&", "+",
+// parenthetical disambiguators like "MAC (Address)").
+function spellOutForSpeech(term) {
+  const paren = term.match(/^(.*?)\s*\(([^)]+)\)\s*$/);
+  if (paren) return spellOutForSpeech(paren[1].trim()) + ', ' + paren[2].trim();
+  return term.split('').map(ch => {
+    if (/[a-zA-Z]/.test(ch)) return ch.toUpperCase() + '.';
+    if (/[0-9]/.test(ch)) return ch;
+    if (ch === '-') return ', dash,';
+    if (ch === '/') return ', slash,';
+    if (ch === '&') return ', and,';
+    if (ch === '+') return ', plus,';
+    return ' ';
+  }).join(' ');
+}
+function speakableTerm(term) {
+  return SPOKEN_AS_WORD.has(term) ? term : spellOutForSpeech(term);
+}
+
+// ---- Voices ----
+let availableVoices = [];
+
+// Apple's OS ships a batch of novelty/character voices alongside the
+// normal ones (Zarvox, Trinoids, Bubbles, Whisper, etc.) — these are
+// sound effects, not really speech, and have no place in a study tool.
+// Matched as a whole voice name (lowercased) since these are literal,
+// known names rather than a pattern to guess at.
+const EXCLUDED_VOICE_NAMES = new Set([
+  'albert', 'bad news', 'bahh', 'bells', 'boing', 'bubbles', 'cellos',
+  'wobble', 'deranged', 'good news', 'hysterical', 'pipe organ',
+  'trinoids', 'whisper', 'zarvox', 'jester', 'organ', 'superstar',
+  'junior', 'ralph', 'kathy', 'fred', 'princess', 'rocko', 'sandy',
+  'shelley', 'grandma', 'grandpa', 'eddy', 'flo', 'reed', 'rishi',
+]);
+function isUsableVoice(v) {
+  const name = v.name.toLowerCase().trim();
+  // Some platforms report these as "Zarvox" alone, others as
+  // "Zarvox (English (US))" — strip a trailing " (...)" before matching.
+  const bare = name.replace(/\s*\(.*\)\s*$/, '').trim();
+  if (EXCLUDED_VOICE_NAMES.has(bare)) return false;
+  if (/espeak|pico\b/.test(name)) return false;
+  return true;
+}
+function scoreVoice(v) {
+  const name = v.name.toLowerCase();
+  let score = 0;
+  // Higher-quality engines/labels browsers actually use for these.
+  if (/natural|neural|enhanced|premium|wavenet|studio/.test(name)) score += 6;
+  if (/google/.test(name)) score += 3;
+  if (v.localService) score += 1;
+  // Known lower-quality/robotic fallback engines — push these down
+  // rather than letting them win by default ordering.
+  if (/compact|robotic/.test(name)) score -= 4;
+  // A short, well-known first name (Samantha, Aria, etc.) usually
+  // means a purpose-built voice rather than a generic system default.
+  if (/samantha|aria|jenny|ava|zira|karen|daniel|alex|moira|tessa/.test(name)) score += 2;
+  return score;
+}
+function pickDefaultVoice(voices) {
+  if (!voices.length) return null;
+  return voices[0]; // caller is expected to pass an already-sorted list
+}
+function getSelectedVoiceObj() {
+  if (!state.selectedVoiceName) return null;
+  return availableVoices.find(v => v.name === state.selectedVoiceName) || null;
+}
+function populateVoiceSelect() {
+  const sel = el('voice-select');
+  if (!sel) return;
+  if (!speechSupported || !availableVoices.length) {
+    sel.innerHTML = '<option>Not available on this device</option>';
+    sel.disabled = true;
+    return;
+  }
+  sel.disabled = false;
+  const english = availableVoices.filter(v => v.lang && v.lang.toLowerCase().startsWith('en'));
+  const pool = english.length ? english : availableVoices;
+  const usable = pool.filter(isUsableVoice);
+  // If filtering somehow leaves nothing (a device with only novelty
+  // voices, in theory), fall back to the unfiltered pool rather than
+  // showing an empty picker — worse voices beat no voices.
+  const sortedList = (usable.length ? usable : pool).slice().sort((a, b) => scoreVoice(b) - scoreVoice(a));
+  // Cap at 15 so a device with a huge voice library (common on iOS once
+  // several languages are downloaded) still shows a short, curated list
+  // instead of everything. If the voice already selected would fall
+  // outside that top 15, keep it in anyway rather than silently
+  // switching away from it.
+  const list = sortedList.slice(0, 15);
+  if (state.selectedVoiceName && !list.some(v => v.name === state.selectedVoiceName)) {
+    const kept = sortedList.find(v => v.name === state.selectedVoiceName);
+    if (kept) list.push(kept);
+  }
+  sel.innerHTML = '';
+  list.forEach(v => {
+    const opt = document.createElement('option');
+    opt.value = v.name;
+    opt.textContent = v.name + (v.lang ? ` (${v.lang})` : '');
+    sel.appendChild(opt);
+  });
+  const preferred = list.find(v => v.name === state.selectedVoiceName);
+  const chosen = preferred || pickDefaultVoice(list);
+  if (chosen) { sel.value = chosen.name; state.selectedVoiceName = chosen.name; }
+}
+function loadVoices() {
+  if (!speechSupported) return;
+  availableVoices = window.speechSynthesis.getVoices();
+  populateVoiceSelect();
+}
+if (speechSupported) {
+  loadVoices();
+  window.speechSynthesis.onvoiceschanged = loadVoices;
+}
+
+// ---- Screen wake lock (foreground only — released the moment the tab
+// is backgrounded or the screen locks; re-requested if the tab comes
+// back to the foreground mid-playback) ----
+let wakeLockSentinel = null;
+async function requestWakeLock() {
+  try {
+    if ('wakeLock' in navigator) wakeLockSentinel = await navigator.wakeLock.request('screen');
+  } catch (e) { /* unsupported / battery saver / etc — not fatal */ }
+}
+function releaseWakeLock() {
+  if (wakeLockSentinel) { wakeLockSentinel.release().catch(() => {}); wakeLockSentinel = null; }
+}
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible' && state.listening && !wakeLockSentinel) requestWakeLock();
+});
+
+// ---- Speak queue ----
+// A "generation" token guards against a stale chain (from a card that's
+// since been skipped past) continuing to fire after a newer one starts.
+let speakGeneration = 0;
+function speakQueue(parts, onDone) {
+  const myGen = ++speakGeneration;
+  window.speechSynthesis.cancel();
+  let i = 0;
+  function speakPart() {
+    if (!state.listening || myGen !== speakGeneration) return;
+    if (i >= parts.length) { onDone && onDone(); return; }
+    const utter = new SpeechSynthesisUtterance(parts[i]);
+    const voiceObj = getSelectedVoiceObj();
+    if (voiceObj) utter.voice = voiceObj;
+    utter.rate = state.speechRate;
+    utter.volume = state.speechVolume;
+    utter.onend = () => {
+      i++;
+      if (!state.listening || myGen !== speakGeneration) return;
+      if (i >= parts.length) { onDone && onDone(); return; }
+      setTimeout(speakPart, 260); // brief natural pause between term / full name / definition
+    };
+    utter.onerror = () => { i++; speakPart(); };
+    window.speechSynthesis.speak(utter);
+  }
+  speakPart();
+}
+
+// A long definition read as one utterance means a volume/rate change
+// has to wait for the *whole thing* to finish before it's audible.
+// Splitting on sentence boundaries turns it into several utterances
+// instead, so the wait is at most one clause — and it has the side
+// benefit of a natural breath between sentences either way.
+function splitIntoSentences(text) {
+  if (!text) return [];
+  const parts = text.match(/[^.!?]+[.!?]+(\s+|$)|[^.!?]+$/g);
+  if (!parts || parts.length <= 1) return [text];
+  return parts.map(s => s.trim()).filter(Boolean);
+}
+
+function speakCurrentCard() {
+  const c = state.fcCards[state.fcIndex];
+  if (!c) return;
+  el('fc-listen-status').textContent = 'Reading…';
+  el('fc-listen-status').classList.add('speaking');
+  el('fc-listen-sub').textContent = c.term;
+  const parts = [speakableTerm(c.term), c.full, ...splitIntoSentences(c.def)].filter(Boolean);
+  speakQueue(parts, () => { if (state.listening) fcListenAdvance(); });
+}
+
+function fcListenAdvance() {
+  if (state.fcIndex >= state.fcCards.length - 1) {
+    stopListening();
+    el('fc-listen-status').textContent = 'Finished the deck';
+    el('fc-listen-sub').textContent = 'Tap play to start over';
+    return;
+  }
+  setTimeout(() => {
+    if (!state.listening) return;
+    fcGoTo(state.fcIndex + 1);
+    speakCurrentCard();
+  }, 450); // a bit longer than the in-card pause — marks "new acronym starting"
+}
+
+function startListening() {
+  if (!speechSupported) return;
+  state.listening = true;
+  updateListenUI();
+  requestWakeLock();
+  speakCurrentCard();
+}
+function stopListening() {
+  state.listening = false;
+  if (speechSupported) window.speechSynthesis.cancel();
+  releaseWakeLock();
+  updateListenUI();
+}
+function toggleListening() {
+  if (state.listening) stopListening();
+  else startListening();
+}
+function updateListenUI() {
+  el('fc-listen-icon').textContent = state.listening ? '⏸' : '▶';
+  el('fc-listen-toggle').setAttribute('aria-label', state.listening ? 'Pause' : 'Play read-aloud');
+  el('fc-listen-status').classList.toggle('speaking', state.listening);
+  if (!state.listening) {
+    el('fc-listen-status').textContent = 'Listen to this deck';
+    el('fc-listen-sub').textContent = 'Reads the term, then the definition';
+  }
+}
+if (!speechSupported) {
+  el('fc-listen-toggle').disabled = true;
+  el('fc-listen-status').textContent = "Read-aloud isn't supported in this browser";
+  el('fc-listen-sub').textContent = '';
+  el('voice-preview-btn').disabled = true;
 }
 
 // ===================== EVENT WIRING =====================
@@ -2986,6 +3459,30 @@ el('fc-card').addEventListener('click', flipFlashcard);
 el('fc-next').addEventListener('click', fcNext);
 el('fc-prev').addEventListener('click', fcPrev);
 el('btn-exit-flashcards').addEventListener('click', exitFlashcards);
+el('fc-listen-toggle').addEventListener('click', toggleListening);
+el('voice-select').addEventListener('change', (e) => { state.selectedVoiceName = e.target.value; });
+// A sentence already playing can't have its volume/rate changed
+// mid-flight — no browser allows that once speech has started, so we
+// don't try to fake it by restarting. The new value is picked up
+// automatically by the *next* sentence in the queue with zero extra
+// code, since speakQueue reads state.speechVolume/speechRate fresh
+// each time.
+el('vol-dec').addEventListener('click', () => applyVolumeSetting(Math.max(VOL_MIN, Math.round(state.speechVolume * 100) - VOL_STEP)));
+el('vol-inc').addEventListener('click', () => applyVolumeSetting(Math.min(VOL_MAX, Math.round(state.speechVolume * 100) + VOL_STEP)));
+el('rate-dec').addEventListener('click', () => applyRateSetting(Math.max(RATE_MIN, state.speechRate - RATE_STEP)));
+el('rate-inc').addEventListener('click', () => applyRateSetting(Math.min(RATE_MAX, state.speechRate + RATE_STEP)));
+el('voice-preview-btn').addEventListener('click', () => {
+  if (!speechSupported) return;
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance('This is what this voice sounds like.');
+  const voiceObj = getSelectedVoiceObj();
+  if (voiceObj) utter.voice = voiceObj;
+  utter.rate = state.speechRate;
+  utter.volume = state.speechVolume;
+  window.speechSynthesis.speak(utter);
+});
+applyVolumeSetting(Math.round(state.speechVolume * 100));
+applyRateSetting(state.speechRate);
 
 // Keyboard nav, scoped to only fire while the flashcards screen is active
 // so it never interferes with typing in settings/dev-console inputs on
@@ -3220,6 +3717,8 @@ el('theme-light-btn').addEventListener('click', () => { applyTheme('light'); sav
 // ---------- Shuffle toggle ----------
 el('shuffle-on-btn').addEventListener('click', () => { applyShuffleSetting(true); saveShuffleSetting(true); });
 el('shuffle-off-btn').addEventListener('click', () => { applyShuffleSetting(false); saveShuffleSetting(false); });
+el('vol-controls-on-btn').addEventListener('click', () => { applyVolControlsSetting(true); saveVolControlsSetting(true); });
+el('vol-controls-off-btn').addEventListener('click', () => { applyVolControlsSetting(false); saveVolControlsSetting(false); });
 
 // ---------- Reset progress (with confirmation) ----------
 function openResetModal() {
@@ -3474,6 +3973,7 @@ el('dev-console-input').addEventListener('keydown', (e) => {
 // ---------- Init ----------
 applyTheme(loadTheme());
 applyShuffleSetting(loadShuffleSetting());
+applyVolControlsSetting(loadVolControlsSetting());
 applyTimerSetting(loadTimerSetting());
 state.devMode = loadDevModeUnlocked();
 refreshDevButtonVisibility();
