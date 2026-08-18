@@ -22,6 +22,12 @@
   --alert: #FF6B5B;
   --gold: #FFC24B;
   --violet: #A78BFA;
+  --tier1: #FF6B5B;
+  --tier1-tint: rgba(255,107,91,0.10);
+  --tier2: #FFC24B;
+  --tier2-tint: rgba(255,194,75,0.10);
+  --tier3: #4ADE80;
+  --tier3-tint: rgba(74,222,128,0.10);
   --muted: #7B8896;
   --text: #E7ECF0;
   --mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -39,6 +45,12 @@ html[data-theme="light"] {
   --alert: #D8402E;
   --gold: #B8790A;
   --violet: #6D4FC7;
+  --tier1: #D8402E;
+  --tier1-tint: rgba(216,64,46,0.08);
+  --tier2: #B8790A;
+  --tier2-tint: rgba(184,121,10,0.08);
+  --tier3: #15803D;
+  --tier3-tint: rgba(21,128,61,0.08);
   --muted: #6B7480;
   --text: #14181D;
 }
@@ -288,6 +300,23 @@ h1.hero .accent { color: var(--signal); }
   transition: transform 0.2s ease;
 }
 .sec-card:hover::after { transform: scaleX(1); }
+
+/* Priority tier decks (Tier 1-3) get their own colorway in the deck
+   list so they read as a different kind of deck from the 14 plain
+   alphabetical ones — colored border, tinted background, colored
+   label text, and an always-on top accent bar instead of the
+   hover-only signal/violet one above. */
+.sec-card.tier-1 { --tc: var(--tier1); --tc-tint: var(--tier1-tint); }
+.sec-card.tier-2 { --tc: var(--tier2); --tc-tint: var(--tier2-tint); }
+.sec-card.tier-3 { --tc: var(--tier3); --tc-tint: var(--tier3-tint); }
+.sec-card.tier-card {
+  border-color: var(--tc);
+  background-color: var(--panel);
+  background-image: linear-gradient(var(--tc-tint), var(--tc-tint));
+}
+.sec-card.tier-card:hover { border-color: var(--tc); }
+.sec-card.tier-card .idx, .sec-card.tier-card .range { color: var(--tc); }
+.sec-card.tier-card::after { background: var(--tc); transform: scaleX(1); }
 
 /* ---------- Mode select modal ---------- */
 .overlay {
@@ -1565,6 +1594,23 @@ body { overscroll-behavior-y: contain; }
     </div>
   </div>
 
+  <!-- ============ TIER 1 SUB-CHOICE MODAL ============ -->
+  <!-- Shown when the Tier 1 card is tapped, before the mode modal.
+       Lets the person choose Part 1 / Part 2 / All; that choice then
+       opens the normal mode modal (Classic/Reverse/Flashcards) scoped
+       to whichever slice they picked. See openTier1SubchoiceModal. -->
+  <div class="overlay" id="tier1-subchoice-overlay">
+    <div class="modal">
+      <div class="modal-head">
+        <h3>🔴 Tier 1 — Must Know</h3>
+        <button class="icon-btn modal-x" id="tier1-subchoice-x" aria-label="Close" title="Close">✕</button>
+      </div>
+      <div class="sub">Choose which part to study</div>
+      <div class="modal-body" id="tier1-subchoice-list"></div>
+      <div class="modal-close" id="tier1-subchoice-cancel">Cancel</div>
+    </div>
+  </div>
+
   <!-- ============ MODE MODAL ============ -->
   <div class="overlay" id="mode-overlay">
     <div class="modal">
@@ -1629,6 +1675,17 @@ body { overscroll-behavior-y: contain; }
         <div class="theme-toggle">
           <button id="shuffle-on-btn">On</button>
           <button id="shuffle-off-btn">Off</button>
+        </div>
+      </div>
+
+      <div class="settings-row">
+        <div>
+          <div class="s-title">Priority tier decks</div>
+          <div class="s-desc">Show or hide the Tier 1–3 decks in the deck list</div>
+        </div>
+        <div class="theme-toggle">
+          <button id="tier-decks-show-btn">Show</button>
+          <button id="tier-decks-hide-btn">Hide</button>
         </div>
       </div>
 
@@ -1998,7 +2055,7 @@ const RAW_TERMS = [
   { term: "CTM", full: "Counter Mode", def: "A mode of operation in cryptography for block ciphers." },
 
   { term: "CTO", full: "Chief Technology Officer", def: "An executive-level position in a company whose occupant is focused on scientific and technological issues within an organization." },
-  { term: "CVE", full: "Common Vulnerability Enumeration", def: "A list of publicly disclosed cybersecurity vulnerabilities." },
+  { term: "CVE", full: "Common Vulnerabilities and Exposures", def: "A list of publicly disclosed cybersecurity vulnerabilities, each assigned a unique identifying number." },
   { term: "CVSS", full: "Common Vulnerability Scoring System", def: "A free and open industry standard for assessing the severity of computer system security vulnerabilities." },
   { term: "CYOD", full: "Choose Your Own Device", def: "A corporate policy that permits employees to choose which devices they use for work purposes." },
   { term: "DAC", full: "Discretionary Access Control", def: "A type of access control defined by the ACL where access rights are assigned to users by the system administrators." },
@@ -2270,14 +2327,130 @@ const RAW_TERMS = [
   { term: "WAF", full: "Web Application Firewall", def: "A specific form of application firewall that filters, monitors, and blocks HTTP traffic to and from a web service." },
   { term: "WAP", full: "Wireless Access Point", def: "A networking hardware device that allows a Wi-Fi device to connect to a wired network." },
   { term: "WEP", full: "Wired Equivalent Privacy", def: "A security protocol, now considered insecure, for wireless local area networks (WLANs)." },
-  { term: "WIDS", full: "Wireless Intrusion Detection System", def: "A system designed to detect the presence of unauthorized or rogue wireless devices." }
+  { term: "WIDS", full: "Wireless Intrusion Detection System", def: "A system designed to detect the presence of unauthorized or rogue wireless devices." },
+  { term: "ABAC", full: "Attribute-Based Access Control", def: "An access control model that grants permissions based on a combination of user, resource, and environmental attributes rather than fixed roles." },
+  { term: "PAM", full: "Privileged Access Management", def: "A set of tools and policies for controlling, monitoring, and securing accounts that have elevated access to critical systems." },
+  { term: "DMZ", full: "Demilitarized Zone", def: "A physical or logical subnet that separates an internal network from untrusted external networks, such as the internet, hosting public-facing services." },
+  { term: "DoS", full: "Denial of Service", def: "An attack that attempts to make a system or network resource unavailable to its intended users by overwhelming it with traffic or requests." },
+  { term: "MITM", full: "Man-in-the-Middle", def: "An attack in which the attacker secretly intercepts and possibly alters communications between two parties who believe they are communicating directly with each other." },
+  { term: "XSS", full: "Cross-Site Scripting", def: "A web application vulnerability that allows an attacker to inject malicious scripts into pages viewed by other users." },
+  { term: "RCE", full: "Remote Code Execution", def: "A vulnerability that allows an attacker to run arbitrary code on a target system from a remote location." },
+  { term: "XDR", full: "Extended Detection and Response", def: "A security approach that unifies detection and response data across endpoints, networks, servers, and cloud workloads into a single platform." },
+  { term: "CSIRT", full: "Computer Security Incident Response Team", def: "A designated group of professionals responsible for responding to and managing the aftermath of a cybersecurity incident." },
+  { term: "FIDO", full: "Fast Identity Online", def: "A set of open authentication standards that reduce reliance on passwords by using public-key cryptography and hardware-backed authenticators." },
+  { term: "OIDC", full: "OpenID Connect", def: "An identity layer built on top of the OAuth 2.0 protocol that allows applications to verify a user's identity and obtain basic profile information." },
+  { term: "MDR", full: "Managed Detection and Response", def: "An outsourced security service that combines technology and human expertise to detect, investigate, and respond to threats on a customer's behalf." },
+  { term: "NDR", full: "Network Detection and Response", def: "A security technology that uses analytics and behavioral analysis on network traffic to detect and respond to threats." },
+  { term: "CSPM", full: "Cloud Security Posture Management", def: "A category of tools that continuously monitor cloud environments for misconfigurations and compliance violations." },
+  { term: "KPI", full: "Key Performance Indicator", def: "A measurable value that demonstrates how effectively an organization is achieving key objectives." },
+  { term: "CSF", full: "Cybersecurity Framework", def: "A set of standards, guidelines, and best practices, most notably published by NIST, for managing cybersecurity risk." },
+  { term: "IOC", full: "Indicator of Compromise", def: "Forensic evidence, such as a file hash or IP address, that suggests a system may have been breached." },
+  { term: "IOA", full: "Indicator of Attack", def: "Evidence of an attacker's intent and methods observed in real time, used to detect malicious activity before it succeeds rather than after the fact." },
+  { term: "CWE", full: "Common Weakness Enumeration", def: "A community-developed list of common software and hardware weakness types that can lead to security vulnerabilities." },
+  { term: "DNSSEC", full: "Domain Name System Security Extensions", def: "A suite of extensions that adds cryptographic authentication to DNS responses to protect against spoofing and cache poisoning." }
 ];
 
-// Split into sections of 25
-const SECTION_SIZE = 25;
+// ---- Priority tier decks ----
+// These pull specific terms out of RAW_TERMS by name (rather than
+// duplicating their {term,full,def} objects) so each acronym still
+// only exists once in the master pool — duplicating them would risk
+// the same acronym showing up twice as options in one quiz question,
+// since the distractor picker only dedupes by term text. The term
+// still also appears in its normal alphabetical deck further down;
+// that's intentional, not a bug — this is a curated priority list
+// layered on top of the full reference set, not a replacement for it.
+function lookupTerms(names) {
+  return names.map(name => RAW_TERMS.find(t => t.term === name)).filter(Boolean);
+}
+const PRIORITY_TIER_1 = ['CIA','AAA','MFA','SSO','RBAC','ABAC','PAM','IAM',
+  'VPN','VLAN','DMZ','IDS','IPS','WAF','NAC','NGFW',
+  'DoS','DDoS','MITM','XSS','SQLi','CSRF','RCE','APT',
+  'PKI','CA','CSR','CRL','OCSP','AES','RSA','ECC','SHA','HMAC','TLS',
+  'SIEM','SOAR','EDR','XDR','DLP','SOC','CSIRT',
+  'BIA','RTO','RPO','BCP','DRP','MTTR','MTBF','SLA'];
+const PRIORITY_TIER_2 = ['ARP','DNS','DHCP','NAT','SNMP','SSH','RDP','FTP','SFTP','SMTP','IMAP','LDAP',
+  'RADIUS','TACACS+','FIDO','SAML','OAuth','OIDC',
+  'MDM','MDR','NDR','CASB','CSPM','SASE'];
+const PRIORITY_TIER_3 = ['KPI','CSF','IoT','ICS','SCADA','OT','BYOD','COPE','TTP',
+  'IOC','IOA','CVE','CVSS','CWE','OSINT','DNSSEC'];
+
 const SECTIONS = [];
+// name: shown instead of "Deck N"; range: shown instead of the
+// alphabetical first–last term span; tierClass: which tier colorway
+// this card gets in the deck list (tier-1/2/3), or undefined for the
+// plain alphabetical decks. null (the whole meta object) falls back
+// to the normal deck-numbering/range/colorless behavior. hidden: true
+// keeps an entry out of the main deck grid (see renderSectionGrid)
+// while it still exists in SECTIONS/SECTION_META for scoring and
+// gameplay — used for Tier 1's Part 1/Part 2 sub-decks, which are
+// only reachable through the Tier 1 sub-choice screen (see
+// openTier1SubchoiceModal), not shown as their own grid cards.
+const SECTION_META = [];
+
+// Tier 1 has 50 curated terms — twice the size of every other deck.
+// The grid shows one Tier 1 card (the 'All' entry, 50 terms), same
+// footprint as Tier 2/Tier 3. Tapping it opens a sub-choice screen
+// (Part 1 / Part 2 / All) before the usual Classic/Reverse/Flashcards
+// mode screen, so every mode can be played on just Part 1, just Part
+// 2, or the full 50 — see openTier1SubchoiceModal and
+// TIER1_SUBCHOICE_IDS below. Part 1 and Part 2 exist in SECTIONS so
+// they're playable and scored like any other deck, just marked
+// hidden so they don't ALSO get their own grid card.
+// Each entry's `id` is a stable identifier used for saved-score
+// storage keys (see bestKey/deckStableId below) — it doesn't change
+// even if these decks get reordered later, unlike their array index.
+const TIER1_TERMS = lookupTerms(PRIORITY_TIER_1);
+const TIER1_SPLIT = Math.ceil(TIER1_TERMS.length / 2);
+[
+  ['🔴 Tier 1 — Part 1', TIER1_TERMS.slice(0, TIER1_SPLIT), 'Priority list · Part 1', 'tier-1', 'tier1-part1', true],
+  ['🔴 Tier 1 — Part 2', TIER1_TERMS.slice(TIER1_SPLIT), 'Priority list · Part 2', 'tier-1', 'tier1-part2', true],
+  ['🔴 Tier 1 — Must Know', TIER1_TERMS, 'Priority list · All 50', 'tier-1', 'tier1-all', false],
+  ['🟡 Tier 2 — Should Know', lookupTerms(PRIORITY_TIER_2), 'Priority list', 'tier-2', 'tier2', false],
+  ['🟢 Tier 3 — Extra Time', lookupTerms(PRIORITY_TIER_3), 'Priority list', 'tier-3', 'tier3', false],
+].forEach(([name, terms, range, tierClass, id, hidden]) => {
+  SECTIONS.push(terms);
+  SECTION_META.push({ name, range, tierClass, id, hidden });
+});
+
+// Stable ids of the three Tier 1 slices, in sub-choice display order.
+// Looked up by deckStableId -> SECTIONS index in
+// openTier1SubchoiceModal so it doesn't depend on their fixed
+// position at the front of SECTIONS.
+const TIER1_SUBCHOICE = [
+  { id: 'tier1-part1', label: 'Part 1', sub: 'Terms 1–25' },
+  { id: 'tier1-part2', label: 'Part 2', sub: 'Terms 26–50' },
+  { id: 'tier1-all', label: 'All', sub: 'Full 50-term deck' },
+];
+
+
+// Split the full reference set into sections of 25, same as before.
+const SECTION_SIZE = 25;
 for (let i = 0; i < RAW_TERMS.length; i += SECTION_SIZE) {
   SECTIONS.push(RAW_TERMS.slice(i, i + SECTION_SIZE));
+  SECTION_META.push(null);
+}
+// Alphabetical decks are numbered among themselves (Deck 01, 02, ...)
+// rather than counting the 5 priority decks in front of them (Tier 1
+// Part 1/Part 2/All, Tier 2, Tier 3), so there's no confusing gap
+// where Deck 01-05 are "missing".
+const PRIORITY_TIER_COUNT = 5;
+function deckDisplayNumber(idx) {
+  return idx - PRIORITY_TIER_COUNT + 1;
+}
+function deckDisplayName(idx) {
+  const meta = SECTION_META[idx];
+  return meta ? meta.name : `Deck ${deckDisplayNumber(idx)}`;
+}
+// A stable per-deck identifier for saved-score storage keys (see
+// bestKey below), independent of the deck's current array index —
+// priority decks carry their own `id` in SECTION_META; alphabetical
+// decks derive one from their position among *just* the alphabetical
+// decks, which stays fixed even if priority decks are added, removed,
+// or reordered in front of them.
+function deckStableId(idx) {
+  const meta = SECTION_META[idx];
+  if (meta && meta.id) return meta.id;
+  return `alpha${idx - PRIORITY_TIER_COUNT}`;
 }
 
 // ===================== SecQuiz Game Engine =====================
@@ -2297,6 +2470,36 @@ function saveProgress(data) {
 }
 
 let progress = loadProgress();
+
+// ---------- One-time migration for progress saved before Tier 1 was
+// split into Part 1/Part 2/All. Scores used to be keyed by a deck's
+// raw position in SECTIONS ("d<index>_<mode>"), which shifted for
+// every deck from Tier 2 onward once Tier 1 grew from one entry to
+// three. This remaps any old-format keys to the new stable-id keys
+// (see deckStableId/bestKey) using the old 17-deck layout, then
+// removes the old keys. Runs on every load but is a no-op as soon as
+// no old-format keys remain, so it only ever does real work once.
+const OLD_LAYOUT_STABLE_IDS = [
+  'tier1-all', 'tier2', 'tier3',
+  'alpha0', 'alpha1', 'alpha2', 'alpha3', 'alpha4', 'alpha5', 'alpha6',
+  'alpha7', 'alpha8', 'alpha9', 'alpha10', 'alpha11', 'alpha12', 'alpha13'
+];
+function migrateOldProgressKeys() {
+  let changed = false;
+  Object.keys(progress).forEach(key => {
+    const m = key.match(/^d(\d+)_(classic|reverse)$/);
+    if (!m) return;
+    const stableId = OLD_LAYOUT_STABLE_IDS[parseInt(m[1], 10)];
+    if (stableId) {
+      const newKey = `d_${stableId}_${m[2]}`;
+      if (!progress[newKey]) progress[newKey] = progress[key];
+    }
+    delete progress[key];
+    changed = true;
+  });
+  if (changed) saveProgress(progress);
+}
+migrateOldProgressKeys();
 
 // ---------- Theme (stored separately from quiz progress, so a
 // progress reset never touches the user's display preference) ----------
@@ -2370,6 +2573,31 @@ function applyVolControlsSetting(enabled) {
   });
   const note = el('fc-vol-note');
   if (note) note.style.display = enabled ? '' : 'none';
+}
+
+// Whether the Tier 1-3 priority decks show up in the deck list grid at
+// all. They're still fully playable and tracked when hidden — this only
+// controls whether their cards render, same as the volume-controls
+// setting above controls a different part of the UI.
+const TIER_DECKS_KEY = 'secquiz_tierdecks_v1';
+function loadTierDecksVisible() {
+  try {
+    const raw = localStorage.getItem(TIER_DECKS_KEY);
+    return raw === null ? true : raw === 'on'; // default: shown
+  } catch (e) { return true; }
+}
+function saveTierDecksVisible(visible) {
+  try { localStorage.setItem(TIER_DECKS_KEY, visible ? 'on' : 'off'); } catch (e) {}
+}
+function applyTierDecksSetting(visible) {
+  state.tierDecksVisible = visible;
+  const showBtn = el('tier-decks-show-btn');
+  const hideBtn = el('tier-decks-hide-btn');
+  if (showBtn && hideBtn) {
+    showBtn.classList.toggle('active', visible);
+    hideBtn.classList.toggle('active', !visible);
+  }
+  if (state.screen === 'sections') renderSectionGrid();
 }
 
 // ---------- Configurable answer time limit (stored separately from quiz
@@ -2446,7 +2674,8 @@ const state = {
   selectedVoiceName: null,
   speechVolume: 0.8,
   speechRate: 0.9,
-  volControlsVisible: true
+  volControlsVisible: true,
+  tierDecksVisible: true
 };
 
 // How long the post-answer wait lasts before auto-advancing, in ms.
@@ -2487,7 +2716,7 @@ function deckLabel(sectionTerms) {
   return `${first} – ${last}`;
 }
 
-function bestKey(deckIdx, mode) { return `d${deckIdx}_${mode}`; }
+function bestKey(deckIdx, mode) { return `d_${deckStableId(deckIdx)}_${mode}`; }
 
 function getBest(deckIdx, mode) {
   const k = bestKey(deckIdx, mode);
@@ -2662,8 +2891,13 @@ function renderSectionGrid() {
   grid.innerHTML = '';
 
   SECTIONS.forEach((sectionTerms, idx) => {
+    const meta = SECTION_META[idx];
+    const isTierDeck = idx < PRIORITY_TIER_COUNT;
+    if (isTierDeck && !state.tierDecksVisible) return;
+    if (meta && meta.hidden) return;
+
     const card = document.createElement('div');
-    card.className = 'sec-card';
+    card.className = (meta && meta.tierClass) ? `sec-card tier-card ${meta.tierClass}` : 'sec-card';
     card.tabIndex = 0;
     card.setAttribute('role', 'button');
 
@@ -2677,14 +2911,17 @@ function renderSectionGrid() {
       bestHtml = `<div class="best">${parts.map(p => `<span>${p}</span>`).join('')}</div>`;
     }
 
+    const idxLabel = meta ? meta.name : `Deck ${String(deckDisplayNumber(idx)).padStart(2, '0')}`;
+    const rangeLabel = meta ? meta.range : deckLabel(sectionTerms);
+
     card.innerHTML = `
       <button class="card-menu-btn" type="button" aria-label="Deck options" title="Deck options" data-deck-menu="${idx}">⋮</button>
       <div class="card-menu-dropdown" data-deck-dropdown="${idx}">
         <button class="card-menu-item" type="button" data-history-deck="${idx}">Grade history</button>
         <button class="card-menu-item card-menu-item-danger" type="button" data-reset-deck="${idx}">Reset deck score</button>
       </div>
-      <div class="idx">Deck ${String(idx + 1).padStart(2, '0')}</div>
-      <div class="range">${deckLabel(sectionTerms)}</div>
+      <div class="idx">${idxLabel}</div>
+      <div class="range">${rangeLabel}</div>
       <div class="count">${sectionTerms.length}<small>terms</small></div>
       ${bestHtml}
     `;
@@ -2692,14 +2929,77 @@ function renderSectionGrid() {
     // the 3-dot menu button or its dropdown — those have their own
     // handlers wired below and should stop the click before it reaches
     // this listener.
+    // Tapping the Tier 1 card opens the Part 1 / Part 2 / All sub-choice
+    // screen instead of going straight to mode-select, since Tier 1 is
+    // the only deck with sub-decks. Every other card behaves as before.
+    const opensSubchoice = meta && meta.id === 'tier1-all';
     card.addEventListener('click', (e) => {
       if (e.target.closest('.card-menu-btn') || e.target.closest('.card-menu-dropdown')) return;
+      if (opensSubchoice) { openTier1SubchoiceModal(); return; }
       openModeModal(idx);
     });
-    card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModeModal(idx); } });
+    card.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      e.preventDefault();
+      if (opensSubchoice) { openTier1SubchoiceModal(); return; }
+      openModeModal(idx);
+    });
     grid.appendChild(card);
   });
 }
+
+// ===================== TIER 1 SUB-CHOICE MODAL =====================
+// Interposed between the Tier 1 grid card and the normal mode modal.
+// Resolves each entry in TIER1_SUBCHOICE (stable id) to its current
+// SECTIONS index via deckStableId, so it keeps working even if Tier
+// 1's sub-decks are ever reordered relative to each other.
+function tier1SubchoiceIndex(stableId) {
+  return SECTION_META.findIndex(m => m && m.id === stableId);
+}
+
+function openTier1SubchoiceModal() {
+  const list = el('tier1-subchoice-list');
+  list.innerHTML = '';
+  TIER1_SUBCHOICE.forEach(({ id, label, sub }) => {
+    const idx = tier1SubchoiceIndex(id);
+    if (idx === -1) return; // defensive: skip if a stable id ever goes missing
+    const terms = SECTIONS[idx];
+    const bestClassic = getBest(idx, 'classic');
+    const bestReverse = getBest(idx, 'reverse');
+    const scoreParts = [];
+    if (bestClassic !== null) scoreParts.push(`Classic ${bestClassic}%`);
+    if (bestReverse !== null) scoreParts.push(`Reverse ${bestReverse}%`);
+    const scoreLine = scoreParts.length ? ` · ${scoreParts.join(' · ')}` : '';
+
+    const opt = document.createElement('div');
+    opt.className = 'mode-opt';
+    opt.tabIndex = 0;
+    opt.setAttribute('role', 'button');
+    opt.innerHTML = `
+      <div>
+        <div class="m-title">${label}</div>
+        <div class="m-desc">${sub} · ${terms.length} terms${scoreLine}</div>
+      </div>
+      <div class="m-icon">▸</div>
+    `;
+    const choose = () => {
+      closeTier1SubchoiceModal();
+      openModeModal(idx);
+    };
+    opt.addEventListener('click', choose);
+    opt.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); choose(); } });
+    list.appendChild(opt);
+  });
+  el('tier1-subchoice-overlay').classList.add('active');
+}
+function closeTier1SubchoiceModal() {
+  el('tier1-subchoice-overlay').classList.remove('active');
+}
+el('tier1-subchoice-x').addEventListener('click', closeTier1SubchoiceModal);
+el('tier1-subchoice-cancel').addEventListener('click', closeTier1SubchoiceModal);
+el('tier1-subchoice-overlay').addEventListener('click', (e) => {
+  if (e.target.id === 'tier1-subchoice-overlay') closeTier1SubchoiceModal();
+});
 
 // ===================== MODE MODAL =====================
 
@@ -2708,8 +3008,9 @@ let pendingDeckIndex = null;
 function openModeModal(deckIdx) {
   pendingDeckIndex = deckIdx;
   const sectionTerms = SECTIONS[deckIdx];
-  el('modal-deck-title').textContent = `Deck ${deckIdx + 1}`;
-  el('modal-deck-sub').textContent = `${sectionTerms.length} terms · ${deckLabel(sectionTerms)}`;
+  const meta = SECTION_META[deckIdx];
+  el('modal-deck-title').textContent = meta ? meta.name : `Deck ${deckDisplayNumber(deckIdx)}`;
+  el('modal-deck-sub').textContent = `${sectionTerms.length} terms · ${meta ? meta.range : deckLabel(sectionTerms)}`;
   el('mode-classic-desc').textContent = `See the acronym, pick the right definition. ${state.baseTimeLimit}s per question.`;
   el('mode-overlay').classList.add('active');
 }
@@ -2717,6 +3018,7 @@ function closeModeModal() {
   el('mode-overlay').classList.remove('active');
   pendingDeckIndex = null;
 }
+
 
 // ===================== QUIZ BUILD =====================
 
@@ -3068,7 +3370,7 @@ function finishGame() {
   const total = state.questions.length;
   const isNewBest = setBest(state.deckIndex, state.mode, state.correctCount, total);
 
-  el('r-deck-label').textContent = `Deck ${state.deckIndex + 1} — ${state.mode === 'classic' ? 'Classic' : 'Reverse'} — Complete`;
+  el('r-deck-label').textContent = `${deckDisplayName(state.deckIndex)} — ${state.mode === 'classic' ? 'Classic' : 'Reverse'} — Complete`;
   el('r-score-num').textContent = state.correctCount;
   el('r-score-of').textContent = `/${total}`;
 
@@ -3608,8 +3910,9 @@ document.addEventListener('click', (e) => {
 // ---------- Grade history modal ----------
 function openHistoryModal(deckIdx) {
   const sectionTerms = SECTIONS[deckIdx];
-  el('history-title').textContent = `Deck ${deckIdx + 1} — Grade history`;
-  el('history-sub').textContent = deckLabel(sectionTerms);
+  const meta = SECTION_META[deckIdx];
+  el('history-title').textContent = `${deckDisplayName(deckIdx)} — Grade history`;
+  el('history-sub').textContent = meta ? meta.range : deckLabel(sectionTerms);
 
   const classicRuns = getHistory(deckIdx, 'classic').map(r => ({ ...r, mode: 'classic' }));
   const reverseRuns = getHistory(deckIdx, 'reverse').map(r => ({ ...r, mode: 'reverse' }));
@@ -3654,8 +3957,9 @@ let pendingResetDeckIndex = null;
 function openResetDeckModal(deckIdx) {
   pendingResetDeckIndex = deckIdx;
   const sectionTerms = SECTIONS[deckIdx];
+  const meta = SECTION_META[deckIdx];
   el('reset-deck-warning').textContent =
-    `This will permanently erase Deck ${deckIdx + 1}'s (${deckLabel(sectionTerms)}) best score, accuracy, and run history in both Classic and Reverse mode.`;
+    `This will permanently erase ${deckDisplayName(deckIdx)}'s (${meta ? meta.range : deckLabel(sectionTerms)}) best score, accuracy, and run history in both Classic and Reverse mode.`;
   el('reset-deck-overlay').classList.add('active');
 }
 function closeResetDeckModal() {
@@ -3719,6 +4023,8 @@ el('shuffle-on-btn').addEventListener('click', () => { applyShuffleSetting(true)
 el('shuffle-off-btn').addEventListener('click', () => { applyShuffleSetting(false); saveShuffleSetting(false); });
 el('vol-controls-on-btn').addEventListener('click', () => { applyVolControlsSetting(true); saveVolControlsSetting(true); });
 el('vol-controls-off-btn').addEventListener('click', () => { applyVolControlsSetting(false); saveVolControlsSetting(false); });
+el('tier-decks-show-btn').addEventListener('click', () => { applyTierDecksSetting(true); saveTierDecksVisible(true); });
+el('tier-decks-hide-btn').addEventListener('click', () => { applyTierDecksSetting(false); saveTierDecksVisible(false); });
 
 // ---------- Reset progress (with confirmation) ----------
 function openResetModal() {
@@ -3784,7 +4090,7 @@ function closeDevModal() { el('dev-overlay').classList.remove('active'); }
 
 function populateDevDeckSelect() {
   const sel = el('dev-score-deck');
-  sel.innerHTML = SECTIONS.map((s, i) => `<option value="${i}">Deck ${i + 1} (${deckLabel(s)})</option>`).join('');
+  sel.innerHTML = SECTIONS.map((s, i) => `<option value="${i}">${deckDisplayName(i)} (${SECTION_META[i] ? SECTION_META[i].range : deckLabel(s)})</option>`).join('');
 }
 
 el('code-submit').addEventListener('click', () => {
@@ -3865,7 +4171,7 @@ el('dev-score-apply').addEventListener('click', () => {
   refreshGlobalBestDisplay();
   if (state.screen === 'sections') renderSectionGrid();
   checkForNewMastery();
-  devLog(`Set Deck ${deckIdx + 1} (${mode}) to ${correct}/${total}.`);
+  devLog(`Set ${deckDisplayName(deckIdx)} (${mode}) to ${correct}/${total}.`);
 });
 
 // ---- Command console ----
@@ -3902,7 +4208,7 @@ const DEV_COMMANDS = {
       return;
     }
     const pct = getBest(deckIdx, mode);
-    devLog(pct === null ? `Deck ${deckIdx + 1} (${mode}): no attempts yet.` : `Deck ${deckIdx + 1} (${mode}) best: ${pct}%`);
+    devLog(pct === null ? `${deckDisplayName(deckIdx)} (${mode}): no attempts yet.` : `${deckDisplayName(deckIdx)} (${mode}) best: ${pct}%`);
   },
   set(args) {
     const deckIdx = parseInt(args[0], 10) - 1;
@@ -3917,7 +4223,7 @@ const DEV_COMMANDS = {
     refreshGlobalBestDisplay();
     if (state.screen === 'sections') renderSectionGrid();
     checkForNewMastery();
-    devLog(`Set Deck ${deckIdx + 1} (${mode}) to ${correct}/${total}.`);
+    devLog(`Set ${deckDisplayName(deckIdx)} (${mode}) to ${correct}/${total}.`);
   },
   theme(args) {
     const t = args[0];
@@ -3974,6 +4280,7 @@ el('dev-console-input').addEventListener('keydown', (e) => {
 applyTheme(loadTheme());
 applyShuffleSetting(loadShuffleSetting());
 applyVolControlsSetting(loadVolControlsSetting());
+applyTierDecksSetting(loadTierDecksVisible());
 applyTimerSetting(loadTimerSetting());
 state.devMode = loadDevModeUnlocked();
 refreshDevButtonVisibility();
